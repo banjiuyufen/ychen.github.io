@@ -22,6 +22,20 @@
             --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
+        /* Dark mode variables */
+        :root.dark-mode {
+            --primary: #4ca1e9;
+            --primary-light: #64b5f6;
+            --primary-dark: #1976d2;
+            --secondary: #a0a0a0;
+            --light: #121212;
+            --white: #1e1e1e;
+            --dark: #f0f0f0;
+            --accent: #ffca28;
+            --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -36,6 +50,11 @@
             padding: 30px;
             min-height: 100vh;
             position: relative;
+            transition: background 0.5s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212, #1e1e1e, #252525);
         }
         
         .container {
@@ -101,10 +120,18 @@
             border-left: 5px solid var(--primary);
         }
         
+        .dark-mode .card {
+            background: rgba(30, 30, 30, 0.85);
+        }
+        
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
             background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .dark-mode .card:hover {
+            background: rgba(40, 40, 40, 0.95);
         }
         
         .section-title {
@@ -160,6 +187,10 @@
             border: 1px solid rgba(0, 120, 212, 0.2);
         }
         
+        .dark-mode .social-link {
+            background: rgba(0, 120, 212, 0.2);
+        }
+        
         .social-link:hover {
             background: rgba(0, 120, 212, 0.2);
             transform: translateY(-3px);
@@ -170,6 +201,10 @@
             margin-top: 25px;
             padding-top: 25px;
             border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .dark-mode .contact-info {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .contact-row {
@@ -206,9 +241,17 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
+        .dark-mode .research-item {
+            background: rgba(30, 30, 30, 0.7);
+        }
+        
         .research-item:hover {
             background: rgba(233, 236, 239, 0.7);
             transform: translateY(-5px);
+        }
+        
+        .dark-mode .research-item:hover {
+            background: rgba(40, 40, 40, 0.7);
         }
         
         .research-item h3 {
@@ -248,6 +291,10 @@
             overflow: hidden;
         }
         
+        .dark-mode .collaboration {
+            background: linear-gradient(135deg, rgba(0,120,212,0.2), rgba(255,185,0,0.15));
+        }
+        
         .collaboration::before {
             content: "";
             position: absolute;
@@ -266,6 +313,10 @@
             margin-bottom: 30px;
             padding-bottom: 30px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .dark-mode .publication-list li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .publication-list li:last-child {
@@ -289,7 +340,7 @@
         }
         
         .publication-title:hover {
-            color: var(--primary-dark);
+            color: var(--primary-light);
             border-bottom: 2px dotted var(--primary-light);
         }
         
@@ -325,6 +376,10 @@
             transition: var(--transition);
         }
         
+        .dark-mode .publication-link {
+            background: rgba(0, 120, 212, 0.2);
+        }
+        
         .publication-link:hover {
             background: rgba(0, 120, 212, 0.2);
             transform: translateY(-2px);
@@ -337,6 +392,10 @@
             font-weight: 600;
         }
         
+        .dark-mode .highlight {
+            background: rgba(255, 185, 0, 0.3);
+        }
+        
         .footer {
             text-align: center;
             padding: 40px 0 30px;
@@ -346,12 +405,20 @@
             font-size: 1.1rem;
         }
         
+        .dark-mode .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
         .note {
             padding: 20px;
             background: rgba(255, 245, 157, 0.3);
             border-radius: var(--border-radius);
             margin: 20px 0;
             border-left: 4px solid #ffd600;
+        }
+        
+        .dark-mode .note {
+            background: rgba(255, 245, 157, 0.15);
         }
         
         @media (max-width: 768px) {
@@ -432,6 +499,11 @@
             overflow: hidden;
         }
         
+        .dark-mode .abstract-tooltip {
+            background: rgba(30, 30, 30, 0.98);
+            border: 1px solid rgba(76, 161, 233, 0.3);
+        }
+        
         .abstract-tooltip.visible {
             display: block;
             opacity: 1;
@@ -486,6 +558,10 @@
             text-align: right;
         }
         
+        .dark-mode .tooltip-hint {
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        
         /* Scrollbar styling for abstract content */
         .abstract-content::-webkit-scrollbar {
             width: 8px;
@@ -494,6 +570,10 @@
         .abstract-content::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.05);
             border-radius: 4px;
+        }
+        
+        .dark-mode .abstract-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .abstract-content::-webkit-scrollbar-thumb {
@@ -524,6 +604,10 @@
             z-index: 10;
         }
         
+        .dark-mode .close-tooltip {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
         .close-tooltip:hover {
             background: rgba(0, 0, 0, 0.1);
             color: var(--primary-dark);
@@ -539,12 +623,64 @@
             from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
             to { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
         }
+        
+        /* Control bar */
+        .control-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .theme-toggle, .lang-toggle {
+            background: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+        
+        .dark-mode .theme-toggle, 
+        .dark-mode .lang-toggle {
+            background: rgba(30, 30, 30, 0.8);
+            color: var(--dark);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-toggle:hover, .lang-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark-mode .theme-toggle:hover, 
+        .dark-mode .lang-toggle:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
     </style>
 </head>
 <body>
     <div class="decor-circle circle-1"></div>
     <div class="decor-circle circle-2"></div>
     <div class="decor-circle circle-3"></div>
+    
+    <!-- Control bar for theme and language -->
+    <div class="control-bar">
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i> 夜间模式
+        </button>
+        <button class="lang-toggle" id="langToggle">
+            <i class="fas fa-language"></i> 切换中文
+        </button>
+    </div>
     
     <!-- Abstract tooltip container -->
     <div id="abstract-tooltip" class="abstract-tooltip">
@@ -568,10 +704,15 @@
                     <img src="ychen.jpg" alt="Yi Chen" class="profile-img">
                     <div class="profile-info">
                         <h2 class="section-title">
-                            <i class="fas fa-user-graduate"></i> About Me
+                            <i class="fas fa-user-graduate"></i> 
+                            <span class="lang-switch" data-lang-en="About Me" data-lang-zh="关于我">About Me</span>
                         </h2>
-                        <p>I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.</p>
-                        <p>I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2017. <br>I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2021, also advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.</p>                        
+                        <p class="lang-switch" data-lang-en="I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>Cheng-Lin Liu</a>." data-lang-zh="我目前就读于中国科学院自动化研究所多模态人工智能系统国家重点实验室和中关村学院，师从<a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>刘成林</a>教授。">
+                            I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
+                        </p>
+                        <p class="lang-switch" data-lang-en="I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2017. <br>I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2021, also advised by Prof. <a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>Cheng-Lin Liu</a>." data-lang-zh="我于2017年在西安电子科技大学空间科学与技术学院获得工学学士学位。<br>2021年在中国科学院自动化研究所模式识别国家重点实验室获得电子信息硕士学位，导师同样为<a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>刘成林</a>教授。">
+                            I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2017. <br>I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2021, also advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
+                        </p>                        
                         <div class="social-links">
                             <a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN" class="social-link">
                                 <i class="fab fa-google"></i> Google Scholar
@@ -616,36 +757,54 @@
             <div class="research-grid">
                 <div class="card">
                     <h2 class="section-title">
-                        <i class="fas fa-microscope"></i> Research Focus
+                        <i class="fas fa-microscope"></i> 
+                        <span class="lang-switch" data-lang-en="Research Focus" data-lang-zh="研究重点">Research Focus</span>
                     </h2>
-                    <p>My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class="highlight">Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration.</p>
+                    <p class="lang-switch" data-lang-en="My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class='highlight'>Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration." data-lang-zh="我的博士研究方向专注于人工智能理论和方法在科学领域的应用与实践，特别是在大型语言模型与佐剂学（<span class='highlight'>AI佐剂</span>）的交叉领域。此外，我的研究方向也包括大模型/多模态大模型的基础理论，包括可靠推理和推理加速等。">
+                        My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class="highlight">Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration.
+                    </p>
                     
                     <div class="note">
-                        <i class="fas fa-lightbulb"></i> My work bridges AI theory with practical applications in scientific domains.
+                        <i class="fas fa-lightbulb"></i> 
+                        <span class="lang-switch" data-lang-en="My work bridges AI theory with practical applications in scientific domains." data-lang-zh="我的研究目标是将AI理论与科学领域的实际应用相结合，从而促进科学领域的研究和发展。">
+                            My work bridges AI theory with practical applications in scientific domains.
+                        </span>
                     </div>
                 </div>
                 
                 <div class="card">
                     <h2 class="section-title">
-                        <i class="fas fa-lightbulb"></i> Research Interests
+                        <i class="fas fa-lightbulb"></i> 
+                        <span class="lang-switch" data-lang-en="Research Interests" data-lang-zh="研究兴趣">Research Interests</span>
                     </h2>
                     <ul class="research-interests">
-                        <li>Recognition and generation methods for Chinese online text lines</li>
-                        <li>Fundamental theories and applications of large language models and multimodal foundation models</li>
-                        <li>Practical applications of AI methodologies in scientific domains (<span class="highlight">Ai for Science</span>), particularly in biology, chemistry, and materials science research</li>
+                        <li class="lang-switch" data-lang-en="Recognition and generation methods for Chinese online text lines" data-lang-zh="联机中文文本行的识别与生成方法">
+                            Recognition and generation methods for Chinese online text lines
+                        </li>
+                        <li class="lang-switch" data-lang-en="Fundamental theories and applications of large language models and multimodal foundation models" data-lang-zh="大语言模型和多模态大模型的基础理论与应用">
+                            Fundamental theories and applications of large language models and multimodal foundation models
+                        </li>
+                        <li class="lang-switch" data-lang-en="Practical applications of AI methodologies in scientific domains (<span class='highlight'>Ai for Science</span>), particularly in biology, chemistry, and materials science research" data-lang-zh="AI方法在科学领域的应用与实践（<span class='highlight'>AI for Science</span>），特别是在生物学、化学和材料科学研究中">
+                            Practical applications of AI methodologies in scientific domains (<span class="highlight">Ai for Science</span>), particularly in biology, chemistry, and materials science research
+                        </li>
                     </ul>
                     
                     <div class="collaboration">
-                        <p><i class="fas fa-handshake"></i> If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!</p>
+                        <p><i class="fas fa-handshake"></i> 
+                            <span class="lang-switch" data-lang-en="If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!" data-lang-zh="如果我的研究重点或兴趣与您相符，请随时通过电子邮件与我联系。我期待任何的合作和交流的机会！">
+                                If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
             
             <div class="card">
                 <h2 class="section-title">
-                    <i class="fas fa-file-alt"></i> Preprints
+                    <i class="fas fa-file-alt"></i> 
+                    <span class="lang-switch" data-lang-en="Preprints" data-lang-zh="预印本">Preprints</span>
                 </h2>
-                <p><i>(*: equal contribution)</i></p>
+                <p><i class="lang-switch" data-lang-en="(*: equal contribution)" data-lang-zh="(*: 同等贡献)">(*: equal contribution)</i></p>
                 
                 <ul class="publication-list">
                     <li>
@@ -692,9 +851,10 @@
             
             <div class="card">
                 <h2 class="section-title">
-                    <i class="fas fa-book"></i> Publications
+                    <i class="fas fa-book"></i> 
+                    <span class="lang-switch" data-lang-en="Publications" data-lang-zh="出版物">Publications</span>
                 </h2>
-                <p><i>(*: equal contribution)</i></p>
+                <p><i class="lang-switch" data-lang-en="(*: equal contribution)" data-lang-zh="(*: 同等贡献)">(*: equal contribution)</i></p>
                 
                 <ul class="publication-list">
                     <li>
@@ -758,7 +918,9 @@
         </div>
         
         <div class="footer">
-            <p>© 2023 Yi Chen | Academic Homepage</p>
+            <p>© 2023 Yi Chen | 
+                <span class="lang-switch" data-lang-en="Academic Homepage" data-lang-zh="学术主页">Academic Homepage</span>
+            </p>
             <p>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS) | Zhongguancun Academy</p>
         </div>
     </div>
@@ -878,6 +1040,63 @@
                     }, 300);
                 }
             });
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const langToggle = document.getElementById('langToggle');
+            let isDarkMode = localStorage.getItem('darkMode') === 'true';
+            let currentLang = localStorage.getItem('currentLang') || 'en';
+            
+            // Apply saved theme
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
+            }
+            
+            // Apply saved language
+            if (currentLang === 'zh') {
+                switchLanguage('zh');
+                langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
+            }
+            
+            // Theme toggle event
+            themeToggle.addEventListener('click', function() {
+                isDarkMode = !document.body.classList.contains('dark-mode');
+                document.body.classList.toggle('dark-mode');
+                
+                if (isDarkMode) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('darkMode', isDarkMode);
+            });
+            
+            // Language toggle event
+            langToggle.addEventListener('click', function() {
+                currentLang = currentLang === 'en' ? 'zh' : 'en';
+                switchLanguage(currentLang);
+                
+                if (currentLang === 'zh') {
+                    langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
+                } else {
+                    langToggle.innerHTML = '<i class="fas fa-language"></i> 切换中文';
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('currentLang', currentLang);
+            });
+            
+            // Function to switch language
+            function switchLanguage(lang) {
+                document.querySelectorAll('.lang-switch').forEach(element => {
+                    element.textContent = element.getAttribute(`data-lang-${lang}`);
+                });
+            }
         });
     </script>
 </body>
