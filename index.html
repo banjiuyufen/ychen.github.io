@@ -413,57 +413,59 @@
             right: 15%;
         }
         
-        /* Abstract Tooltip */
+        /* Abstract Tooltip - Improved version */
         .abstract-tooltip {
             position: fixed;
-            max-width: 900px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            max-width: min(90vw, 900px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
             border-radius: var(--border-radius);
-            padding: 25px;
+            padding: 30px;
             box-shadow: var(--tooltip-shadow);
             z-index: 1000;
             display: none;
-            border: 1px solid rgba(0, 120, 212, 0.15);
+            border: 1px solid rgba(0, 120, 212, 0.2);
             opacity: 0;
-            transform: translateY(10px);
+            transform: translate(-50%, -50%) scale(0.95);
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: none;
+            overflow: hidden;
         }
         
         .abstract-tooltip.visible {
             display: block;
             opacity: 1;
-            transform: translateY(0);
+            transform: translate(-50%, -50%) scale(1);
         }
         
         .abstract-tooltip::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid rgba(255, 255, 255, 0.95);
-            filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.05));
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
         
         .abstract-title {
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--primary-dark);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 120, 212, 0.1);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 120, 212, 0.15);
         }
         
         .abstract-content {
             font-size: 1.05rem;
             word-wrap: break-word;
             text-align: justify;
-            line-height: 1.6;
+            line-height: 1.65;
             color: var(--dark);
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 10px;
         }
         
         .abstract-content p {
@@ -484,10 +486,58 @@
             text-align: right;
         }
         
+        /* Scrollbar styling for abstract content */
+        .abstract-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .abstract-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .abstract-content::-webkit-scrollbar-thumb {
+            background: rgba(0, 120, 212, 0.3);
+            border-radius: 4px;
+        }
+        
+        .abstract-content::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+        
+        /* Close button for tooltip */
+        .close-tooltip {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            z-index: 10;
+        }
+        
+        .close-tooltip:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--primary-dark);
+        }
+        
         /* Animation for tooltip */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
         }
     </style>
 </head>
@@ -498,9 +548,12 @@
     
     <!-- Abstract tooltip container -->
     <div id="abstract-tooltip" class="abstract-tooltip">
+        <div class="close-tooltip">
+            <i class="fas fa-times"></i>
+        </div>
         <div class="abstract-title" id="tooltip-title"></div>
         <div class="abstract-content" id="tooltip-content"></div>
-        <div class="tooltip-hint">Hover for more details</div>
+        <div class="tooltip-hint">Click anywhere to close</div>
     </div>
     
     <div class="container">
@@ -518,7 +571,7 @@
                             <i class="fas fa-user-graduate"></i> About Me
                         </h2>
                         <p>I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.</p>
-                        <p>I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2017. <br>I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2021, also advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.</p>                        
+                        <p>I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2017. <br>I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2011, also advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.</p>                        
                         <div class="social-links">
                             <a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN" class="social-link">
                                 <i class="fab fa-google"></i> Google Scholar
@@ -715,10 +768,54 @@
             const tooltip = document.getElementById('abstract-tooltip');
             const tooltipTitle = document.getElementById('tooltip-title');
             const tooltipContent = document.getElementById('tooltip-content');
+            const closeTooltip = document.querySelector('.close-tooltip');
             let hoverTimer;
             
             // Get all publication titles
             const publicationTitles = document.querySelectorAll('.publication-title');
+            
+            // Function to position tooltip centered at coordinates
+            function positionTooltip(x, y) {
+                // First make tooltip visible to get its dimensions
+                tooltip.style.display = 'block';
+                tooltip.style.opacity = '0';
+                
+                // Get tooltip dimensions
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+                
+                // Get window dimensions
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                
+                // Calculate position to center tooltip at (x, y)
+                let left = x;
+                let top = y;
+                
+                // Adjust if tooltip goes beyond window edges
+                if (left + tooltipWidth / 2 > windowWidth) {
+                    left = windowWidth - tooltipWidth / 2;
+                }
+                if (left - tooltipWidth / 2 < 0) {
+                    left = tooltipWidth / 2;
+                }
+                if (top + tooltipHeight / 2 > windowHeight) {
+                    top = windowHeight - tooltipHeight / 2;
+                }
+                if (top - tooltipHeight / 2 < 0) {
+                    top = tooltipHeight / 2;
+                }
+                
+                // Set position with centered transform
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = top + 'px';
+                
+                // Now animate to visible state
+                setTimeout(() => {
+                    tooltip.style.opacity = '1';
+                    tooltip.classList.add('visible');
+                }, 10);
+            }
             
             // Add event listeners to each publication title
             publicationTitles.forEach(title => {
@@ -734,15 +831,8 @@
                         tooltipTitle.textContent = title.textContent;
                         tooltipContent.textContent = abstract;
                         
-                        // Position tooltip near the cursor
-                        const x = e.clientX;
-                        const y = e.clientY;
-                        
-                        tooltip.style.left = (x + 20) + 'px';
-                        tooltip.style.top = (y + 20) + 'px';
-                        
-                        // Show the tooltip with animation
-                        tooltip.classList.add('visible');
+                        // Position tooltip at cursor position
+                        positionTooltip(e.clientX, e.clientY);
                     }, 1000);
                 });
                 
@@ -750,23 +840,43 @@
                     // Clear the timer and hide the tooltip
                     clearTimeout(hoverTimer);
                     tooltip.classList.remove('visible');
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 300);
                 });
                 
                 title.addEventListener('mousemove', function(e) {
                     // Update tooltip position while moving
                     if (tooltip.classList.contains('visible')) {
-                        const x = e.clientX;
-                        const y = e.clientY;
-                        
-                        tooltip.style.left = (x + 20) + 'px';
-                        tooltip.style.top = (y + 20) + 'px';
+                        positionTooltip(e.clientX, e.clientY);
                     }
+                });
+                
+                // Click to show tooltip immediately (for mobile/touch devices)
+                title.addEventListener('click', function(e) {
+                    clearTimeout(hoverTimer);
+                    tooltipTitle.textContent = title.textContent;
+                    tooltipContent.textContent = abstract;
+                    positionTooltip(e.clientX, e.clientY);
                 });
             });
             
-            // Close tooltip when mouse leaves it
-            tooltip.addEventListener('mouseleave', function() {
+            // Close tooltip when clicking the close button
+            closeTooltip.addEventListener('click', function() {
                 tooltip.classList.remove('visible');
+                setTimeout(() => {
+                    tooltip.style.display = 'none';
+                }, 300);
+            });
+            
+            // Close tooltip when clicking anywhere else
+            document.addEventListener('click', function(e) {
+                if (!tooltip.contains(e.target) && !e.target.classList.contains('publication-title')) {
+                    tooltip.classList.remove('visible');
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 300);
+                }
             });
         });
     </script>
