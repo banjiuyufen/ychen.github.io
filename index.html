@@ -19,6 +19,7 @@
             --border-radius: 12px;
             --shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
+            --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         * {
@@ -34,11 +35,14 @@
             background: linear-gradient(135deg, #f8f9fa, #e9ecef, #dee2e6);
             padding: 30px;
             min-height: 100vh;
+            position: relative;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .header {
@@ -276,6 +280,17 @@
             margin-bottom: 10px;
             font-size: 1.3rem;
             line-height: 1.5;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            transition: all 0.2s ease;
+            padding: 5px 0;
+            border-bottom: 2px dotted transparent;
+        }
+        
+        .publication-title:hover {
+            color: var(--primary-dark);
+            border-bottom: 2px dotted var(--primary-light);
         }
         
         .publication-authors {
@@ -397,12 +412,94 @@
             top: 40%;
             right: 15%;
         }
+        
+        /* Abstract Tooltip */
+        .abstract-tooltip {
+            position: fixed;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--tooltip-shadow);
+            z-index: 1000;
+            display: none;
+            border: 1px solid rgba(0, 120, 212, 0.15);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .abstract-tooltip.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .abstract-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid rgba(255, 255, 255, 0.95);
+            filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.05));
+        }
+        
+        .abstract-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 120, 212, 0.1);
+        }
+        
+        .abstract-content {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        .abstract-content p {
+            margin-bottom: 15px;
+        }
+        
+        .abstract-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-hint {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-style: italic;
+            text-align: right;
+        }
+        
+        /* Animation for tooltip */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
     <div class="decor-circle circle-1"></div>
     <div class="decor-circle circle-2"></div>
     <div class="decor-circle circle-3"></div>
+    
+    <!-- Abstract tooltip container -->
+    <div id="abstract-tooltip" class="abstract-tooltip">
+        <div class="abstract-title" id="tooltip-title"></div>
+        <div class="abstract-content" id="tooltip-content"></div>
+        <div class="tooltip-hint">Hover for more details</div>
+    </div>
     
     <div class="container">
         <div class="header">
@@ -497,7 +594,9 @@
                 
                 <ul class="publication-list">
                     <li>
-                        <div class="publication-title">The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation</div>
+                        <div class="publication-title" data-abstract="Coming Soon!">
+                            The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation
+                        </div>
                         <div class="publication-authors">Xinming Wang, <span class="highlight">Yi Chen</span>, Haiyang Guo, Fei Zhu, Minsi Ren, Yuanqi Shao, Aslan Feng, Hongzhu Yi, Hongming Yang, Winston Hu, Jian Xu, Tailin Wu, Xuyao Zhang, Cheng-Lin Liu</div>
                         <div class="publication-links">
                             <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
@@ -505,7 +604,9 @@
                     </li>
                     
                     <li>
-                        <div class="publication-title">Advancing Adjuvant Research with MLLMs: An Open-Ended Benchmark and Formal Framework</div>
+                        <div class="publication-title" data-abstract="Adjuvants play a critical role in modulating immune responses, significantly advancing vaccine development and immunotherapy. However, the adjuvant field faces substantial challenges, including data shortages and unclear mechanisms of action, which hinder further progress, particularly in transitioning from traditional experience-based adjuvant design to AI-driven methodologies. To address these challenges, we present the first open-ended Q&A benchmark specifically focused on adjuvants, meticulously annotated by adjuvant experts. This benchmark, including 1,294 Q\&A pairs and 1,364 formal data descriptions, aims to facilitate future research at the intersection of multimodal large language models (MLLMs) and the adjuvant. With this benchmark, we conducted a systematic assessment of 11 leading closed-source and 19 open-source MLLMs, evaluating dimensions such as data generation, domain-specific capabilities, rejection of hallucinations, and prompt following. The results show that OpenAI-o1 (semantic similarity: 0.7495, LLM score: 7.7) and DeepSeek-R1 (semantic similarity: 0.7415, LLM score: 7.7) lead the performance among closed-source and open-source MLLMs, respectively, highlighting their potential to support adjuvant research. Furthermore, we propose a formal description framework for adjuvants, providing structured formal data and abstraction rules to support future development of domain-specific MLLMs capable of advanced reasoning in complex biomedical scenarios. Our work aims to advance the integration of MLLMs in the adjuvant field, promoting innovative applications that enhance vaccine and adjuvant developments.">
+                            Advancing Adjuvant Research with MLLMs: An Open-Ended Benchmark and Formal Framework
+                        </div>
                         <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu</div>
                         <div class="publication-links">
                             <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
@@ -513,7 +614,9 @@
                     </li>
                     
                     <li>
-                        <div class="publication-title">Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models</div>
+                        <div class="publication-title" data-abstract=" Recently, multimodal large language models (MM-LLMs) have achieved significant success in various tasks, but their high computational costs limit widespread application. The main computational burden arises from processing concatenated text and visual tokens in the LLM layer, where input token length directly affects efficiency. Our analysis of visual tokens reveals that their similarity to the CLS token follows a long-tail distribution, with only a few showing high similarity. To address this, we propose a dynamic pruning algorithm that identifies the inflection point in the visual CLS token similarity curve, enabling effective trimming of visual markers to accelerate model performance. Additionally, we perform a second round of pruning in the LLM layer, filtering out low-correlation tokens through the interaction between visual and textual features. Experimental results demonstrate that our method achieves performance comparable to the original while utilizing only 22% of the original token quantity. Our source code will be made publicly available upon acceptance.">
+                            Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models
+                        </div>
                         <div class="publication-authors">Gao-Tong Yu*, <span class="highlight">Yi Chen*</span>, Jian Xu</div>
                         <div class="publication-links">
                             <a href="https://arxiv.org/abs/2409.01162" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
@@ -521,7 +624,9 @@
                     </li>
                     
                     <li>
-                        <div class="publication-title">VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding</div>
+                        <div class="publication-title" data-abstract="Video Anomaly Detection (VAD) aims to identify anomalous events within videos and precisely ground their temporal occurrences. Current VAD research can be primarily categorized into two paradigms: traditional DNN-based methods predominantly focus on temporal grounding of anomalies, while emerging methods leveraging Large Language Models(LLMs) emphasize the semantic understanding of anomalous content. In fact, both video anomaly understanding and video anomaly grounding tasks are crucial for the comprehensive detection of anomalies in videos. Furthermore, these two tasks can mutually support and corroborate each other. However, there is currently no model capable of simultaneously accomplishing both tasks, nor is there a dataset that can support both tasks. In this paper, we propose VAGU (Video Anomaly Grounding and Understanding), the first benchmark integrating both anomaly grounding and anomaly understanding. Specifically, each instance in VAGU is annotated with three manually curated components: anomaly category specification, anomaly semantic understanding, and precise anomaly temporal grounding. Building upon this benchmark, we present Glance then Scrutinize (GtS) - a training-free framework guided by static textual and dynamic textual prompts. This framework achieves coarse grounding of high-probability anomalous regions without requiring anomaly-specific prompts, followed by fine-grained anomaly interpretation and temporal boundary refinement. Furthermore, we innovatively propose the Joint evaluation of Anomaly Understanding and Grounding (JeAUG) metric, which overcomes the unidimensional limitations of conventional evaluation systems by jointly assessing semantic interpretability accuracy and temporal grounding precision. Extensive experiments demonstrate the superiority of our proposed benchmark, framework, and evaluation metrics.">
+                            VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding
+                        </div>
                         <div class="publication-authors">Shibo Gao, Peipei Yang, <span class="highlight">Yi Chen</span>, Han Zhu, Yangyang Liu, Wenxin Zhang, Linlin Huang</div>
                         <div class="publication-links">
                             <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
@@ -538,7 +643,9 @@
                 
                 <ul class="publication-list">
                     <li>
-                        <div class="publication-title">Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information</div>
+                        <div class="publication-title" data-abstract="With the advancement of large-scale language modeling techniques, large multimodal models combining visual encoders with large language models have demonstrated exceptional performance in various visual tasks. Most of the current large multimodal models achieve this by mapping visual features obtained from the visual encoder into a large language model and using them as inputs alongside text for downstream tasks. Therefore, the number of visual tokens directly affects the training and inference speed of the model. There has been significant work on token pruning for visual transformers, but for large multimodal models, only relying on visual information for token pruning or compression may lead to significant loss of important information. On the other hand, the textual input in the form of a question may contain valuable information that can aid in answering the question, providing additional knowledge to the model. To address the potential oversimplification and excessive pruning that can occur with most purely visual token pruning methods, we propose a text information-guided dynamic visual token recovery mechanism that does not require training. This mechanism leverages the similarity between the question text and visual tokens to recover visually meaningful tokens with important text information while merging other less important tokens, to achieve efficient computation for large multimodal models. Experimental results demonstrate that our proposed method achieves comparable performance to the original approach while compressing the visual tokens to an average of 10% of the original quantity.">
+                            Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information
+                        </div>
                         <div class="publication-authors"><span class="highlight">Yi Chen</span>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu</div>
                         <div class="publication-venue">The 39th Annual AAAI Conference on Artificial Intelligence (AAAI 2025), 2025</div>
                         <div class="publication-links">
@@ -548,7 +655,9 @@
                     </li>
                     
                     <li>
-                        <div class="publication-title">Decoupling Layout from Glyph in Online Chinese Handwriting Generation</div>
+                        <div class="publication-title" data-abstract="Text plays a crucial role in the transmission of human civilization, and teaching machines to generate online handwritten text in various styles presents an interesting and significant challenge. However, most prior work has concentrated on generating individual Chinese fonts, leaving \textit{complete text line generation largely unexplored}. In this paper, we identify that text lines can naturally be divided into two components: layout and glyphs. Based on this division, we designed a text line layout generator coupled with a diffusion-based stylized font synthesizer to address this challenge hierarchically. More concretely, the layout generator performs in-context-like learning based on the text content and the provided style references to generate positions for each glyph autoregressively. Meanwhile, the font synthesizer which consists of a character embedding dictionary, a multi-scale calligraphy style encoder and a 1D U-Net based diffusion denoiser will generate each font on its position while imitating the calligraphy style extracted from the given style references. Qualitative and quantitative experiments on the CASIA-OLHWDB demonstrate that our method is capable of generating structurally correct and indistinguishable imitation samples.">
+                            Decoupling Layout from Glyph in Online Chinese Handwriting Generation
+                        </div>
                         <div class="publication-authors">Min-Si Ren, Yan-Ming Zhang, <span class="highlight">Yi Chen</span></div>
                         <div class="publication-venue">The 13th International Conference on Learning Representations (ICLR 2025), 2025</div>
                         <div class="publication-links">
@@ -558,7 +667,9 @@
                     </li>
                     
                     <li>
-                        <div class="publication-title">Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation</div>
+                        <div class="publication-title" data-abstract="Online handwritten text recognition technology has been increasingly applied in intelligent touch-based and pen-based devices. Current mainstream methods are mostly designed for horizontally written texts, thus is difficult to handle texts in any writing direction. This paper proposes a recognition framework based on over-segmentation which is applicable to text recognition of any writing direction. It divides text line inclination styles into two cases: texts with the entire line rotated and texts with the line direction rotated while keeping the characters upright. A text line inclination style classification module is introduced in the preprocessing stage to classify these two cases. The former case can be recognized using a horizontal text line recognizer after rotation correction. For the latter case, an improved over-segmentation algorithm is designed based on stroke classification using bidirectional long short-term memory networks (BiLSTM) to achieve text recognition in any writing direction. Experimental results demonstrate that the proposed method is capable of text recognition in any writing direction and achieves highly competitive results on the CASIA-OLHWDB and ICDAR2013-Online datasets.">
+                            Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation
+                        </div>
                         <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Min-Si Ren, Cheng-Lin Liu</div>
                         <div class="publication-venue">The 27th International Conference on Pattern Recognition (ICPR 2024), 2024</div>
                         <div class="publication-links">
@@ -567,7 +678,9 @@
                     </li>
                     
                     <li>
-                        <div class="publication-title">Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition</div>
+                        <div class="publication-title" data-abstract="Handwritten Chinese Text Recognition (HCTR) has been advanced largely by deep learning in recent years. However, the remaining recognition errors still hinder reliability-critical applications where zero-error is desired. Rejecting low-confidence patterns can help reduce the error rate but the increased rejection rate is also harmful. In this paper, we propose a character confidence estimation method incorporating contexts for character rejection in HCTR. Based on a text line recognizer outputting character segmentation and classification results, the confidence of each segmented character is estimated by combining the scores of a re-trained character classifier, the linguistic and geometric contexts. We introduce a probabilistic formula for estimating the confidence by combining the classifier and contextual scores, and an improved approach for scoring the geometric context using unary and binary geometric features. Experimental evaluations on the CASIA-HWDB and ICDAR2013 datasets demonstrate that our method can significantly improve the rejection performance in respect of low error rate at moderate rejection rate. The re-trained classifier, the linguistic context and the geometric context are all justified effective to improve the confidence.">
+                            Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition
+                        </div>
                         <div class="publication-authors">Yang-Yang Liu, <span class="highlight">Yi Chen</span>, Fei Yin, Cheng-Lin Liu</div>
                         <div class="publication-venue">The 18th International Conference on Document Analysis and Recognition (ICDAR 2024), 2024</div>
                         <div class="publication-links">
@@ -576,7 +689,9 @@
                     </li>
                     
                     <li>
-                        <div class="publication-title">Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network</div>
+                        <div class="publication-title" data-abstract="Segmentation-based handwritten text recognition has the advantage of character interpretability but needs a character classifier with high classification accuracy and non-character rejection capability. The classifier can be trained on both character samples and string samples but real string samples are usually insufficient. In this paper, we proposed a learning method for segmentation-based online handwritten Chinese text recognition with a convolutional prototype network as the underlying classifier. The prototype classifier is inherently resistant to non-characters, and so, can be trained with character and string samples without the need of data augmentation. The learning has two stages: pre-training on character samples with a modified loss function for improving non-character resistance, and weakly supervised learning on both character and string samples for improving recognition performance. Experimental results on the CASIA-OLHWDB and ICDAR2013-Online datasets show that the proposed method can achieve promising recognition performance without training data augmentation.">
+                            Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network
+                        </div>
                         <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Cheng-Lin Liu</div>
                         <div class="publication-venue">The 17th International Conference on Document Analysis and Recognition (ICDAR 2023), 2023</div>
                         <div class="publication-links">
@@ -592,5 +707,66 @@
             <p>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS) | Zhongguancun Academy</p>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltip = document.getElementById('abstract-tooltip');
+            const tooltipTitle = document.getElementById('tooltip-title');
+            const tooltipContent = document.getElementById('tooltip-content');
+            let hoverTimer;
+            
+            // Get all publication titles
+            const publicationTitles = document.querySelectorAll('.publication-title');
+            
+            // Add event listeners to each publication title
+            publicationTitles.forEach(title => {
+                const abstract = title.getAttribute('data-abstract');
+                
+                title.addEventListener('mouseenter', function(e) {
+                    // Clear any existing timer
+                    clearTimeout(hoverTimer);
+                    
+                    // Set a timer to show the tooltip after 1 second
+                    hoverTimer = setTimeout(() => {
+                        // Set tooltip content
+                        tooltipTitle.textContent = title.textContent;
+                        tooltipContent.textContent = abstract;
+                        
+                        // Position tooltip near the cursor
+                        const x = e.clientX;
+                        const y = e.clientY;
+                        
+                        tooltip.style.left = (x + 20) + 'px';
+                        tooltip.style.top = (y + 20) + 'px';
+                        
+                        // Show the tooltip with animation
+                        tooltip.classList.add('visible');
+                    }, 1000);
+                });
+                
+                title.addEventListener('mouseleave', function() {
+                    // Clear the timer and hide the tooltip
+                    clearTimeout(hoverTimer);
+                    tooltip.classList.remove('visible');
+                });
+                
+                title.addEventListener('mousemove', function(e) {
+                    // Update tooltip position while moving
+                    if (tooltip.classList.contains('visible')) {
+                        const x = e.clientX;
+                        const y = e.clientY;
+                        
+                        tooltip.style.left = (x + 20) + 'px';
+                        tooltip.style.top = (y + 20) + 'px';
+                    }
+                });
+            });
+            
+            // Close tooltip when mouse leaves it
+            tooltip.addEventListener('mouseleave', function() {
+                tooltip.classList.remove('visible');
+            });
+        });
+    </script>
 </body>
 </html>
