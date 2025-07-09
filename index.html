@@ -1,132 +1,470 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link rel="stylesheet" href="jemdoc.css" type="text/css" />
-<title>Yi Chen</title> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yi Chen - Academic Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0078d4;
+            --primary-dark: #106ebe;
+            --secondary: #605e5c;
+            --light: #f3f2f1;
+            --white: #ffffff;
+            --dark: #323130;
+            --accent: #ffb900;
+            --border-radius: 8px;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #faf9f8;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .profile {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 210px;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow);
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(0, 120, 212, 0.1);
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: rgba(0, 120, 212, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e1dfdd;
+        }
+        
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        @media (max-width: 900px) {
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .research-item {
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .research-item:hover {
+            background: #edebe9;
+        }
+        
+        .research-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .research-interests li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .research-interests li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .collaboration {
+            background: linear-gradient(135deg, rgba(0,120,212,0.1), rgba(255,185,0,0.1));
+            padding: 25px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #e1dfdd;
+        }
+        
+        .publication-list {
+            list-style: none;
+        }
+        
+        .publication-list li {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e1dfdd;
+        }
+        
+        .publication-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .publication-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .publication-authors {
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        
+        .publication-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 12px;
+        }
+        
+        .publication-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .publication-link:hover {
+            text-decoration: underline;
+        }
+        
+        .highlight {
+            background: rgba(255, 185, 0, 0.2);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+            color: var(--secondary);
+            border-top: 1px solid #e1dfdd;
+        }
+        
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-<body style="width: 1000px; margin: 0 auto;">
-<div id="fwtitle">
-<div id="toptitle">
-<h1>Yi Chen</h1>
-</div>
-</div>
-<div id="layout-content">
-<table class="imgtable"><tr><td>
-<img src="ychen.jpg" alt="photo_me" width="190px" height="200px" />&nbsp;</td>
-<td align="left"><p>PhD Student [<a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN">Google Scholar</a>] [<a href="https://orcid.org/0009-0005-0720-6372">ORCID</a>] [<a href="https://www.researchgate.net/profile/Yi-Chen-287">ResearchGate</a>] [<a href="https://github.com/banjiuyufen">GitHub</a>] <br />
-State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS) <br/> Institution of Automation, Chinese Academy of Sciences <br/> <a href="https://nlpr.ia.ac.cn/pal/People.html">Pattern Analysis and Learning Group (PAL)</a> <br/> Zhongguancun Academy
-</p>
-<p>Beijing 100190, China.<br />  
-Email: yi.chen@nlpr.ia.ac.cn</a>
-
-</p>
-</td></tr></table>
-<h2>About me</h2>
-<p>I am currently a PhD student in the State Key Laboratory of Multimodal Artificial Intelligence Systems at Institution of Automation, Chinese Academy of Sciences, where I am advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
-I received the B.E degree from the School of Space Science and Technology at Xidian University in 2017; I recevied my Master degree in electronic information from the State Key Laboratory of Multimodal Artificial Intelligence Systems, Institute of Automation, Chinese Academy of Sciences in 2021, where I was advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
-</p>
-
-<!-- </p>
-	
-My research interests include the following points：
-</p>
-<ul>
-<li>Chinese text line recognition and generation;
-</li>
-<li>Large language model and large multimodal model;
-</li>
-<li>The practice and application of artificial intelligence methods in science (Ai for Science), especially in the fields of biology, chemistry, and materials.
-</li>
-</ul> -->
-<div class="resume-section">
-    <h2>Research Focus</h2>
-    <p>My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<strong>Ai for Adjuvant</strong>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration.</p>
-
-    <h2>Research Interests</h2>
-    <ul>
-        <li>Recognition and generation methods for Chinese online text lines</li>
-        <li>Fundamental theories and applications of large language models and multimodal foundation models</li>
-        <li>Practical applications of AI methodologies in scientific domains (<strong>Ai for Science</strong>), particularly in biology, chemistry, and materials science research</li>
-    </ul>
-
-    <div class="contact-note">
-        <p>If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!</p>
+<body>
+    <div class="header">
+        <h1>Yi Chen</h1>
+        <p>PhD Candidate in Artificial Intelligence & Deep Learning</p>
     </div>
-</div>
-
-</p>
-
-<h2>Preprints </h2>
-	(*: equal contribution)
-
-<ul>
-<li><p><i>The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation</i>.<br />
-<b>Xinming Wang, Yi Chen*</b>, Haiyang Guo, Fei Zhu, Minsi Ren, Yuanqi Shao, Aslan Feng, Hongzhu Yi, Hongming Yang, Winston Hu, Jian Xu, Tailin Wu, Xuyao Zhang, Cheng-Lin Liu. <br />  
-<!-- [<a href="https://arxiv.org/abs/2409.01162">arXiv</a>]<br /></p> -->
-</li>
-</ul>
-
-
-	
-<ul>
-<li><p><i>Advancing Adjuvant Research with MLLMs: An Open-Ended Benchmark and Formal Framework</i>.<br />
-<b>Yi Chen*</b>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu. <br />  
-<!-- [<a href="https://arxiv.org/abs/2409.01162">arXiv</a>]<br /></p> -->
-</li>
-</ul>
-	
-<ul>
-<li><p><i>Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models</i>.<br />
-Gao-Tong Yu*, <b>Yi Chen*</b>, Jian Xu. <br />  
-[<a href="https://arxiv.org/abs/2409.01162">arXiv</a>]<br /></p>
-</li>
-</ul>
-<ul>
-<li><p><i>VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding</i>.<br />
-Shibo Gao, Peipei Yang, <b>Yi Chen</b>, Han Zhu, Yangyang Liu, Wenxin Zhang, Linlin Huang. <br /> 
-</li>
-</ul>	
-
-  
-<h2>Publication</h2> 
-       (*: equal contribution)
-  
-<ul>
-<li><p><i>Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information</i>.<br />
-<b>Yi Chen</b>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu. <br />  
-The 39th Annual AAAI Conference on Artificial Intelligence (AAAI 2025), 2025. [<a href="https://arxiv.org/abs/2409.01179">arxiv</a>] [<a href="https://github.com/banjiuyufen/Recoverable-Compression">code</a>]<br /></p>
-</li>
-</ul>
-<ul>
-<li><p><i>Decoupling Layout from Glyph in Online Chinese Handwriting Generation</i>.<br />
-Min-Si Ren, Yan-Ming Zhang, <b>Yi Chen</b>. <br />  
-The 13th International Conference on Learning Representations (ICLR 2025), 2025. 
-[<a href="https://arxiv.org/abs/2410.02309">arXiv</a>]<br /></p>
-</li>
-</ul>
-<ul>
-<li><p><i>Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation</i>.<br />
-<b>Yi Chen</b>, Heng Zhang, Min-Si Ren, Cheng-Lin Liu. <br />  
-The 27th International Conference on Pattern Recognition (ICPR 2024), 2024. [<a href="https://link.springer.com/chapter/10.1007/978-3-031-78183-4_24">link</a>] <br /></p>
-</li>
-</ul>
-<ul>
-<li><p><i>Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition</i>.<br />
-Yang-Yang Liu, <b>Yi Chen</b>, Fei Yin, Cheng-Lin Liu. <br />  
-The 18th International Conference on Document Analysis and Recognition (ICDAR 2024), 2024. [<a href="https://link.springer.com/chapter/10.1007/978-3-031-70533-5_9">link</a>] <br /></p>
-</li>
-</ul>
-<ul>
-<li><p><i>Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network</i>.<br />
-<b>Yi Chen</b>, Heng Zhang, Cheng-Lin Liu. <br />  
-The 17th International Conference on Document Analysis and Recognition (ICDAR 2023), 2023. [<a href="https://link.springer.com/chapter/10.1007/978-3-031-41685-9_3">link</a>] <br /></p>
-</li>
-</ul>
-
-
-</div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="profile">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Yi Chen" class="profile-img">
+                <div class="profile-info">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-graduate"></i> About Me
+                    </h2>
+                    <p>I am currently a PhD student in the State Key Laboratory of Multimodal Artificial Intelligence Systems at Institution of Automation, Chinese Academy of Sciences, where I am advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.</p>
+                    <p>I received the B.E degree from the School of Space Science and Technology at Xidian University in 2017; I received my Master degree in electronic information from the State Key Laboratory of Multimodal Artificial Intelligence Systems, Institute of Automation, Chinese Academy of Sciences in 2021.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN" class="social-link">
+                            <i class="fab fa-google"></i> Google Scholar
+                        </a>
+                        <a href="https://orcid.org/0009-0005-0720-6372" class="social-link">
+                            <i class="fab fa-orcid"></i> ORCID
+                        </a>
+                        <a href="https://www.researchgate.net/profile/Yi-Chen-287" class="social-link">
+                            <i class="fab fa-researchgate"></i> ResearchGate
+                        </a>
+                        <a href="https://github.com/banjiuyufen" class="social-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-row">
+                            <i class="fas fa-building"></i>
+                            <span>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS)</span>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-users"></i>
+                            <span>Pattern Analysis and Learning Group (PAL)</span>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Beijing 100190, China</span>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-envelope"></i>
+                            <span>yi.chen@nlpr.ia.ac.cn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="research-grid">
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-microscope"></i> Research Focus
+                </h2>
+                <p>My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class="highlight">Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration.</p>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-lightbulb"></i> Research Interests
+                </h2>
+                <ul class="research-interests">
+                    <li>Recognition and generation methods for Chinese online text lines</li>
+                    <li>Fundamental theories and applications of large language models and multimodal foundation models</li>
+                    <li>Practical applications of AI methodologies in scientific domains (<span class="highlight">Ai for Science</span>), particularly in biology, chemistry, and materials science research</li>
+                </ul>
+                
+                <div class="collaboration">
+                    <p><i class="fas fa-handshake"></i> If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="section-title">
+                <i class="fas fa-file-alt"></i> Preprints
+            </h2>
+            <p><i>(*: equal contribution)</i></p>
+            
+            <ul class="publication-list">
+                <li>
+                    <div class="publication-title">The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation</div>
+                    <div class="publication-authors">Xinming Wang, <span class="highlight">Yi Chen*</span>, Haiyang Guo, Fei Zhu, Minsi Ren, Yuanqi Shao, Aslan Feng, Hongzhu Yi, Hongming Yang, Winston Hu, Jian Xu, Tailin Wu, Xuyao Zhang, Cheng-Lin Liu</div>
+                    <div class="publication-links">
+                        <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="publication-title">Advancing Adjuvant Research with MLLMs: An Open-Ended Benchmark and Formal Framework</div>
+                    <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu</div>
+                    <div class="publication-links">
+                        <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="publication-title">Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models</div>
+                    <div class="publication-authors">Gao-Tong Yu*, <span class="highlight">Yi Chen*</span>, Jian Xu</div>
+                    <div class="publication-links">
+                        <a href="https://arxiv.org/abs/2409.01162" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="publication-title">VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding</div>
+                    <div class="publication-authors">Shibo Gao, Peipei Yang, <span class="highlight">Yi Chen</span>, Han Zhu, Yangyang Liu, Wenxin Zhang, Linlin Huang</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2 class="section-title">
+                <i class="fas fa-book"></i> Publications
+            </h2>
+            <p><i>(*: equal contribution)</i></p>
+            
+            <ul class="publication-list">
+                <li>
+                    <div class="publication-title">Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information</div>
+                    <div class="publication-authors"><span class="highlight">Yi Chen</span>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu</div>
+                    <div class="publication-authors">The 39th Annual AAAI Conference on Artificial Intelligence (AAAI 2025), 2025</div>
+                    <div class="publication-links">
+                        <a href="https://arxiv.org/abs/2409.01179" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                        <a href="https://github.com/banjiuyufen/Recoverable-Compression" class="publication-link"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="publication-title">Decoupling Layout from Glyph in Online Chinese Handwriting Generation</div>
+                    <div class="publication-authors">Min-Si Ren, Yan-Ming Zhang, <span class="highlight">Yi Chen</span></div>
+                    <div class="publication-authors">The 13th International Conference on Learning Representations (ICLR 2025), 2025</div>
+                    <div class="publication-links">
+                        <a href="https://arxiv.org/abs/2410.02309" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="publication-title">Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation</div>
+                    <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Min-Si Ren, Cheng-Lin Liu</div>
+                    <div class="publication-authors">The 27th International Conference on Pattern Recognition (ICPR 2024), 2024</div>
+                    <div class="publication-links">
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-78183-4_24" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="publication-title">Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition</div>
+                    <div class="publication-authors">Yang-Yang Liu, <span class="highlight">Yi Chen</span>, Fei Yin, Cheng-Lin Liu</div>
+                    <div class="publication-authors">The 18th International Conference on Document Analysis and Recognition (ICDAR 2024), 2024</div>
+                    <div class="publication-links">
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-70533-5_9" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="publication-title">Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network</div>
+                    <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Cheng-Lin Liu</div>
+                    <div class="publication-authors">The 17th International Conference on Document Analysis and Recognition (ICDAR 2023), 2023</div>
+                    <div class="publication-links">
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-41685-9_3" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2023 Yi Chen | Academic Homepage</p>
+        <p>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS)</p>
+    </div>
 </body>
 </html>
