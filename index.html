@@ -1,1103 +1,1104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yi Chen - Academic Homepage</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-    --primary: #0078d4;
-    --primary-light: #4ca1e9;
-    --primary-dark: #106ebe;
-    --secondary: #605e5c;
-    --light: #f8f9fa;
-    --white: #ffffff;
-    --dark: #323130;
-    --accent: #ffb900;
-    --border-radius: 12px;
-    --shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    --transition: all 0.3s ease;
-    --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-/* Dark mode variables */
-:root.dark-mode {
-    --primary: #4ca1e9;
-    --primary-light: #64b5f6;
-    --primary-dark: #1976d2;
-    --secondary: #a0a0a0;
-    --light: #121212;
-    --white: #1e1e1e;
-    --dark: #f0f0f0;
-    --accent: #ffca28;
-    --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--dark);
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef, #dee2e6);
-    padding: 30px;
-    min-height: 100vh;
-    position: relative;
-    transition: background 0.5s ease;
-}
-
-body.dark-mode {
-    background: linear-gradient(135deg, #121212, #1e1e1e, #252525);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
-
-.header {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: var(--white);
-    padding: 50px 40px;
-    border-radius: var(--border-radius);
-    margin-bottom: 30px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-}
-
-.header::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-    transform: rotate(30deg);
-    pointer-events: none;
-}
-
-.header h1 {
-    font-size: 3.2rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    position: relative;
-    letter-spacing: -0.5px;
-}
-
-.header p {
-    font-size: 1.4rem;
-    opacity: 0.9;
-    max-width: 800px;
-    margin: 0 auto;
-    font-weight: 300;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    padding: 40px;
-    transition: var(--transition);
-    border-left: 5px solid var(--primary);
-}
-
-.dark-mode .card {
-    background: rgba(40, 40, 40, 0.85); /* Reduced darkness for better readability */
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 0.95);
-}
-
-.dark-mode .card:hover {
-    background: rgba(50, 50, 50, 0.95); /* Reduced darkness for better readability */
-}
-
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 30px;
-    color: var(--primary-dark);
-    font-size: 2rem;
-    font-weight: 700;
-    padding-bottom: 15px;
-    border-bottom: 2px solid rgba(0, 120, 212, 0.15);
-}
-
-.profile {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 30px;
-    align-items: flex-start;
-}
-
-.profile-img {
-    width: 220px;
-    height: 230px;
-    border-radius: var(--border-radius);
-    object-fit: cover;
-    border: 5px solid var(--white);
-    box-shadow: var(--shadow);
-}
-
-.profile-info {
-    flex: 1;
-}
-
-.social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 25px 0 30px;
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--primary-dark);
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    background: rgba(0, 120, 212, 0.1);
-    transition: var(--transition);
-    font-weight: 500;
-    border: 1px solid rgba(0, 120, 212, 0.2);
-}
-
-.dark-mode .social-link {
-    background: rgba(0, 120, 212, 0.2);
-}
-
-.social-link:hover {
-    background: rgba(0, 120, 212, 0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 120, 212, 0.15);
-}
-
-.contact-info {
-    margin-top: 25px;
-    padding-top: 25px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.dark-mode .contact-info {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.contact-row i {
-    width: 30px;
-    text-align: center;
-    color: var(--primary);
-}
-
-.research-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-@media (max-width: 900px) {
-    .research-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.research-item {
-    padding: 25px;
-    background: rgba(248, 249, 250, 0.7);
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.dark-mode .research-item {
-    background: rgba(40, 40, 40, 0.7); /* Reduced darkness for better readability */
-}
-
-.research-item:hover {
-    background: rgba(233, 236, 239, 0.7);
-    transform: translateY(-5px);
-}
-
-.dark-mode .research-item:hover {
-    background: rgba(50, 50, 50, 0.7); /* Reduced darkness for better readability */
-}
-
-.research-item h3 {
-    color: var(--primary-dark);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.3rem;
-}
-
-.research-interests li {
-    margin-bottom: 15px;
-    padding-left: 10px;
-    position: relative;
-    font-size: 1.1rem;
-    line-height: 1.7;
-}
-
-.research-interests li::before {
-    content: "•";
-    color: var(--primary);
-    font-weight: bold;
-    position: absolute;
-    left: -15px;
-    font-size: 1.5rem;
-}
-
-.collaboration {
-    background: linear-gradient(135deg, rgba(0,120,212,0.1), rgba(255,185,0,0.08));
-    padding: 30px;
-    border-radius: var(--border-radius);
-    text-align: center;
-    margin-top: 25px;
-    border: 1px solid rgba(0, 120, 212, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.dark-mode .collaboration {
-    background: linear-gradient(135deg, rgba(0,120,212,0.2), rgba(255,185,0,0.15));
-}
-
-.collaboration::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-}
-
-.publication-list {
-    list-style: none;
-}
-
-.publication-list li {
-    margin-bottom: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.dark-mode .publication-list li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.publication-list li:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.publication-title {
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 10px;
-    font-size: 1.3rem;
-    line-height: 1.5;
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    transition: all 0.2s ease;
-    padding: 5px 0;
-    border-bottom: 2px dotted transparent;
-}
-
-.publication-title:hover {
-    color: var(--primary-light);
-    border-bottom: 2px dotted var(--primary-light);
-}
-
-.publication-authors {
-    color: var(--secondary);
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-}
-
-.publication-venue {
-    color: var(--primary-dark);
-    margin-bottom: 15px;
-    font-weight: 500;
-    font-style: italic;
-}
-
-.publication-links {
-    display: flex;
-    gap: 20px;
-    margin-top: 15px;
-}
-
-.publication-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--primary-dark);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 6px;
-    background: rgba(0, 120, 212, 0.1);
-    transition: var(--transition);
-}
-
-.dark-mode .publication-link {
-    background: rgba(0, 120, 212, 0.2);
-}
-
-.publication-link:hover {
-    background: rgba(0, 120, 212, 0.2);
-    transform: translateY(-2px);
-}
-
-.highlight {
-    background: rgba(255, 185, 0, 0.2);
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-weight: 600;
-}
-
-.dark-mode .highlight {
-    background: rgba(255, 185, 0, 0.4); /* Increased contrast for readability */
-}
-
-.footer {
-    text-align: center;
-    padding: 40px 0 30px;
-    margin-top: 30px;
-    color: var(--secondary);
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    font-size: 1.1rem;
-}
-
-.dark-mode .footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.note {
-    padding: 20px;
-    background: rgba(255, 245, 157, 0.3);
-    border-radius: var(--border-radius);
-    margin: 20px 0;
-    border-left: 4px solid #ffd600;
-}
-
-.dark-mode .note {
-    background: rgba(255, 245, 157, 0.2); /* Increased contrast for readability */
-}
-
-@media (max-width: 768px) {
-    .profile {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .header {
-        padding: 40px 20px;
-    }
-    
-    .header h1 {
-        font-size: 2.5rem;
-    }
-    
-    .header p {
-        font-size: 1.2rem;
-    }
-    
-    .card {
-        padding: 30px 20px;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-}
-
-/* Decorative elements */
-.decor-circle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.08;
-    z-index: -1;
-}
-
-.circle-1 {
-    width: 300px;
-    height: 300px;
-    background: var(--primary);
-    top: 10%;
-    left: 5%;
-}
-
-.circle-2 {
-    width: 200px;
-    height: 200px;
-    background: var(--accent);
-    bottom: 15%;
-    right: 8%;
-}
-
-.circle-3 {
-    width: 150px;
-    height: 150px;
-    background: #4CAF50;
-    top: 40%;
-    right: 15%;
-}
-
-/* Abstract Tooltip - Improved version */
-.abstract-tooltip {
-    position: fixed;
-    max-width: min(90vw, 900px);
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(12px);
-    border-radius: var(--border-radius);
-    padding: 30px;
-    box-shadow: var(--tooltip-shadow);
-    z-index: 1000;
-    display: none;
-    border: 1px solid rgba(0, 120, 212, 0.2);
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.dark-mode .abstract-tooltip {
-    background: rgba(40, 40, 40, 0.98); /* Reduced darkness for better readability */
-    border: 1px solid rgba(76, 161, 233, 0.3);
-}
-
-.abstract-tooltip.visible {
-    display: block;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.abstract-tooltip::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-}
-
-.abstract-title {
-    font-weight: 900;
-    font-size: 1.4rem;
-    color: var(--primary-dark);
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(0, 120, 212, 0.15);
-}
-
-.abstract-content {
-    font-size: 1.05rem;
-    word-wrap: break-word;
-    text-align: justify;
-    line-height: 1.65;
-    color: var(--dark);
-    max-height: 60vh;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-.abstract-content p {
-    margin-bottom: 15px;
-}
-
-.abstract-content p:last-child {
-    margin-bottom: 0;
-}
-
-.tooltip-hint {
-    margin-top: 20px;
-    padding-top: 10px;
-    border-top: 1px dashed rgba(0, 0, 0, 0.1);
-    font-size: 0.9rem;
-    color: var(--secondary);
-    font-style: italic;
-    text-align: right;
-}
-
-.dark-mode .tooltip-hint {
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
-}
-
-/* Scrollbar styling for abstract content */
-.abstract-content::-webkit-scrollbar {
-    width: 8px;
-}
-
-.abstract-content::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-}
-
-.dark-mode .abstract-content::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.abstract-content::-webkit-scrollbar-thumb {
-    background: rgba(0, 120, 212, 0.3);
-    border-radius: 4px;
-}
-
-.abstract-content::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-light);
-}
-
-/* Close button for tooltip */
-.close-tooltip {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: var(--secondary);
-    font-size: 1.1rem;
-    z-index: 10;
-}
-
-.dark-mode .close-tooltip {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.close-tooltip:hover {
-    background: rgba(0, 0, 0, 0.1);
-    color: var(--primary-dark);
-}
-
-/* Animation for tooltip */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
-    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    to { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
-}
-
-/* Control bar */
-.control-bar {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 15px;
-    z-index: 1000;
-}
-
-.theme-toggle, .lang-toggle {
-    background: var(--white);
-    border: none;
-    border-radius: 50px;
-    padding: 12px 20px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    color: var(--dark);
-}
-
-.dark-mode .theme-toggle, 
-.dark-mode .lang-toggle {
-    background: rgba(40, 40, 40, 0.8); /* Reduced darkness for better readability */
-    color: var(--dark);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.theme-toggle:hover, .lang-toggle:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .theme-toggle:hover, 
-.dark-mode .lang-toggle:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yi Chen - Academic Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0078d4;
+            --primary-light: #4ca1e9;
+            --primary-dark: #106ebe;
+            --secondary: #605e5c;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --dark: #323130;
+            --accent: #ffb900;
+            --border-radius: 12px;
+            --shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Dark mode variables */
+        :root.dark-mode {
+            --primary: #4ca1e9;
+            --primary-light: #64b5f6;
+            --primary-dark: #1976d2;
+            --secondary: #a0a0a0;
+            --light: #121212;
+            --white: #1e1e1e;
+            --dark: #f0f0f0;
+            --accent: #ffca28;
+            --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef, #dee2e6);
+            padding: 30px;
+            min-height: 100vh;
+            position: relative;
+            transition: background 0.5s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, var(--light), var(--white), var(--white));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 50px 40px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+        
+        .header h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+        
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            transition: var(--transition);
+            border-left: 5px solid var(--primary);
+        }
+        
+        .dark-mode .card {
+            background: rgba(30, 30, 30, 0.85);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .dark-mode .card:hover {
+            background: rgba(40, 40, 40, 0.95);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+            font-size: 2rem;
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 120, 212, 0.15);
+        }
+        
+        .profile {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        
+        .profile-img {
+            width: 220px;
+            height: 230px;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: var(--shadow);
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-dark);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(0, 120, 212, 0.1);
+            transition: var(--transition);
+            font-weight: 500;
+            border: 1px solid rgba(0, 120, 212, 0.2);
+        }
+        
+        .dark-mode .social-link {
+            background: rgba(0, 120, 212, 0.2);
+        }
+        
+        .social-link:hover {
+            background: rgba(0, 120, 212, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 120, 212, 0.15);
+        }
+        
+        .contact-info {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .dark-mode .contact-info {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-row i {
+            width: 30px;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .research-item {
+            padding: 25px;
+            background: rgba(248, 249, 250, 0.7);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode .research-item {
+            background: rgba(30, 30, 30, 0.7);
+        }
+        
+        .research-item:hover {
+            background: rgba(233, 236, 239, 0.7);
+            transform: translateY(-5px);
+        }
+        
+        .dark-mode .research-item:hover {
+            background: rgba(40, 40, 40, 0.7);
+        }
+        
+        .research-item h3 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .research-interests li {
+            margin-bottom: 15px;
+            padding-left: 10px;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .research-interests li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+            font-size: 1.5rem;
+        }
+        
+        .collaboration {
+            background: linear-gradient(135deg, rgba(0,120,212,0.1), rgba(255,185,0,0.08));
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-top: 25px;
+            border: 1px solid rgba(0, 120, 212, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark-mode .collaboration {
+            background: linear-gradient(135deg, rgba(0,120,212,0.2), rgba(255,185,0,0.15));
+        }
+        
+        .collaboration::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .publication-list {
+            list-style: none;
+        }
+        
+        .publication-list li {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .dark-mode .publication-list li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .publication-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .publication-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            transition: all 0.2s ease;
+            padding: 5px 0;
+            border-bottom: 2px dotted transparent;
+        }
+        
+        .publication-title:hover {
+            color: var(--primary-light);
+            border-bottom: 2px dotted var(--primary-light);
+        }
+        
+        .publication-authors {
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .publication-venue {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-style: italic;
+        }
+        
+        .publication-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .publication-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: rgba(0, 120, 212, 0.1);
+            transition: var(--transition);
+        }
+        
+        .dark-mode .publication-link {
+            background: rgba(0, 120, 212, 0.2);
+        }
+        
+        .publication-link:hover {
+            background: rgba(0, 120, 212, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .highlight {
+            background: rgba(255, 185, 0, 0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .dark-mode .highlight {
+            background: rgba(255, 185, 0, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 0 30px;
+            margin-top: 30px;
+            color: var(--secondary);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 1.1rem;
+        }
+        
+        .dark-mode .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .note {
+            padding: 20px;
+            background: rgba(255, 245, 157, 0.3);
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            border-left: 4px solid #ffd600;
+        }
+        
+        .dark-mode .note {
+            background: rgba(255, 245, 157, 0.15);
+        }
+        
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header p {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Decorative elements */
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            z-index: -1;
+        }
+        
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            left: 5%;
+        }
+        
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            bottom: 15%;
+            right: 8%;
+        }
+        
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            background: #4CAF50;
+            top: 40%;
+            right: 15%;
+        }
+        
+        /* Abstract Tooltip - Improved version */
+        .abstract-tooltip {
+            position: fixed;
+            max-width: min(90vw, 900px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--tooltip-shadow);
+            z-index: 1000;
+            display: none;
+            border: 1px solid rgba(0, 120, 212, 0.2);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .dark-mode .abstract-tooltip {
+            background: rgba(30, 30, 30, 0.98);
+            border: 1px solid rgba(76, 161, 233, 0.3);
+        }
+        
+        .abstract-tooltip.visible {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .abstract-tooltip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .abstract-title {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 120, 212, 0.15);
+        }
+        
+        .abstract-content {
+            font-size: 1.05rem;
+            word-wrap: break-word;
+            text-align: justify;
+            line-height: 1.65;
+            color: var(--dark);
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .abstract-content p {
+            margin-bottom: 15px;
+        }
+        
+        .abstract-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-hint {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-style: italic;
+            text-align: right;
+        }
+        
+        .dark-mode .tooltip-hint {
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Scrollbar styling for abstract content */
+        .abstract-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .abstract-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .dark-mode .abstract-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .abstract-content::-webkit-scrollbar-thumb {
+            background: rgba(0, 120, 212, 0.3);
+            border-radius: 4px;
+        }
+        
+        .abstract-content::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+        
+        /* Close button for tooltip */
+        .close-tooltip {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            z-index: 10;
+        }
+        
+        .dark-mode .close-tooltip {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .close-tooltip:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--primary-dark);
+        }
+        
+        /* Animation for tooltip */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+        }
+        
+        /* Control bar */
+        .control-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .theme-toggle, .lang-toggle {
+            background: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+        
+        .dark-mode .theme-toggle, 
+        .dark-mode .lang-toggle {
+            background: rgba(30, 30, 30, 0.8);
+            color: var(--dark);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-toggle:hover, .lang-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark-mode .theme-toggle:hover, 
+        .dark-mode .lang-toggle:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
 </head>
 <body>
-<div class="decor-circle circle-1"></div>
-<div class="decor-circle circle-2"></div>
-<div class="decor-circle circle-3"></div>
-
-<!-- Control bar for theme and language -->
-<div class="control-bar">
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i> 夜间模式
-    </button>
-    <button class="lang-toggle" id="langToggle">
-        <i class="fas fa-language"></i> 切换中文
-    </button>
-</div>
-
-<!-- Abstract tooltip container -->
-<div id="abstract-tooltip" class="abstract-tooltip">
-    <div class="close-tooltip">
-        <i class="fas fa-times"></i>
-    </div>
-    <div class="abstract-title" id="tooltip-title"></div>
-    <div class="abstract-content" id="tooltip-content"></div>
-    <div class="tooltip-hint">Click anywhere to close</div>
-</div>
-
-<div class="container">
-    <div class="header">
-        <h1>Yi Chen</h1>
-        <p>PhD Candidate in Artificial Intelligence & Deep Learning</p>
+    <div class="decor-circle circle-1"></div>
+    <div class="decor-circle circle-2"></div>
+    <div class="decor-circle circle-3"></div>
+    
+    <!-- Control bar for theme and language -->
+    <div class="control-bar">
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i> 夜间模式
+        </button>
+        <button class="lang-toggle" id="langToggle">
+            <i class="fas fa-language"></i> 切换中文
+        </button>
     </div>
     
-    <div class="grid">
-        <div class="card">
-            <div class="profile">
-                <img src="ychen.jpg" alt="Yi Chen" class="profile-img">
-                <div class="profile-info">
-                    <h2 class="section-title">
-                        <i class="fas fa-user-graduate"></i> 
-                        <span class="lang-switch" data-lang-en="About Me" data-lang-zh="关于我">About Me</span>
-                    </h2>
-                    <p class="lang-switch" data-lang-en='I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.' data-lang-zh='我目前就读于中国科学院自动化研究所多模态人工智能系统国家重点实验室和中关村学院，师从<a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">刘成林</a>教授。'>
-                        I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
-                    </p>
-                    <p class="lang-switch" data-lang-en='I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2021. <br>I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2024, also advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.' data-lang-zh='我于2021年在西安电子科技大学空间科学与技术学院获得工学学士学位。<br>2024年在中国科学院自动化研究所模式识别国家重点实验室获得电子信息硕士学位，导师同样为<a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">刘成林</a>教授。'>
-                        I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2021. <br>I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2024, also advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
-                    </p>
-                    <div class="social-links">
-                        <a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN" class="social-link">
-                            <i class="fab fa-google"></i> Google Scholar
-                        </a>
-                        <a href="https://orcid.org/0009-0005-0720-6372" class="social-link">
-                            <i class="fab fa-orcid"></i> ORCID
-                        </a>
-                        <a href="https://www.researchgate.net/profile/Yi-Chen-287" class="social-link">
-                            <i class="fab fa-researchgate"></i> ResearchGate
-                        </a>
-                        <a href="https://github.com/banjiuyufen" class="social-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <div class="contact-row">
-                            <i class="fas fa-building"></i>
-                            <span><a href="https://mais.ia.ac.cn/about/ds.html">State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS)</a></span>
+    <!-- Abstract tooltip container -->
+    <div id="abstract-tooltip" class="abstract-tooltip">
+        <div class="close-tooltip">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="abstract-title" id="tooltip-title"></div>
+        <div class="abstract-content" id="tooltip-content"></div>
+        <div class="tooltip-hint">Click anywhere to close</div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Yi Chen</h1>
+            <p>PhD Candidate in Artificial Intelligence & Deep Learning</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="profile">
+                    <img src="ychen.jpg" alt="Yi Chen" class="profile-img">
+                    <div class="profile-info">
+                        <h2 class="section-title">
+                            <i class="fas fa-user-graduate"></i> 
+                            <span class="lang-switch" data-lang-en="About Me" data-lang-zh="关于我">About Me</span>
+                        </h2>
+                        <p class="lang-switch" data-lang-en="I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>Cheng-Lin Liu</a>." data-lang-zh="我目前就读于中国科学院自动化研究所多模态人工智能系统国家重点实验室和中关村学院，师从<a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>刘成林</a>教授。">
+                            I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institution of Automation, Chinese Academy of Sciences and Zhongguancun Academy, under the supervision of Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
+                        </p>
+                        <p class="lang-switch" data-lang-en="I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2017. I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2021, also advised by Prof. <a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>Cheng-Lin Liu</a>." data-lang-zh="我于2017年在西安电子科技大学空间科学与技术学院获得工学学士学位。2021年在中国科学院自动化研究所模式识别国家重点实验室获得电子信息硕士学位，导师同样为<a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>刘成林</a>教授。">
+                            I received the B.E. degree from the School of Space Science and Technology at Xidian University in 2017. I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition, Institute of Automation, Chinese Academy of Sciences in 2021, also advised by Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
+                        </p>                        
+                        <div class="social-links">
+                            <a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN" class="social-link">
+                                <i class="fab fa-google"></i> Google Scholar
+                            </a>
+                            <a href="https://orcid.org/0009-0005-0720-6372" class="social-link">
+                                <i class="fab fa-orcid"></i> ORCID
+                            </a>
+                            <a href="https://www.researchgate.net/profile/Yi-Chen-287" class="social-link">
+                                <i class="fab fa-researchgate"></i> ResearchGate
+                            </a>
+                            <a href="https://github.com/banjiuyufen" class="social-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
                         </div>
-                        <div class="contact-row">
-                            <i class="fas fa-university"></i>
-                            <span><a href="http://bjzgca.edu.cn">Zhongguancun Academy</a></span>
-                        </div>
-                        <div class="contact-row">
-                            <i class="fas fa-users"></i>
-                            <span><a href="https://nlpr.ia.ac.cn/pal/index.html">Pattern Analysis and Learning Group (PAL)</a>  </span>
-                        </div>
-                        <div class="contact-row">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Beijing 100190, China</span>
-                        </div>
-                        <div class="contact-row">
-                            <i class="fas fa-envelope"></i>
-                            <span>yi.chen@nlpr.ia.ac.cn</span>
+                        
+                        <div class="contact-info">
+                            <div class="contact-row">
+                                <i class="fas fa-building"></i>
+                                <span><a href="https://mais.ia.ac.cn/about/ds.html">State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS)</a></span>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fas fa-university"></i>
+                                <span><a href="http://bjzgca.edu.cn">Zhongguancun Academy</a></span>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fas fa-users"></i>
+                                <span><a href="https://nlpr.ia.ac.cn/pal/index.html">Pattern Analysis and Learning Group (PAL)</a>  </span>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Beijing 100190, China</span>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fas fa-envelope"></i>
+                                <span>yi.chen@nlpr.ia.ac.cn</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="research-grid">
-            <div class="card">
-                <h2 class="section-title">
-                    <i class="fas fa-microscope"></i> 
-                    <span class="lang-switch" data-lang-en="Research Focus" data-lang-zh="研究重点">Research Focus</span>
-                </h2>
-                <p class="lang-switch" data-lang-en='My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class="highlight">Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration.' data-lang-zh='我的博士研究方向专注于人工智能理论和方法在科学领域的应用与实践，特别是在大型语言模型与佐剂学（<span class="highlight">AI佐剂</span>）的交叉领域。此外，我的研究方向也包括大模型/多模态大模型的基础理论，包括可靠推理和推理加速等。'>
-                    My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class="highlight">Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration.
-                </p>
+            
+            <div class="research-grid">
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-microscope"></i> 
+                        <span class="lang-switch" data-lang-en="Research Focus" data-lang-zh="研究重点">Research Focus</span>
+                    </h2>
+                    <p class="lang-switch" data-lang-en="My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class='highlight'>Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration." data-lang-zh="我的博士研究方向专注于人工智能理论和方法在科学领域的应用与实践，特别是在大型语言模型与佐剂学（<span class='highlight'>AI佐剂</span>）的交叉领域。此外，我的研究方向也包括大模型/多模态大模型的基础理论，包括可靠推理和推理加速等。">
+                        My Ph.D. research focuses on artificial intelligence and deep learning methods, particularly at the intersection of large language models and adjuvant science (<span class="highlight">Ai for Adjuvant</span>). Additionally, I investigate fundamental theories of multimodal large language models, including reliable reasoning and inference acceleration.
+                    </p>
+                    
+                    <div class="note">
+                        <i class="fas fa-lightbulb"></i> 
+                        <span class="lang-switch" data-lang-en="My work bridges AI theory with practical applications in scientific domains." data-lang-zh="我的研究目标是将AI理论与科学领域的实际应用相结合，从而促进科学领域的研究和发展。">
+                            My work bridges AI theory with practical applications in scientific domains.
+                        </span>
+                    </div>
+                </div>
                 
-                <div class="note">
-                    <i class="fas fa-lightbulb"></i> 
-                    <span class="lang-switch" data-lang-en="My work bridges AI theory with practical applications in scientific domains." data-lang-zh="我的研究目标是将AI理论与科学领域的实际应用相结合，从而促进科学领域的研究和发展。">
-                        My work bridges AI theory with practical applications in scientific domains.
-                    </span>
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-lightbulb"></i> 
+                        <span class="lang-switch" data-lang-en="Research Interests" data-lang-zh="研究兴趣">Research Interests</span>
+                    </h2>
+                    <ul class="research-interests">
+                        <li class="lang-switch" data-lang-en="Recognition and generation methods for Chinese online text lines" data-lang-zh="联机中文文本行的识别与生成方法">
+                            Recognition and generation methods for Chinese online text lines
+                        </li>
+                        <li class="lang-switch" data-lang-en="Fundamental theories and applications of large language models and multimodal foundation models" data-lang-zh="大语言模型和多模态大模型的基础理论与应用">
+                            Fundamental theories and applications of large language models and multimodal foundation models
+                        </li>
+                        <li class="lang-switch" data-lang-en="Practical applications of AI methodologies in scientific domains (<span class='highlight'>Ai for Science</span>), particularly in biology, chemistry, and materials science research" data-lang-zh="AI方法在科学领域的应用与实践（<span class='highlight'>AI for Science</span>），特别是在生物学、化学和材料科学研究中">
+                            Practical applications of AI methodologies in scientific domains (<span class="highlight">Ai for Science</span>), particularly in biology, chemistry, and materials science research
+                        </li>
+                    </ul>
+                    
+                    <div class="collaboration">
+                        <p><i class="fas fa-handshake"></i> 
+                            <span class="lang-switch" data-lang-en="If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!" data-lang-zh="如果我的研究重点或兴趣与您相符，请随时通过电子邮件与我联系。我期待任何的合作和交流的机会！">
+                                If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!
+                            </span>
+                        </p>
+                    </div>
                 </div>
             </div>
             
             <div class="card">
                 <h2 class="section-title">
-                    <i class="fas fa-lightbulb"></i> 
-                    <span class="lang-switch" data-lang-en="Research Interests" data-lang-zh="研究兴趣">Research Interests</span>
+                    <i class="fas fa-file-alt"></i> 
+                    <span class="lang-switch" data-lang-en="Preprints" data-lang-zh="预印本">Preprints</span>
                 </h2>
-                <ul class="research-interests">
-                    <li class="lang-switch" data-lang-en="Recognition and generation methods for Chinese online text lines" data-lang-zh="联机中文文本行的识别与生成方法">
-                        Recognition and generation methods for Chinese online text lines
+                <p><i class="lang-switch" data-lang-en="(*: equal contribution)" data-lang-zh="(*: 同等贡献)">(*: equal contribution)</i></p>
+                
+                <ul class="publication-list">
+                    <li>
+                        <div class="publication-title" data-abstract="Coming Soon!">
+                            The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation
+                        </div>
+                        <div class="publication-authors">Xinming Wang, <span class="highlight">Yi Chen</span>, Haiyang Guo, Fei Zhu, Minsi Ren, Yuanqi Shao, Aslan Feng, Hongzhu Yi, Hongming Yang, Winston Hu, Jian Xu, Tailin Wu, Xuyao Zhang, Cheng-Lin Liu</div>
+                        <div class="publication-links">
+                            <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
+                        </div>
                     </li>
-                    <li class="lang-switch" data-lang-en="Fundamental theories and applications of large language models and multimodal foundation models" data-lang-zh="大语言模型和多模态大模型的基础理论与应用">
-                        Fundamental theories and applications of large language models and multimodal foundation models
+                    
+                    <li>
+                        <div class="publication-title" data-abstract="Adjuvants play a critical role in modulating immune responses, significantly advancing vaccine development and immunotherapy. However, the adjuvant field faces substantial challenges, including data shortages and unclear mechanisms of action, which hinder further progress, particularly in transitioning from traditional experience-based adjuvant design to AI-driven methodologies. To address these challenges, we present the first open-ended Q&A benchmark specifically focused on adjuvants, meticulously annotated by adjuvant experts. This benchmark, including 1,294 Q&A pairs and 1,364 formal data descriptions, aims to facilitate future research at the intersection of multimodal large language models (MLLMs) and the adjuvant. With this benchmark, we conducted a systematic assessment of 11 leading closed-source and 19 open-source MLLMs, evaluating dimensions such as data generation, domain-specific capabilities, rejection of hallucinations, and prompt following. The results show that OpenAI-o1 (semantic similarity: 0.7495, LLM score: 7.7) and DeepSeek-R1 (semantic similarity: 0.7415, LLM score: 7.7) lead the performance among closed-source and open-source MLLMs, respectively, highlighting their potential to support adjuvant research. Furthermore, we propose a formal description framework for adjuvants, providing structured formal data and abstraction rules to support future development of domain-specific MLLMs capable of advanced reasoning in complex biomedical scenarios. Our work aims to advance the integration of MLLMs in the adjuvant field, promoting innovative applications that enhance vaccine and adjuvant developments.">
+                            Advancing Adjuvant Research with MLLMs: An Open-Ended Benchmark and Formal Framework
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu</div>
+                        <div class="publication-links">
+                            <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
+                        </div>
                     </li>
-                    <li class="lang-switch" data-lang-en='Practical applications of AI methodologies in scientific domains (<span class="highlight">Ai for Science</span>), particularly in biology, chemistry, and materials science research' data-lang-zh='AI方法在科学领域的应用与实践（<span class="highlight">AI for Science</span>），特别是在生物学、化学和材料科学研究中'>
-                        Practical applications of AI methodologies in scientific domains (<span class="highlight">Ai for Science</span>), particularly in biology, chemistry, and materials science research
+                    
+                    <li>
+                        <div class="publication-title" data-abstract=" Recently, multimodal large language models (MM-LLMs) have achieved significant success in various tasks, but their high computational costs limit widespread application. The main computational burden arises from processing concatenated text and visual tokens in the LLM layer, where input token length directly affects efficiency. Our analysis of visual tokens reveals that their similarity to the CLS token follows a long-tail distribution, with only a few showing high similarity. To address this, we propose a dynamic pruning algorithm that identifies the inflection point in the visual CLS token similarity curve, enabling effective trimming of visual markers to accelerate model performance. Additionally, we perform a second round of pruning in the LLM layer, filtering out low-correlation tokens through the interaction between visual and textual features. Experimental results demonstrate that our method achieves performance comparable to the original while utilizing only 22% of the original token quantity. Our source code will be made publicly available upon acceptance.">
+                            Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models
+                        </div>
+                        <div class="publication-authors">Gao-Tong Yu*, <span class="highlight">Yi Chen*</span>, Jian Xu</div>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2409.01162" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="publication-title" data-abstract="Video Anomaly Detection (VAD) aims to identify anomalous events within videos and precisely ground their temporal occurrences. Current VAD research can be primarily categorized into two paradigms: traditional DNN-based methods predominantly focus on temporal grounding of anomalies, while emerging methods leveraging Large Language Models(LLMs) emphasize the semantic understanding of anomalous content. In fact, both video anomaly understanding and video anomaly grounding tasks are crucial for the comprehensive detection of anomalies in videos. Furthermore, these two tasks can mutually support and corroborate each other. However, there is currently no model capable of simultaneously accomplishing both tasks, nor is there a dataset that can support both tasks. In this paper, we propose VAGU (Video Anomaly Grounding and Understanding), the first benchmark integrating both anomaly grounding and anomaly understanding. Specifically, each instance in VAGU is annotated with three manually curated components: anomaly category specification, anomaly semantic understanding, and precise anomaly temporal grounding. Building upon this benchmark, we present Glance then Scrutinize (GtS) - a training-free framework guided by static textual and dynamic textual prompts. This framework achieves coarse grounding of high-probability anomalous regions without requiring anomaly-specific prompts, followed by fine-grained anomaly interpretation and temporal boundary refinement. Furthermore, we innovatively propose the Joint evaluation of Anomaly Understanding and Grounding (JeAUG) metric, which overcomes the unidimensional limitations of conventional evaluation systems by jointly assessing semantic interpretability accuracy and temporal grounding precision. Extensive experiments demonstrate the superiority of our proposed benchmark, framework, and evaluation metrics.">
+                            VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding
+                        </div>
+                        <div class="publication-authors">Shibo Gao, Peipei Yang, <span class="highlight">Yi Chen</span>, Han Zhu, Yangyang Liu, Wenxin Zhang, Linlin Huang</div>
+                        <div class="publication-links">
+                            <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
+                        </div>
                     </li>
                 </ul>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-book"></i> 
+                    <span class="lang-switch" data-lang-en="Publications" data-lang-zh="出版物">Publications</span>
+                </h2>
+                <p><i class="lang-switch" data-lang-en="(*: equal contribution)" data-lang-zh="(*: 同等贡献)">(*: equal contribution)</i></p>
                 
-                <div class="collaboration">
-                    <p><i class="fas fa-handshake"></i> 
-                        <span class="lang-switch" data-lang-en="If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!" data-lang-zh="如果我的研究重点或兴趣与您相符，请随时通过电子邮件与我联系。我期待任何的合作和交流的机会！">
-                            If my research focus or interests align with your initiatives, please feel free to contact me via email. I look forward to potential collaborations!
-                        </span>
-                    </p>
-                </div>
+                <ul class="publication-list">
+                    <li>
+                        <div class="publication-title" data-abstract="With the advancement of large-scale language modeling techniques, large multimodal models combining visual encoders with large language models have demonstrated exceptional performance in various visual tasks. Most of the current large multimodal models achieve this by mapping visual features obtained from the visual encoder into a large language model and using them as inputs alongside text for downstream tasks. Therefore, the number of visual tokens directly affects the training and inference speed of the model. There has been significant work on token pruning for visual transformers, but for large multimodal models, only relying on visual information for token pruning or compression may lead to significant loss of important information. On the other hand, the textual input in the form of a question may contain valuable information that can aid in answering the question, providing additional knowledge to the model. To address the potential oversimplification and excessive pruning that can occur with most purely visual token pruning methods, we propose a text information-guided dynamic visual token recovery mechanism that does not require training. This mechanism leverages the similarity between the question text and visual tokens to recover visually meaningful tokens with important text information while merging other less important tokens, to achieve efficient computation for large multimodal models. Experimental results demonstrate that our proposed method achieves comparable performance to the original approach while compressing the visual tokens to an average of 10% of the original quantity.">
+                            Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen</span>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu</div>
+                        <div class="publication-venue">The 39th Annual AAAI Conference on Artificial Intelligence (AAAI 2025), 2025</div>
+                        <div class="publication-links">
+                            <a href="https://ojs.aaai.org/index.php/AAAI/article/view/32229" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
+                            <a href="https://arxiv.org/abs/2409.01179" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                            <a href="https://github.com/banjiuyufen/Recoverable-Compression" class="publication-link"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="publication-title" data-abstract="Text plays a crucial role in the transmission of human civilization, and teaching machines to generate online handwritten text in various styles presents an interesting and significant challenge. However, most prior work has concentrated on generating individual Chinese fonts, leaving complete text line generation largely unexplored. In this paper, we identify that text lines can naturally be divided into two components: layout and glyphs. Based on this division, we designed a text line layout generator coupled with a diffusion-based stylized font synthesizer to address this challenge hierarchically. More concretely, the layout generator performs in-context-like learning based on the text content and the provided style references to generate positions for each glyph autoregressively. Meanwhile, the font synthesizer which consists of a character embedding dictionary, a multi-scale calligraphy style encoder and a 1D U-Net based diffusion denoiser will generate each font on its position while imitating the calligraphy style extracted from the given style references. Qualitative and quantitative experiments on the CASIA-OLHWDB demonstrate that our method is capable of generating structurally correct and indistinguishable imitation samples.">
+                            Decoupling Layout from Glyph in Online Chinese Handwriting Generation
+                        </div>
+                        <div class="publication-authors">Min-Si Ren, Yan-Ming Zhang, <span class="highlight">Yi Chen</span></div>
+                        <div class="publication-venue">The 13th International Conference on Learning Representations (ICLR 2025), 2025</div>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2410.02309" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                            <a href="https://github.com/singularityrms/OLHWG" class="publication-link"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="publication-title" data-abstract="Online handwritten text recognition technology has been increasingly applied in intelligent touch-based and pen-based devices. Current mainstream methods are mostly designed for horizontally written texts, thus is difficult to handle texts in any writing direction. This paper proposes a recognition framework based on over-segmentation which is applicable to text recognition of any writing direction. It divides text line inclination styles into two cases: texts with the entire line rotated and texts with the line direction rotated while keeping the characters upright. A text line inclination style classification module is introduced in the preprocessing stage to classify these two cases. The former case can be recognized using a horizontal text line recognizer after rotation correction. For the latter case, an improved over-segmentation algorithm is designed based on stroke classification using bidirectional long short-term memory networks (BiLSTM) to achieve text recognition in any writing direction. Experimental results demonstrate that the proposed method is capable of text recognition in any writing direction and achieves highly competitive results on the CASIA-OLHWDB and ICDAR2013-Online datasets.">
+                            Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Min-Si Ren, Cheng-Lin Liu</div>
+                        <div class="publication-venue">The 27th International Conference on Pattern Recognition (ICPR 2024), 2024</div>
+                        <div class="publication-links">
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-031-78183-4_24" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="publication-title" data-abstract="Handwritten Chinese Text Recognition (HCTR) has been advanced largely by deep learning in recent years. However, the remaining recognition errors still hinder reliability-critical applications where zero-error is desired. Rejecting low-confidence patterns can help reduce the error rate but the increased rejection rate is also harmful. In this paper, we propose a character confidence estimation method incorporating contexts for character rejection in HCTR. Based on a text line recognizer outputting character segmentation and classification results, the confidence of each segmented character is estimated by combining the scores of a re-trained character classifier, the linguistic and geometric contexts. We introduce a probabilistic formula for estimating the confidence by combining the classifier and contextual scores, and an improved approach for scoring the geometric context using unary and binary geometric features. Experimental evaluations on the CASIA-HWDB and ICDAR2013 datasets demonstrate that our method can significantly improve the rejection performance in respect of low error rate at moderate rejection rate. The re-trained classifier, the linguistic context and the geometric context are all justified effective to improve the confidence.">
+                            Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition
+                        </div>
+                        <div class="publication-authors">Yang-Yang Liu, <span class="highlight">Yi Chen</span>, Fei Yin, Cheng-Lin Liu</div>
+                        <div class="publication-venue">The 18th International Conference on Document Analysis and Recognition (ICDAR 2024), 2024</div>
+                        <div class="publication-links">
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-031-70533-5_9" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="publication-title" data-abstract="Segmentation-based handwritten text recognition has the advantage of character interpretability but needs a character classifier with high classification accuracy and non-character rejection capability. The classifier can be trained on both character samples and string samples but real string samples are usually insufficient. In this paper, we proposed a learning method for segmentation-based online handwritten Chinese text recognition with a convolutional prototype network as the underlying classifier. The prototype classifier is inherently resistant to non-characters, and so, can be trained with character and string samples without the need of data augmentation. The learning has two stages: pre-training on character samples with a modified loss function for improving non-character resistance, and weakly supervised learning on both character and string samples for improving recognition performance. Experimental results on the CASIA-OLHWDB and ICDAR2013-Online datasets show that the proposed method can achieve promising recognition performance without training data augmentation.">
+                            Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Cheng-Lin Liu</div>
+                        <div class="publication-venue">The 17th International Conference on Document Analysis and Recognition (ICDAR 2023), 2023</div>
+                        <div class="publication-links">
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-031-41685-9_3" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         
-        <div class="card">
-            <h2 class="section-title">
-                <i class="fas fa-file-alt"></i> 
-                <span class="lang-switch" data-lang-en="Preprints" data-lang-zh="预印本">Preprints</span>
-            </h2>
-            <p><i class="lang-switch" data-lang-en="(*: equal contribution)" data-lang-zh="(*: 同等贡献)">(*: equal contribution)</i></p>
-            
-            <ul class="publication-list">
-                <li>
-                    <div class="publication-title" data-abstract="Coming Soon!">
-                        The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation
-                    </div>
-                    <div class="publication-authors">Xinming Wang, <span class="highlight">Yi Chen</span>, Haiyang Guo, Fei Zhu, Minsi Ren, Yuanqi Shao, Aslan Feng, Hongzhu Yi, Hongming Yang, Winston Hu, Jian Xu, Tailin Wu, Xuyao Zhang, Cheng-Lin Liu</div>
-                    <div class="publication-links">
-                        <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="publication-title" data-abstract="Adjuvants play a critical role in modulating immune responses, significantly advancing vaccine development and immunotherapy. However, the adjuvant field faces substantial challenges, including data shortages and unclear mechanisms of action, which hinder further progress, particularly in transitioning from traditional experience-based adjuvant design to AI-driven methodologies. To address these challenges, we present the first open-ended Q&A benchmark specifically focused on adjuvants, meticulously annotated by adjuvant experts. This benchmark, including 1,294 Q&A pairs and 1,364 formal data descriptions, aims to facilitate future research at the intersection of multimodal large language models (MLLMs) and the adjuvant. With this benchmark, we conducted a systematic assessment of 11 leading closed-source and 19 open-source MLLMs, evaluating dimensions such as data generation, domain-specific capabilities, rejection of hallucinations, and prompt following. The results show that OpenAI-o1 (semantic similarity: 0.7495, LLM score: 7.7) and DeepSeek-R1 (semantic similarity: 0.7415, LLM score: 7.7) lead the performance among closed-source and open-source MLLMs, respectively, highlighting their potential to support adjuvant research. Furthermore, we propose a formal description framework for adjuvants, providing structured formal data and abstraction rules to support future development of domain-specific MLLMs capable of advanced reasoning in complex biomedical scenarios. Our work aims to advance the integration of MLLMs in the adjuvant field, promoting innovative applications that enhance vaccine and adjuvant developments.">
-                        Advancing Adjuvant Research with MLLMs: An Open-Ended Benchmark and Formal Framework
-                    </div>
-                    <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu</div>
-                    <div class="publication-links">
-                        <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="publication-title" data-abstract=" Recently, multimodal large language models (MM-LLMs) have achieved significant success in various tasks, but their high computational costs limit widespread application. The main computational burden arises from processing concatenated text and visual tokens in the LLM layer, where input token length directly affects efficiency. Our analysis of visual tokens reveals that their similarity to the CLS token follows a long-tail distribution, with only a few showing high similarity. To address this, we propose a dynamic pruning algorithm that identifies the inflection point in the visual CLS token similarity curve, enabling effective trimming of visual markers to accelerate model performance. Additionally, we perform a second round of pruning in the LLM layer, filtering out low-correlation tokens through the interaction between visual and textual features. Experimental results demonstrate that our method achieves performance comparable to the original while utilizing only 22% of the original token quantity. Our source code will be made publicly available upon acceptance.">
-                        Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models
-                    </div>
-                    <div class="publication-authors">Gao-Tong Yu*, <span class="highlight">Yi Chen*</span>, Jian Xu</div>
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2409.01162" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="publication-title" data-abstract="Video Anomaly Detection (VAD) aims to identify anomalous events within videos and precisely ground their temporal occurrences. Current VAD research can be primarily categorized into two paradigms: traditional DNN-based methods predominantly focus on temporal grounding of anomalies, while emerging methods leveraging Large Language Models(LLMs) emphasize the semantic understanding of anomalous content. In fact, both video anomaly understanding and video anomaly grounding tasks are crucial for the comprehensive detection of anomalies in videos. Furthermore, these two tasks can mutually support and corroborate each other. However, there is currently no model capable of simultaneously accomplishing both tasks, nor is there a dataset that can support both tasks. In this paper, we propose VAGU (Video Anomaly Grounding and Understanding), the first benchmark integrating both anomaly grounding and anomaly understanding. Specifically, each instance in VAGU is annotated with three manually curated components: anomaly category specification, anomaly semantic understanding, and precise anomaly temporal grounding. Building upon this benchmark, we present Glance then Scrutinize (GtS) - a training-free framework guided by static textual and dynamic textual prompts. This framework achieves coarse grounding of high-probability anomalous regions without requiring anomaly-specific prompts, followed by fine-grained anomaly interpretation and temporal boundary refinement. Furthermore, we innovatively propose the Joint evaluation of Anomaly Understanding and Grounding (JeAUG) metric, which overcomes the unidimensional limitations of conventional evaluation systems by jointly assessing semantic interpretability accuracy and temporal grounding precision. Extensive experiments demonstrate the superiority of our proposed benchmark, framework, and evaluation metrics.">
-                        VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding
-                    </div>
-                    <div class="publication-authors">Shibo Gao, Peipei Yang, <span class="highlight">Yi Chen</span>, Han Zhu, Yangyang Liu, Wenxin Zhang, Linlin Huang</div>
-                    <div class="publication-links">
-                        <a href="#" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv (Coming Soon)</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="card">
-            <h2 class="section-title">
-                <i class="fas fa-book"></i> 
-                <span class="lang-switch" data-lang-en="Publications" data-lang-zh="出版物">Publications</span>
-            </h2>
-            <p><i class="lang-switch" data-lang-en="(*: equal contribution)" data-lang-zh="(*: 同等贡献)">(*: equal contribution)</i></p>
-            
-            <ul class="publication-list">
-                <li>
-                    <div class="publication-title" data-abstract="With the advancement of large-scale language modeling techniques, large multimodal models combining visual encoders with large language models have demonstrated exceptional performance in various visual tasks. Most of the current large multimodal models achieve this by mapping visual features obtained from the visual encoder into a large language model and using them as inputs alongside text for downstream tasks. Therefore, the number of visual tokens directly affects the training and inference speed of the model. There has been significant work on token pruning for visual transformers, but for large multimodal models, only relying on visual information for token pruning or compression may lead to significant loss of important information. On the other hand, the textual input in the form of a question may contain valuable information that can aid in answering the question, providing additional knowledge to the model. To address the potential oversimplification and excessive pruning that can occur with most purely visual token pruning methods, we propose a text information-guided dynamic visual token recovery mechanism that does not require training. This mechanism leverages the similarity between the question text and visual tokens to recover visually meaningful tokens with important text information while merging other less important tokens, to achieve efficient computation for large multimodal models. Experimental results demonstrate that our proposed method achieves comparable performance to the original approach while compressing the visual tokens to an average of 10% of the original quantity.">
-                        Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information
-                    </div>
-                    <div class="publication-authors"><span class="highlight">Yi Chen</span>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu</div>
-                    <div class="publication-venue">The 39th Annual AAAI Conference on Artificial Intelligence (AAAI 2025), 2025</div>
-                    <div class="publication-links">
-                        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/32229" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
-                        <a href="https://arxiv.org/abs/2409.01179" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
-                        <a href="https://github.com/banjiuyufen/Recoverable-Compression" class="publication-link"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="publication-title" data-abstract="Text plays a crucial role in the transmission of human civilization, and teaching machines to generate online handwritten text in various styles presents an interesting and significant challenge. However, most prior work has concentrated on generating individual Chinese fonts, leaving \textit{complete text line generation largely unexplored}. In this paper, we identify that text lines can naturally be divided into two components: layout and glyphs. Based on this division, we designed a text line layout generator coupled with a diffusion-based stylized font synthesizer to address this challenge hierarchically. More concretely, the layout generator performs in-context-like learning based on the text content and the provided style references to generate positions for each glyph autoregressively. Meanwhile, the font synthesizer which consists of a character embedding dictionary, a multi-scale calligraphy style encoder and a 1D U-Net based diffusion denoiser will generate each font on its position while imitating the calligraphy style extracted from the given style references. Qualitative and quantitative experiments on the CASIA-OLHWDB demonstrate that our method is capable of generating structurally correct and indistinguishable imitation samples.">
-                        Decoupling Layout from Glyph in Online Chinese Handwriting Generation
-                    </div>
-                    <div class="publication-authors">Min-Si Ren, Yan-Ming Zhang, <span class="highlight">Yi Chen</span></div>
-                    <div class="publication-venue">The 13th International Conference on Learning Representations (ICLR 2025), 2025</div>
-                    <div class="publication-links">
-                        <a href="https://arxiv.org/abs/2410.02309" class="publication-link"><i class="fas fa-external-link-alt"></i> arXiv</a>
-                        <a href="https://github.com/singularityrms/OLHWG" class="publication-link"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="publication-title" data-abstract="Online handwritten text recognition technology has been increasingly applied in intelligent touch-based and pen-based devices. Current mainstream methods are mostly designed for horizontally written texts, thus is difficult to handle texts in any writing direction. This paper proposes a recognition framework based on over-segmentation which is applicable to text recognition of any writing direction. It divides text line inclination styles into two cases: texts with the entire line rotated and texts with the line direction rotated while keeping the characters upright. A text line inclination style classification module is introduced in the preprocessing stage to classify these two cases. The former case can be recognized using a horizontal text line recognizer after rotation correction. For the latter case, an improved over-segmentation algorithm is designed based on stroke classification using bidirectional long short-term memory networks (BiLSTM) to achieve text recognition in any writing direction. Experimental results demonstrate that the proposed method is capable of text recognition in any writing direction and achieves highly competitive results on the CASIA-OLHWDB and ICDAR2013-Online datasets.">
-                        Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation
-                    </div>
-                    <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Min-Si Ren, Cheng-Lin Liu</div>
-                    <div class="publication-venue">The 27th International Conference on Pattern Recognition (ICPR 2024), 2024</div>
-                    <div class="publication-links">
-                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-78183-4_24" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="publication-title" data-abstract="Handwritten Chinese Text Recognition (HCTR) has been advanced largely by deep learning in recent years. However, the remaining recognition errors still hinder reliability-critical applications where zero-error is desired. Rejecting low-confidence patterns can help reduce the error rate but the increased rejection rate is also harmful. In this paper, we propose a character confidence estimation method incorporating contexts for character rejection in HCTR. Based on a text line recognizer outputting character segmentation and classification results, the confidence of each segmented character is estimated by combining the scores of a re-trained character classifier, the linguistic and geometric contexts. We introduce a probabilistic formula for estimating the confidence by combining the classifier and contextual scores, and an improved approach for scoring the geometric context using unary and binary geometric features. Experimental evaluations on the CASIA-HWDB and ICDAR2013 datasets demonstrate that our method can significantly improve the rejection performance in respect of low error rate at moderate rejection rate. The re-trained classifier, the linguistic context and the geometric context are all justified effective to improve the confidence.">
-                        Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition
-                    </div>
-                    <div class="publication-authors">Yang-Yang Liu, <span class="highlight">Yi Chen</span>, Fei Yin, Cheng-Lin Liu</div>
-                    <div class="publication-venue">The 18th International Conference on Document Analysis and Recognition (ICDAR 2024), 2024</div>
-                    <div class="publication-links">
-                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-70533-5_9" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="publication-title" data-abstract="Segmentation-based handwritten text recognition has the advantage of character interpretability but needs a character classifier with high classification accuracy and non-character rejection capability. The classifier can be trained on both character samples and string samples but real string samples are usually insufficient. In this paper, we proposed a learning method for segmentation-based online handwritten Chinese text recognition with a convolutional prototype network as the underlying classifier. The prototype classifier is inherently resistant to non-characters, and so, can be trained with character and string samples without the need of data augmentation. The learning has two stages: pre-training on character samples with a modified loss function for improving non-character resistance, and weakly supervised learning on both character and string samples for improving recognition performance. Experimental results on the CASIA-OLHWDB and ICDAR2013-Online datasets show that the proposed method can achieve promising recognition performance without training data augmentation.">
-                        Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network
-                    </div>
-                    <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Cheng-Lin Liu</div>
-                    <div class="publication-venue">The 17th International Conference on Document Analysis and Recognition (ICDAR 2023), 2023</div>
-                    <div class="publication-links">
-                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-41685-9_3" class="publication-link"><i class="fas fa-external-link-alt"></i> Link</a>
-                    </div>
-                </li>
-            </ul>
+        <div class="footer">
+            <p>© 2023 Yi Chen | 
+                <span class="lang-switch" data-lang-en="Academic Homepage" data-lang-zh="学术主页">Academic Homepage</span>
+            </p>
+            <p>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS) | Zhongguancun Academy</p>
         </div>
     </div>
-    
-    <div class="footer">
-        <p>© 2023 Yi Chen | 
-            <span class="lang-switch" data-lang-en="Academic Homepage" data-lang-zh="学术主页">Academic Homepage</span>
-        </p>
-        <p>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS) | Zhongguancun Academy</p>
-    </div>
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const tooltip = document.getElementById('abstract-tooltip');
-    const tooltipTitle = document.getElementById('tooltip-title');
-    const tooltipContent = document.getElementById('tooltip-content');
-    const closeTooltip = document.querySelector('.close-tooltip');
-    let hoverTimer;
-    
-    // Get all publication titles
-    const publicationTitles = document.querySelectorAll('.publication-title');
-    
-    // Function to position tooltip centered at coordinates
-    function positionTooltip(x, y) {
-        // First make tooltip visible to get its dimensions
-        tooltip.style.display = 'block';
-        tooltip.style.opacity = '0';
-        
-        // Get tooltip dimensions
-        const tooltipWidth = tooltip.offsetWidth;
-        const tooltipHeight = tooltip.offsetHeight;
-        
-        // Get window dimensions
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        
-        // Calculate position to center tooltip at (x, y)
-        let left = x;
-        let top = y;
-        
-        // Adjust if tooltip goes beyond window edges
-        if (left + tooltipWidth / 2 > windowWidth) {
-            left = windowWidth - tooltipWidth / 2;
-        }
-        if (left - tooltipWidth / 2 < 0) {
-            left = tooltipWidth / 2;
-        }
-        if (top + tooltipHeight / 2 > windowHeight) {
-            top = windowHeight - tooltipHeight / 2;
-        }
-        if (top - tooltipHeight / 2 < 0) {
-            top = tooltipHeight / 2;
-        }
-        
-        // Set position with centered transform
-        tooltip.style.left = left + 'px';
-        tooltip.style.top = top + 'px';
-        
-        // Now animate to visible state
-        setTimeout(() => {
-            tooltip.style.opacity = '1';
-            tooltip.classList.add('visible');
-        }, 10);
-    }
-    
-    // Add event listeners to each publication title
-    publicationTitles.forEach(title => {
-        const abstract = title.getAttribute('data-abstract');
-        
-        title.addEventListener('mouseenter', function(e) {
-            // Clear any existing timer
-            clearTimeout(hoverTimer);
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltip = document.getElementById('abstract-tooltip');
+            const tooltipTitle = document.getElementById('tooltip-title');
+            const tooltipContent = document.getElementById('tooltip-content');
+            const closeTooltip = document.querySelector('.close-tooltip');
+            let hoverTimer;
             
-            // Set a timer to show the tooltip after 1 second
-            hoverTimer = setTimeout(() => {
-                // Set tooltip content
-                tooltipTitle.textContent = title.textContent;
-                tooltipContent.textContent = abstract;
+            // Get all publication titles
+            const publicationTitles = document.querySelectorAll('.publication-title');
+            
+            // Function to position tooltip centered at coordinates
+            function positionTooltip(x, y) {
+                // First make tooltip visible to get its dimensions
+                tooltip.style.display = 'block';
+                tooltip.style.opacity = '0';
                 
-                // Position tooltip at cursor position
-                positionTooltip(e.clientX, e.clientY);
-            }, 1000);
-        });
-        
-        title.addEventListener('mouseleave', function() {
-            // Clear the timer and hide the tooltip
-            clearTimeout(hoverTimer);
-            tooltip.classList.remove('visible');
-            setTimeout(() => {
-                tooltip.style.display = 'none';
-            }, 300);
-        });
-        
-        title.addEventListener('mousemove', function(e) {
-            // Update tooltip position while moving
-            if (tooltip.classList.contains('visible')) {
-                positionTooltip(e.clientX, e.clientY);
+                // Get tooltip dimensions
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+                
+                // Get window dimensions
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                
+                // Calculate position to center tooltip at (x, y)
+                let left = x;
+                let top = y;
+                
+                // Adjust if tooltip goes beyond window edges
+                if (left + tooltipWidth / 2 > windowWidth) {
+                    left = windowWidth - tooltipWidth / 2;
+                }
+                if (left - tooltipWidth / 2 < 0) {
+                    left = tooltipWidth / 2;
+                }
+                if (top + tooltipHeight / 2 > windowHeight) {
+                    top = windowHeight - tooltipHeight / 2;
+                }
+                if (top - tooltipHeight / 2 < 0) {
+                    top = tooltipHeight / 2;
+                }
+                
+                // Set position with centered transform
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = top + 'px';
+                
+                // Now animate to visible state
+                setTimeout(() => {
+                    tooltip.style.opacity = '1';
+                    tooltip.classList.add('visible');
+                }, 10);
+            }
+            
+            // Add event listeners to each publication title
+            publicationTitles.forEach(title => {
+                const abstract = title.getAttribute('data-abstract');
+                
+                title.addEventListener('mouseenter', function(e) {
+                    // Clear any existing timer
+                    clearTimeout(hoverTimer);
+                    
+                    // Set a timer to show the tooltip after 1 second
+                    hoverTimer = setTimeout(() => {
+                        // Set tooltip content
+                        tooltipTitle.textContent = title.textContent;
+                        tooltipContent.textContent = abstract;
+                        
+                        // Position tooltip at cursor position
+                        positionTooltip(e.clientX, e.clientY);
+                    }, 1000);
+                });
+                
+                title.addEventListener('mouseleave', function() {
+                    // Clear the timer and hide the tooltip
+                    clearTimeout(hoverTimer);
+                    tooltip.classList.remove('visible');
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 300);
+                });
+                
+                title.addEventListener('mousemove', function(e) {
+                    // Update tooltip position while moving
+                    if (tooltip.classList.contains('visible')) {
+                        positionTooltip(e.clientX, e.clientY);
+                    }
+                });
+                
+                // Click to show tooltip immediately (for mobile/touch devices)
+                title.addEventListener('click', function(e) {
+                    clearTimeout(hoverTimer);
+                    tooltipTitle.textContent = title.textContent;
+                    tooltipContent.textContent = abstract;
+                    positionTooltip(e.clientX, e.clientY);
+                });
+            });
+            
+            // Close tooltip when clicking the close button
+            closeTooltip.addEventListener('click', function() {
+                tooltip.classList.remove('visible');
+                setTimeout(() => {
+                    tooltip.style.display = 'none';
+                }, 300);
+            });
+            
+            // Close tooltip when clicking anywhere else
+            document.addEventListener('click', function(e) {
+                if (!tooltip.contains(e.target) && !e.target.classList.contains('publication-title')) {
+                    tooltip.classList.remove('visible');
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const langToggle = document.getElementById('langToggle');
+            let isDarkMode = localStorage.getItem('darkMode') === 'true';
+            let currentLang = localStorage.getItem('currentLang') || 'en';
+            
+            // Apply saved theme
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
+            }
+            
+            // Apply saved language
+            if (currentLang === 'zh') {
+                switchLanguage('zh');
+                langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
+            }
+            
+            // Theme toggle event
+            themeToggle.addEventListener('click', function() {
+                isDarkMode = !document.body.classList.contains('dark-mode');
+                document.body.classList.toggle('dark-mode');
+                
+                if (isDarkMode) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('darkMode', isDarkMode);
+            });
+            
+            // Language toggle event
+            langToggle.addEventListener('click', function() {
+                currentLang = currentLang === 'en' ? 'zh' : 'en';
+                switchLanguage(currentLang);
+                
+                if (currentLang === 'zh') {
+                    langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
+                } else {
+                    langToggle.innerHTML = '<i class="fas fa-language"></i> 切换中文';
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('currentLang', currentLang);
+            });
+            
+            // Function to switch language
+            function switchLanguage(lang) {
+                document.querySelectorAll('.lang-switch').forEach(element => {
+                    element.innerHTML = element.getAttribute(`data-lang-${lang}`);
+                });
             }
         });
-        
-        // Click to show tooltip immediately (for mobile/touch devices)
-        title.addEventListener('click', function(e) {
-            clearTimeout(hoverTimer);
-            tooltipTitle.textContent = title.textContent;
-            tooltipContent.textContent = abstract;
-            positionTooltip(e.clientX, e.clientY);
-        });
-    });
-    
-    // Close tooltip when clicking the close button
-    closeTooltip.addEventListener('click', function() {
-        tooltip.classList.remove('visible');
-        setTimeout(() => {
-            tooltip.style.display = 'none';
-        }, 300);
-    });
-    
-    // Close tooltip when clicking anywhere else
-    document.addEventListener('click', function(e) {
-        if (!tooltip.contains(e.target) && !e.target.classList.contains('publication-title')) {
-            tooltip.classList.remove('visible');
-            setTimeout(() => {
-                tooltip.style.display = 'none';
-            }, 300);
-        }
-    });
-    
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const langToggle = document.getElementById('langToggle');
-    let isDarkMode = localStorage.getItem('darkMode') === 'true';
-    let currentLang = localStorage.getItem('currentLang') || 'en';
-    
-    // Apply saved theme
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
-    } else {
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
-    }
-    
-    // Apply saved language
-    if (currentLang === 'zh') {
-        switchLanguage('zh');
-        langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
-    }
-    
-    // Theme toggle event
-    themeToggle.addEventListener('click', function() {
-        isDarkMode = !document.body.classList.contains('dark-mode');
-        document.body.classList.toggle('dark-mode');
-        
-        if (isDarkMode) {
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
-        } else {
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
-        }
-        
-        // Save to localStorage
-        localStorage.setItem('darkMode', isDarkMode);
-    });
-    
-    // Language toggle event
-    langToggle.addEventListener('click', function() {
-        currentLang = currentLang === 'en' ? 'zh' : 'en';
-        switchLanguage(currentLang);
-        
-        if (currentLang === 'zh') {
-            langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
-        } else {
-            langToggle.innerHTML = '<i class="fas fa-language"></i> 切换中文';
-        }
-        
-        // Save to localStorage
-        localStorage.setItem('currentLang', currentLang);
-    });
-    
-    // Function to switch language
-    function switchLanguage(lang) {
-        document.querySelectorAll('.lang-switch').forEach(element => {
-            element.innerHTML = element.getAttribute(`data-lang-${lang}`);
-        });
-    }
-});
-</script>
+    </script>
 </body>
 </html>
