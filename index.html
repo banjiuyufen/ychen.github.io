@@ -1015,7 +1015,7 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
             let currentLang = localStorage.getItem('currentLang') || 'en';
             
             if (isDarkMode) {
-                document.body.classList.add('dark-mode');
+                document.documentElement.classList.add('dark-mode');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
             } else {
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
@@ -1027,8 +1027,8 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
             }
             
             themeToggle.addEventListener('click', function() {
-                isDarkMode = !document.body.classList.contains('dark-mode');
-                document.body.classList.toggle('dark-mode');
+                isDarkMode = !document.documentElement.classList.contains('dark-mode');
+                document.documentElement.classList.toggle('dark-mode');
                 
                 if (isDarkMode) {
                     themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
