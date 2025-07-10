@@ -21,7 +21,6 @@
             --transition: all 0.3s ease;
             --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             
-            /* Base background and text colors */
             --bg-primary: #f8f9fa;
             --bg-secondary: #e9ecef;
             --bg-tertiary: #dee2e6;
@@ -32,25 +31,24 @@
             --card-border: rgba(0, 0, 0, 0.05);
         }
         
-        /* Dark mode variables */
         :root.dark-mode {
-            --primary: #64b5f6;
-            --primary-light: #90caf9;
-            --primary-dark: #42a5f5;
-            --secondary: #b0b0b0;
+            --primary: #58a6ff;
+            --primary-light: #79c0ff;
+            --primary-dark: #1f6feb;
+            --secondary: #8b949e;
             --light: #0d1117; /* GitHub black background */
             --white: #161b22; /* Darker shade for additional elements */
-            --accent: #ffca28;
+            --accent: #d4a441;
             --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-
+            
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
             --bg-tertiary: #21262d;
             --text-primary: #c9d1d9;
             --text-secondary: #8b949e;
             --text-tertiary: #6f7681;
-            --card-bg: #161b22; /* Darker background for cards */
+            --card-bg: #161b22;
             --card-border: rgba(255, 255, 255, 0.1);
         }
         
@@ -139,7 +137,7 @@
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-            background: var(--dark-mode .card:hover ? rgba(40, 40, 40, 0.95) : rgba(255, 255, 255, 0.95));
+            background: var(--dark-mode .card:hover ? #21262d : #f8f9fa);
         }
         
         .section-title {
@@ -196,17 +194,17 @@
         }
         
         .dark-mode .social-link {
-            background: rgba(100, 181, 246, 0.2);
+            background: rgba(88, 166, 255, 0.2);
         }
         
         .social-link:hover {
-            background: rgba(0, 120, 212, 0.2);
+            background: rgba(58, 166, 255, 0.2);
             transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 120, 212, 0.15);
+            box-shadow: 0 4px 8px rgba(58, 166, 255, 0.15);
         }
         
         .dark-mode .social-link:hover {
-            background: rgba(100, 181, 246, 0.3);
+            background: rgba(88, 166, 255, 0.3);
         }
         
         .contact-info {
@@ -250,7 +248,7 @@
         }
         
         .research-item:hover {
-            background: var(--dark-mode .research-item:hover ? rgba(40, 40, 40, 0.7) : rgba(233, 236, 239, 0.7));
+            background: var(--dark-mode .research-item:hover ? #21262d : #dee2e6);
             transform: translateY(-5px);
         }
         
@@ -293,7 +291,7 @@
         }
         
         .dark-mode .collaboration {
-            background: linear-gradient(135deg, rgba(100,181,246,0.2), rgba(255,202,40,0.15));
+            background: linear-gradient(135deg, rgba(88,166,255,0.2), rgba(212,164,65,0.15));
         }
         
         .collaboration::before {
@@ -368,7 +366,7 @@
         }
         
         .dark-mode .publication-link {
-            background: rgba(100, 181, 246, 0.2);
+            background: rgba(88, 166, 255, 0.2);
         }
         
         .publication-link:hover {
@@ -384,7 +382,7 @@
         }
         
         .dark-mode .highlight {
-            background: rgba(255, 202, 40, 0.3);
+            background: rgba(212, 164, 65, 0.3);
         }
         
         .footer {
@@ -407,7 +405,7 @@
         
         .dark-mode .note {
             background: rgba(255, 224, 102, 0.2);
-            border-left: 4px solid #ffca28;
+            border-left: 4px solid #d4a441;
         }
         
         @media (max-width: 768px) {
@@ -437,7 +435,6 @@
             }
         }
         
-        /* Decorative elements */
         .decor-circle {
             position: absolute;
             border-radius: 50%;
@@ -473,7 +470,6 @@
             opacity: 0.15;
         }
         
-        /* Abstract Tooltip - Improved version */
         .abstract-tooltip {
             position: fixed;
             max-width: min(90vw, 900px);
@@ -494,8 +490,8 @@
         }
         
         .dark-mode .abstract-tooltip {
-            background: rgba(30, 30, 30, 0.98);
-            border: 1px solid rgba(100, 181, 246, 0.3);
+            background: rgba(22, 27, 34, 0.98);
+            border: 1px solid rgba(88, 166, 255, 0.3);
         }
         
         .abstract-tooltip.visible {
@@ -552,7 +548,6 @@
             text-align: right;
         }
         
-        /* Scrollbar styling for abstract content */
         .abstract-content::-webkit-scrollbar {
             width: 8px;
         }
@@ -575,7 +570,6 @@
             background: var(--primary-light);
         }
         
-        /* Close button for tooltip */
         .close-tooltip {
             position: absolute;
             top: 15px;
@@ -603,7 +597,6 @@
             color: var(--primary);
         }
         
-        /* Animation for tooltip */
         @keyframes fadeIn {
             from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
             to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -614,7 +607,6 @@
             to { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
         }
         
-        /* Control bar */
         .control-bar {
             position: fixed;
             top: 20px;
@@ -641,8 +633,9 @@
         
         .dark-mode .theme-toggle, 
         .dark-mode .lang-toggle {
-            background: rgba(40, 40, 40, 0.9);
+            background: rgba(22, 27, 34, 1);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: var(--text-primary);
         }
         
         .theme-toggle:hover, .lang-toggle:hover {
@@ -655,7 +648,6 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
         
-        /* Improved dark mode transitions */
         .dark-mode-transition {
             transition: background-color 0.5s ease, color 0.3s ease;
         }
@@ -666,7 +658,6 @@
     <div class="decor-circle circle-2"></div>
     <div class="decor-circle circle-3"></div>
     
-    <!-- Control bar for theme and language -->
     <div class="control-bar">
         <button class="theme-toggle" id="themeToggle">
             <i class="fas fa-moon"></i> 夜间模式
@@ -676,7 +667,6 @@
         </button>
     </div>
     
-    <!-- Abstract tooltip container -->
     <div id="abstract-tooltip" class="abstract-tooltip">
         <div class="close-tooltip">
             <i class="fas fa-times"></i>
@@ -930,28 +920,21 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
             const closeTooltip = document.querySelector('.close-tooltip');
             let hoverTimer;
             
-            // Get all publication titles
             const publicationTitles = document.querySelectorAll('.publication-title');
             
-            // Function to position tooltip centered at coordinates
             function positionTooltip(x, y) {
-                // First make tooltip visible to get its dimensions
                 tooltip.style.display = 'block';
                 tooltip.style.opacity = '0';
                 
-                // Get tooltip dimensions
                 const tooltipWidth = tooltip.offsetWidth;
                 const tooltipHeight = tooltip.offsetHeight;
                 
-                // Get window dimensions
                 const windowWidth = window.innerWidth;
                 const windowHeight = window.innerHeight;
                 
-                // Calculate position to center tooltip at (x, y)
                 let left = x;
                 let top = y;
                 
-                // Adjust if tooltip goes beyond window edges
                 if (left + tooltipWidth / 2 > windowWidth) {
                     left = windowWidth - tooltipWidth / 2;
                 }
@@ -965,38 +948,30 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                     top = tooltipHeight / 2;
                 }
                 
-                // Set position with centered transform
                 tooltip.style.left = left + 'px';
                 tooltip.style.top = top + 'px';
                 
-                // Now animate to visible state
                 setTimeout(() => {
                     tooltip.style.opacity = '1';
                     tooltip.classList.add('visible');
                 }, 10);
             }
             
-            // Add event listeners to each publication title
             publicationTitles.forEach(title => {
                 const abstract = title.getAttribute('data-abstract');
                 
                 title.addEventListener('mouseenter', function(e) {
-                    // Clear any existing timer
                     clearTimeout(hoverTimer);
                     
-                    // Set a timer to show the tooltip after 1 second
                     hoverTimer = setTimeout(() => {
-                        // Set tooltip content
                         tooltipTitle.textContent = title.textContent;
                         tooltipContent.textContent = abstract;
                         
-                        // Position tooltip at cursor position
                         positionTooltip(e.clientX, e.clientY);
                     }, 1000);
                 });
                 
                 title.addEventListener('mouseleave', function() {
-                    // Clear the timer and hide the tooltip
                     clearTimeout(hoverTimer);
                     tooltip.classList.remove('visible');
                     setTimeout(() => {
@@ -1005,13 +980,11 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                 });
                 
                 title.addEventListener('mousemove', function(e) {
-                    // Update tooltip position while moving
                     if (tooltip.classList.contains('visible')) {
                         positionTooltip(e.clientX, e.clientY);
                     }
                 });
                 
-                // Click to show tooltip immediately (for mobile/touch devices)
                 title.addEventListener('click', function(e) {
                     clearTimeout(hoverTimer);
                     tooltipTitle.textContent = title.textContent;
@@ -1020,7 +993,6 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                 });
             });
             
-            // Close tooltip when clicking the close button
             closeTooltip.addEventListener('click', function() {
                 tooltip.classList.remove('visible');
                 setTimeout(() => {
@@ -1028,7 +1000,6 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                 }, 300);
             });
             
-            // Close tooltip when clicking anywhere else
             document.addEventListener('click', function(e) {
                 if (!tooltip.contains(e.target) && !e.target.classList.contains('publication-title')) {
                     tooltip.classList.remove('visible');
@@ -1038,13 +1009,11 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                 }
             });
             
-            // Theme toggle functionality
             const themeToggle = document.getElementById('themeToggle');
             const langToggle = document.getElementById('langToggle');
             let isDarkMode = localStorage.getItem('darkMode') === 'true';
             let currentLang = localStorage.getItem('currentLang') || 'en';
             
-            // Apply saved theme
             if (isDarkMode) {
                 document.body.classList.add('dark-mode');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
@@ -1052,13 +1021,11 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
             }
             
-            // Apply saved language
             if (currentLang === 'zh') {
                 switchLanguage('zh');
                 langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
             }
             
-            // Theme toggle event
             themeToggle.addEventListener('click', function() {
                 isDarkMode = !document.body.classList.contains('dark-mode');
                 document.body.classList.toggle('dark-mode');
@@ -1069,11 +1036,9 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                     themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
                 }
                 
-                // Save to localStorage
                 localStorage.setItem('darkMode', isDarkMode);
             });
             
-            // Language toggle event
             langToggle.addEventListener('click', function() {
                 currentLang = currentLang === 'en' ? 'zh' : 'en';
                 switchLanguage(currentLang);
@@ -1084,11 +1049,9 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                     langToggle.innerHTML = '<i class="fas fa-language"></i> 切换中文';
                 }
                 
-                // Save to localStorage
                 localStorage.setItem('currentLang', currentLang);
             });
             
-            // Function to switch language
             function switchLanguage(lang) {
                 document.querySelectorAll('.lang-switch').forEach(element => {
                     element.innerHTML = element.getAttribute(`data-lang-${lang}`);
