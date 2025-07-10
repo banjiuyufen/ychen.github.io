@@ -20,20 +20,39 @@
             --shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
             --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            
+            /* Base background and text colors */
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #e9ecef;
+            --bg-tertiary: #dee2e6;
+            --text-primary: #323130;
+            --text-secondary: #605e5c;
+            --text-tertiary: #8a8886;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(0, 0, 0, 0.05);
         }
         
         /* Dark mode variables */
         :root.dark-mode {
-            --primary: #4ca1e9;
-            --primary-light: #64b5f6;
-            --primary-dark: #1976d2;
-            --secondary: #a0a0a0;
+            --primary: #64b5f6;
+            --primary-light: #90caf9;
+            --primary-dark: #42a5f5;
+            --secondary: #b0b0b0;
             --light: #121212;
             --white: #1e1e1e;
-            --dark: #f0f0f0;
             --accent: #ffca28;
             --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             --tooltip-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            
+            /* Dark mode colors */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #252525;
+            --text-primary: #f0f0f0;
+            --text-secondary: #c0c0c0;
+            --text-tertiary: #a0a0a0;
+            --card-bg: rgba(30, 30, 30, 0.95);
+            --card-border: rgba(255, 255, 255, 0.1);
         }
         
         * {
@@ -45,16 +64,12 @@
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef, #dee2e6);
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary));
             padding: 30px;
             min-height: 100vh;
             position: relative;
-            transition: background 0.5s ease;
-        }
-        
-        body.dark-mode {
-            background: linear-gradient(135deg, var(--light), var(--white), var(--white));
+            transition: background 0.5s ease, color 0.3s ease;
         }
         
         .container {
@@ -111,27 +126,21 @@
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             padding: 40px;
             transition: var(--transition);
             border-left: 5px solid var(--primary);
-        }
-        
-        .dark-mode .card {
-            background: rgba(30, 30, 30, 0.85);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
         }
         
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-            background: rgba(255, 255, 255, 0.95);
-        }
-        
-        .dark-mode .card:hover {
-            background: rgba(40, 40, 40, 0.95);
+            background: var(--dark-mode .card:hover ? rgba(40, 40, 40, 0.95) : rgba(255, 255, 255, 0.95));
         }
         
         .section-title {
@@ -139,7 +148,7 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 30px;
-            color: var(--primary-dark);
+            color: var(--primary);
             font-size: 2rem;
             font-weight: 700;
             padding-bottom: 15px;
@@ -177,7 +186,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--primary-dark);
+            color: var(--primary);
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 50px;
@@ -188,7 +197,7 @@
         }
         
         .dark-mode .social-link {
-            background: rgba(0, 120, 212, 0.2);
+            background: rgba(100, 181, 246, 0.2);
         }
         
         .social-link:hover {
@@ -197,14 +206,14 @@
             box-shadow: 0 4px 8px rgba(0, 120, 212, 0.15);
         }
         
+        .dark-mode .social-link:hover {
+            background: rgba(100, 181, 246, 0.3);
+        }
+        
         .contact-info {
             margin-top: 25px;
             padding-top: 25px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-        
-        .dark-mode .contact-info {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--card-border);
         }
         
         .contact-row {
@@ -235,27 +244,19 @@
         
         .research-item {
             padding: 25px;
-            background: rgba(248, 249, 250, 0.7);
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .dark-mode .research-item {
-            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid var(--card-border);
         }
         
         .research-item:hover {
-            background: rgba(233, 236, 239, 0.7);
+            background: var(--dark-mode .research-item:hover ? rgba(40, 40, 40, 0.7) : rgba(233, 236, 239, 0.7));
             transform: translateY(-5px);
         }
         
-        .dark-mode .research-item:hover {
-            background: rgba(40, 40, 40, 0.7);
-        }
-        
         .research-item h3 {
-            color: var(--primary-dark);
+            color: var(--primary);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -269,6 +270,7 @@
             position: relative;
             font-size: 1.1rem;
             line-height: 1.7;
+            color: var(--text-primary);
         }
         
         .research-interests li::before {
@@ -292,7 +294,7 @@
         }
         
         .dark-mode .collaboration {
-            background: linear-gradient(135deg, rgba(0,120,212,0.2), rgba(255,185,0,0.15));
+            background: linear-gradient(135deg, rgba(100,181,246,0.2), rgba(255,202,40,0.15));
         }
         
         .collaboration::before {
@@ -312,22 +314,12 @@
         .publication-list li {
             margin-bottom: 30px;
             padding-bottom: 30px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-        
-        .dark-mode .publication-list li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .publication-list li:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+            border-bottom: 1px solid var(--card-border);
         }
         
         .publication-title {
             font-weight: 700;
-            color: var(--dark);
+            color: var(--text-primary);
             margin-bottom: 10px;
             font-size: 1.3rem;
             line-height: 1.5;
@@ -345,13 +337,13 @@
         }
         
         .publication-authors {
-            color: var(--secondary);
+            color: var(--text-secondary);
             margin-bottom: 12px;
             font-size: 1.1rem;
         }
         
         .publication-venue {
-            color: var(--primary-dark);
+            color: var(--primary);
             margin-bottom: 15px;
             font-weight: 500;
             font-style: italic;
@@ -367,7 +359,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--primary-dark);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
             padding: 8px 16px;
@@ -377,7 +369,7 @@
         }
         
         .dark-mode .publication-link {
-            background: rgba(0, 120, 212, 0.2);
+            background: rgba(100, 181, 246, 0.2);
         }
         
         .publication-link:hover {
@@ -393,20 +385,16 @@
         }
         
         .dark-mode .highlight {
-            background: rgba(255, 185, 0, 0.3);
+            background: rgba(255, 202, 40, 0.3);
         }
         
         .footer {
             text-align: center;
             padding: 40px 0 30px;
             margin-top: 30px;
-            color: var(--secondary);
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            color: var(--text-secondary);
+            border-top: 1px solid var(--card-border);
             font-size: 1.1rem;
-        }
-        
-        .dark-mode .footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .note {
@@ -415,10 +403,12 @@
             border-radius: var(--border-radius);
             margin: 20px 0;
             border-left: 4px solid #ffd600;
+            color: var(--text-primary);
         }
         
         .dark-mode .note {
-            background: rgba(255, 245, 157, 0.15);
+            background: rgba(255, 224, 102, 0.2);
+            border-left: 4px solid #ffca28;
         }
         
         @media (max-width: 768px) {
@@ -480,6 +470,10 @@
             right: 15%;
         }
         
+        .dark-mode .decor-circle {
+            opacity: 0.15;
+        }
+        
         /* Abstract Tooltip - Improved version */
         .abstract-tooltip {
             position: fixed;
@@ -497,11 +491,12 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: none;
             overflow: hidden;
+            color: var(--text-primary);
         }
         
         .dark-mode .abstract-tooltip {
             background: rgba(30, 30, 30, 0.98);
-            border: 1px solid rgba(76, 161, 233, 0.3);
+            border: 1px solid rgba(100, 181, 246, 0.3);
         }
         
         .abstract-tooltip.visible {
@@ -523,7 +518,7 @@
         .abstract-title {
             font-weight: 900;
             font-size: 1.4rem;
-            color: var(--primary-dark);
+            color: var(--primary);
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid rgba(0, 120, 212, 0.15);
@@ -534,7 +529,7 @@
             word-wrap: break-word;
             text-align: justify;
             line-height: 1.65;
-            color: var(--dark);
+            color: var(--text-primary);
             max-height: 60vh;
             overflow-y: auto;
             padding-right: 10px;
@@ -551,15 +546,11 @@
         .tooltip-hint {
             margin-top: 20px;
             padding-top: 10px;
-            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            border-top: 1px dashed var(--card-border);
             font-size: 0.9rem;
-            color: var(--secondary);
+            color: var(--text-secondary);
             font-style: italic;
             text-align: right;
-        }
-        
-        .dark-mode .tooltip-hint {
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
         }
         
         /* Scrollbar styling for abstract content */
@@ -599,7 +590,7 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            color: var(--secondary);
+            color: var(--text-secondary);
             font-size: 1.1rem;
             z-index: 10;
         }
@@ -610,7 +601,7 @@
         
         .close-tooltip:hover {
             background: rgba(0, 0, 0, 0.1);
-            color: var(--primary-dark);
+            color: var(--primary);
         }
         
         /* Animation for tooltip */
@@ -646,13 +637,12 @@
             gap: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
-            color: var(--dark);
+            color: var(--text-primary);
         }
         
         .dark-mode .theme-toggle, 
         .dark-mode .lang-toggle {
-            background: rgba(30, 30, 30, 0.8);
-            color: var(--dark);
+            background: rgba(40, 40, 40, 0.9);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         
@@ -664,6 +654,11 @@
         .dark-mode .theme-toggle:hover, 
         .dark-mode .lang-toggle:hover {
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Improved dark mode transitions */
+        .dark-mode-transition {
+            transition: background-color 0.5s ease, color 0.3s ease;
         }
     </style>
 </head>
@@ -808,7 +803,9 @@
                 
                 <ul class="publication-list">
                     <li>
-                        <div class="publication-title" data-abstract="Coming Soon!">
+                        <div class="publication-title" data-abstract="The advancement of LLM-based agents heralds a new perspective for AI for Science (AI4S), automation science research. Prominent large language models, such as DeepSeek-R1 and OpenAI-o1, have exhibited expertise across multiple domains, prompting researchers to develop agents for the natural sciences and investigate the frontiers of scientific knowledge. Nevertheless, the divergences between the natural sciences and AI have hindered the development and advancement of scientific agents across various fields. This survey is grounded in the standardized scientific research process and elucidates the construction and evaluation of scientific agents. Initially, we delineate the substantial distinctions between scientific agents and general-purpose agents with regard to goal orientation, and presents a systematic taxonomy based on construction strategies and capability scopes. 
+Subsequently, we examine the fundamental procedure for constructing scientific agents from inception and the strategy for targeted capability enhancement within a dual-layer progressive framework.
+Additionally, we outline the benchmarking and evaluation approaches for scientific agents at different stages of science research. Ultimately, we investigate prospective research directions for scientific agents. It is our aspiration that this survey will assist researchers across diverse research fields in constructing specialized scientific agents, while fostering innovation in the realm of scientific agents to further AI-driven automation science research.">
                             The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation
                         </div>
                         <div class="publication-authors">Xinming Wang, <span class="highlight">Yi Chen</span>, Haiyang Guo, Fei Zhu, Minsi Ren, Yuanqi Shao, Aslan Feng, Hongzhu Yi, Hongming Yang, Winston Hu, Jian Xu, Tailin Wu, Xuyao Zhang, Cheng-Lin Liu</div>
