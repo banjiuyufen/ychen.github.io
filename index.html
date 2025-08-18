@@ -704,59 +704,6 @@
             font-size: 1rem;
             line-height: 1.6;
         }
-        /* 在现有CSS中添加以下样式 */
-        .community-contribution {
-            margin-top: 15px;
-        }
-
-        .community-contribution h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .contribution-features {
-            list-style: none;
-            margin: 25px 0;
-        }
-
-        .contribution-features li {
-            margin-bottom: 15px;
-            padding-left: 10px;
-            position: relative;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-primary);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .contribution-features li i {
-            color: #4CAF50;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-
-        .tech-stack {
-            background: rgba(0, 120, 212, 0.05);
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin-top: 25px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .dark-mode .tech-stack {
-            background: rgba(88, 166, 255, 0.1);
-        }
     </style>
 </head>
 <body>
@@ -911,53 +858,6 @@
     </div>   
             <div class="card">
                 <h2 class="section-title">
-                    <i class="fas fa-hands-helping"></i> 
-                    <span class="lang-switch" data-lang-en="Community Contribution" data-lang-zh="社区贡献">Community Contribution</span>
-                </h2>
-                
-                <div class="community-contribution">
-                    <h3 class="lang-switch" data-lang-en="Contributing Material Chemistry Case to PaddleScience" data-lang-zh="为 PaddleScience 贡献材料化学案例">Contributing Material Chemistry Case to PaddleScience</h3>
-                    <p class="lang-switch" data-lang-en="Successfully deployed and integrated the widely used <a href='https://doi.org/10.1103/PhysRevLett.120.145301' target='_blank'>Crystal Graph CNN (CGCNN)</a> model into the PaddlePaddle scientific computing toolkit <a href='https://paddlescience-docs.readthedocs.io/zh-cn/latest/' target='_blank'>PaddleScience</a>." data-lang-zh="成功将材料科学领域广泛应用的 <a href='https://doi.org/10.1103/PhysRevLett.120.145301' target='_blank'>Crystal Graph CNN (CGCNN)</a> 模型部署并集成到飞桨科学计算工具包 <a href='https://paddlescience-docs.readthedocs.io/zh-cn/latest/' target='_blank'>PaddleScience</a> 中。">
-                        Successfully deployed and integrated the widely used <a href="https://doi.org/10.1103/PhysRevLett.120.145301" target="_blank">Crystal Graph CNN (CGCNN)</a> model into the PaddlePaddle scientific computing toolkit <a href="https://paddlescience-docs.readthedocs.io/zh-cn/latest/" target="_blank">PaddleScience</a>.
-                    </p>
-                    
-                    <ul class="contribution-features">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span class="lang-switch" data-lang-en="Complete implementation of crystal structure data preprocessing, graph network construction, training, and prediction pipeline" data-lang-zh="完整实现晶体结构数据预处理、图网络构建、训练与预测流程">
-                                Complete implementation of crystal structure data preprocessing, graph network construction, training, and prediction pipeline
-                            </span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span class="lang-switch" data-lang-en="Comprehensive documentation and usage guide" data-lang-zh="编写详细案例文档与使用指南">
-                                Comprehensive documentation and usage guide
-                            </span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span class="lang-switch" data-lang-en="<strong>Code merged into the official main repository</strong> [[PR #977](https://github.com/PaddlePaddle/PaddleScience/pull/977)]" data-lang-zh="<strong>代码已合并至官方主仓库</strong> [[PR #977](https://github.com/PaddlePaddle/PaddleScience/pull/977)]">
-                                <strong>Code merged into the official main repository</strong> [[PR #977](https://github.com/PaddlePaddle/PaddleScience/pull/977)]
-                            </span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span class="lang-switch" data-lang-en="<strong>Became an official PaddleScience material chemistry application case</strong> [[Case Documentation](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/examples/cgcnn/)]" data-lang-zh="<strong>成为 PaddleScience 官方材料化学应用案例</strong> [[案例文档](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/examples/cgcnn/)]">
-                                <strong>Became an official PaddleScience material chemistry application case</strong> [[Case Documentation](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/examples/cgcnn/)]
-                            </span>
-                        </li>
-                    </ul>
-                    
-                    <div class="tech-stack">
-                        <i class="fas fa-tools"></i>
-                        <span class="lang-switch" data-lang-en="Tech Stack:" data-lang-zh="技术栈：">Tech Stack:</span>
-                        PaddlePaddle, PaddleScience, Python, PyG/Graph Neural Networks, Materials Informatics
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2 class="section-title">
                     <i class="fas fa-file-alt"></i> 
                     <span class="lang-switch" data-lang-en="Preprints" data-lang-zh="预印本">Preprints</span>
                 </h2>
@@ -1105,3 +1005,153 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
             <p>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS) | Zhongguancun Academy</p>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltip = document.getElementById('abstract-tooltip');
+            const tooltipTitle = document.getElementById('tooltip-title');
+            const tooltipContent = document.getElementById('tooltip-content');
+            const closeTooltip = document.querySelector('.close-tooltip');
+            let hoverTimer;
+            
+            const publicationTitles = document.querySelectorAll('.publication-title');
+            
+            function positionTooltip(x, y) {
+                tooltip.style.display = 'block';
+                tooltip.style.opacity = '0';
+                
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+                
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                
+                let left = x;
+                let top = y;
+                
+                if (left + tooltipWidth / 2 > windowWidth) {
+                    left = windowWidth - tooltipWidth / 2;
+                }
+                if (left - tooltipWidth / 2 < 0) {
+                    left = tooltipWidth / 2;
+                }
+                if (top + tooltipHeight / 2 > windowHeight) {
+                    top = windowHeight - tooltipHeight / 2;
+                }
+                if (top - tooltipHeight / 2 < 0) {
+                    top = tooltipHeight / 2;
+                }
+                
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = top + 'px';
+                
+                setTimeout(() => {
+                    tooltip.style.opacity = '1';
+                    tooltip.classList.add('visible');
+                }, 10);
+            }
+            
+            publicationTitles.forEach(title => {
+                const abstract = title.getAttribute('data-abstract');
+                
+                title.addEventListener('mouseenter', function(e) {
+                    clearTimeout(hoverTimer);
+                    
+                    hoverTimer = setTimeout(() => {
+                        tooltipTitle.textContent = title.textContent;
+                        tooltipContent.textContent = abstract;
+                        
+                        positionTooltip(e.clientX, e.clientY);
+                    }, 1000);
+                });
+                
+                title.addEventListener('mouseleave', function() {
+                    clearTimeout(hoverTimer);
+                    tooltip.classList.remove('visible');
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 300);
+                });
+                
+                title.addEventListener('mousemove', function(e) {
+                    if (tooltip.classList.contains('visible')) {
+                        positionTooltip(e.clientX, e.clientY);
+                    }
+                });
+                
+                title.addEventListener('click', function(e) {
+                    clearTimeout(hoverTimer);
+                    tooltipTitle.textContent = title.textContent;
+                    tooltipContent.textContent = abstract;
+                    positionTooltip(e.clientX, e.clientY);
+                });
+            });
+            
+            closeTooltip.addEventListener('click', function() {
+                tooltip.classList.remove('visible');
+                setTimeout(() => {
+                    tooltip.style.display = 'none';
+                }, 300);
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!tooltip.contains(e.target) && !e.target.classList.contains('publication-title')) {
+                    tooltip.classList.remove('visible');
+                    setTimeout(() => {
+                        tooltip.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            const themeToggle = document.getElementById('themeToggle');
+            const langToggle = document.getElementById('langToggle');
+            let isDarkMode = localStorage.getItem('darkMode') === 'true';
+            let currentLang = localStorage.getItem('currentLang') || 'en';
+            
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
+            }
+            
+            if (currentLang === 'zh') {
+                switchLanguage('zh');
+                langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                isDarkMode = !document.documentElement.classList.contains('dark-mode');
+                document.documentElement.classList.toggle('dark-mode');
+                
+                if (isDarkMode) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
+                }
+                
+                localStorage.setItem('darkMode', isDarkMode);
+            });
+            
+            langToggle.addEventListener('click', function() {
+                currentLang = currentLang === 'en' ? 'zh' : 'en';
+                switchLanguage(currentLang);
+                
+                if (currentLang === 'zh') {
+                    langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
+                } else {
+                    langToggle.innerHTML = '<i class="fas fa-language"></i> 切换中文';
+                }
+                
+                localStorage.setItem('currentLang', currentLang);
+            });
+            
+            function switchLanguage(lang) {
+                document.querySelectorAll('.lang-switch').forEach(element => {
+                    element.innerHTML = element.getAttribute(`data-lang-${lang}`);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
