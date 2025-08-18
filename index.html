@@ -704,6 +704,97 @@
             font-size: 1rem;
             line-height: 1.6;
         }
+        
+        /* Community Contribution Styles */
+        .contribution-item {
+            background: rgba(0, 120, 212, 0.05);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+        
+        .dark-mode .contribution-item {
+            background: rgba(88, 166, 255, 0.1);
+        }
+        
+        .contribution-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contribution-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contribution-details {
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        
+        .contribution-details p {
+            margin-bottom: 15px;
+        }
+        
+        .contribution-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .contribution-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .contribution-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .tech-item {
+            background: rgba(0, 120, 212, 0.1);
+            color: var(--primary);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .dark-mode .tech-item {
+            background: rgba(88, 166, 255, 0.2);
+        }
+        
+        .external-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px dotted var(--primary-light);
+            transition: all 0.2s ease;
+        }
+        
+        .external-link:hover {
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -713,10 +804,12 @@
     
     <div class="control-bar">
         <button class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i> 夜间模式
+            <i class="fas fa-moon"></i>
+            <span class="lang-switch" data-lang-en="Night Mode" data-lang-zh="夜间模式">Night Mode</span>
         </button>
         <button class="lang-toggle" id="langToggle">
-            <i class="fas fa-language"></i> 切换中文
+            <i class="fas fa-language"></i>
+            <span class="lang-switch" data-lang-en="中文" data-lang-zh="English">中文</span>
         </button>
     </div>
     
@@ -835,27 +928,73 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 新增的社区贡献部分 -->
             <div class="card">
-        <h2 class="section-title">
-            <i class="fas fa-chalkboard-teacher"></i> 
-            <span class="lang-switch" data-lang-en="Academic Activities" data-lang-zh="学术活动">Academic Activities</span>
-        </h2>
-        
-        <div class="academic-activities">
-            <div class="activity-item">
-                <div class="activity-title">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span class="lang-switch" data-lang-en="The Fortieth AAAI Conference on Artificial Intelligence (AAAI 2026)" data-lang-zh="The Fortieth AAAI Conference on Artificial Intelligence (AAAI 2026)">The Fortieth AAAI Conference on Artificial Intelligence (AAAI 2026)</span>
-                    <span class="activity-year">2025</span>
-                </div>
-                <div class="activity-description lang-switch" 
-                     data-lang-en="Main Track Program Committee" 
-                     data-lang-zh="Main Track Program Committee">
-                    Main Track Program Committee
+                <h2 class="section-title">
+                    <i class="fas fa-hands-helping"></i> 
+                    <span class="lang-switch" data-lang-en="Community Contributions" data-lang-zh="社区贡献">Community Contributions</span>
+                </h2>
+                
+                <div class="contribution-item">
+                    <h3 class="contribution-title">
+                        <i class="fas fa-code-branch"></i>
+                        <span class="lang-switch" data-lang-en="Contributed Materials Chemistry Case to PaddleScience" data-lang-zh="为 PaddleScience 贡献材料化学案例">Contributed Materials Chemistry Case to PaddleScience</span>
+                    </h3>
+                    
+                    <div class="contribution-details">
+                        <p class="lang-switch" data-lang-en="Successfully deployed and integrated the widely-used <strong><a href='https://doi.org/10.1103/PhysRevLett.120.145301' class="external-link">Crystal Graph CNN (CGCNN)</a></strong> model in the PaddleScience toolkit <strong><a href='https://paddlescience-docs.readthedocs.io/zh-cn/latest/' class="external-link">PaddleScience</a></strong>." data-lang-zh="成功将材料科学领域广泛应用的 <strong><a href='https://doi.org/10.1103/PhysRevLett.120.145301' class="external-link">Crystal Graph CNN (CGCNN)</a></strong> 模型部署并集成到飞桨科学计算工具包 <strong><a href='https://paddlescience-docs.readthedocs.io/zh-cn/latest/' class="external-link">PaddleScience</a></strong> 中。">
+                            Successfully deployed and integrated the widely-used <strong><a href='https://doi.org/10.1103/PhysRevLett.120.145301' class="external-link">Crystal Graph CNN (CGCNN)</a></strong> model in the PaddleScience toolkit <strong><a href='https://paddlescience-docs.readthedocs.io/zh-cn/latest/' class="external-link">PaddleScience</a></strong>.
+                        </p>
+                        
+                        <ul class="contribution-list">
+                            <li class="lang-switch" data-lang-en="Complete implementation of crystal structure data preprocessing, graph network construction, training and prediction pipeline" data-lang-zh="完整实现晶体结构数据预处理、图网络构建、训练与预测流程">
+                                Complete implementation of crystal structure data preprocessing, graph network construction, training and prediction pipeline
+                            </li>
+                            <li class="lang-switch" data-lang-en="Wrote detailed case documentation and user guide" data-lang-zh="编写详细案例文档与使用指南">
+                                Wrote detailed case documentation and user guide
+                            </li>
+                            <li class="lang-switch" data-lang-en="<strong>Code merged into the official main repository</strong> [[PR #977](https://github.com/PaddlePaddle/PaddleScience/pull/977)]" data-lang-zh="<strong>代码已合并至官方主仓库</strong> [[PR #977](https://github.com/PaddlePaddle/PaddleScience/pull/977)]">
+                                <strong>Code merged into the official main repository</strong> [[<a href="https://github.com/PaddlePaddle/PaddleScience/pull/977" class="external-link">PR #977</a>]]
+                            </li>
+                            <li class="lang-switch" data-lang-en="<strong>Became an official PaddleScience materials chemistry application case</strong> [[Case Documentation](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/examples/cgcnn/)]" data-lang-zh="<strong>成为 PaddleScience 官方材料化学应用案例</strong> [[案例文档](https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/examples/cgcnn/)]">
+                                <strong>Became an official PaddleScience materials chemistry application case</strong> [[<a href="https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/examples/cgcnn/" class="external-link">Case Documentation</a>]]
+                            </li>
+                        </ul>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-item">PaddlePaddle</span>
+                            <span class="tech-item">PaddleScience</span>
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">PyG/Graph Neural Networks</span>
+                            <span class="tech-item">Materials Informatics</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>   
+            
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-chalkboard-teacher"></i> 
+                    <span class="lang-switch" data-lang-en="Academic Activities" data-lang-zh="学术活动">Academic Activities</span>
+                </h2>
+                
+                <div class="academic-activities">
+                    <div class="activity-item">
+                        <div class="activity-title">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span class="lang-switch" data-lang-en="The Fortieth AAAI Conference on Artificial Intelligence (AAAI 2026)" data-lang-zh="The Fortieth AAAI Conference on Artificial Intelligence (AAAI 2026)">The Fortieth AAAI Conference on Artificial Intelligence (AAAI 2026)</span>
+                            <span class="activity-year">2025</span>
+                        </div>
+                        <div class="activity-description lang-switch" 
+                             data-lang-en="Main Track Program Committee" 
+                             data-lang-zh="Main Track Program Committee">
+                            Main Track Program Committee
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            
             <div class="card">
                 <h2 class="section-title">
                     <i class="fas fa-file-alt"></i> 
@@ -938,7 +1077,9 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
                 
                 <ul class="publication-list">
                     <li>
-                        <div class="publication-title" data-abstract="With the advancement of large-scale language modeling techniques, large multimodal models combining visual encoders with large language models have demonstrated exceptional performance in various visual tasks. Most of the current large multimodal models achieve this by mapping visual features obtained from the visual encoder into a large language model and using them as inputs alongside text for downstream tasks. Therefore, the number of visual tokens directly affects the training and inference speed of the model. There has been significant work on token pruning for visual transformers, but for large multimodal models, only relying on visual information for token pruning or compression may lead to significant loss of important information. On the other hand, the textual input in the form of a question may contain valuable information that can aid in answering the question, providing additional knowledge to the model. To address the potential oversimplification and excessive pruning that can occur with most purely visual token pruning methods, we propose a text information-guided dynamic visual token recovery mechanism that does not require training. This mechanism leverages the similarity between the question text and visual tokens to recover visually meaningful tokens with important text information while merging other less important tokens, to achieve efficient computation for large multimodal models. Experimental results demonstrate that our proposed method achieves comparable performance to the original approach while compressing the visual tokens to an average of 10% of the original quantity.">
+                        <div class="publication-title" data-abstract="The advancement of LLM-based agents heralds a new perspective for AI for Science (AI4S), automation science research. Prominent large language models, such as DeepSeek-R1 and OpenAI-o1, have exhibited expertise across multiple domains, prompting researchers to develop agents for the natural sciences and investigate the frontiers of scientific knowledge. Nevertheless, the divergences between the natural sciences and AI have hindered the development and advancement of scientific agents across various fields. This survey is grounded in the standardized scientific research process and elucidates the construction and evaluation of scientific agents. Initially, we delineate the substantial distinctions between scientific agents and general-purpose agents with regard to goal orientation, and presents a systematic taxonomy based on construction strategies and capability scopes. 
+Subsequently, we examine the fundamental procedure for constructing scientific agents from inception and the strategy for targeted capability enhancement within a dual-layer progressive framework.
+Additionally, we outline the benchmarking and evaluation approaches for scientific agents at different stages of science research. Ultimately, we investigate prospective research directions for scientific agents. It is our aspiration that this survey will assist researchers across diverse research fields in constructing specialized scientific agents, while fostering innovation in the realm of scientific agents to further AI-driven automation science research.">
                             Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information
                         </div>
                         <div class="publication-authors"><span class="highlight">Yi Chen</span>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu</div>
@@ -1108,47 +1249,58 @@ Additionally, we outline the benchmarking and evaluation approaches for scientif
             let isDarkMode = localStorage.getItem('darkMode') === 'true';
             let currentLang = localStorage.getItem('currentLang') || 'en';
             
+            // 修复语言切换bug
+            function updateThemeToggleText() {
+                const nightModeText = document.querySelector('#themeToggle .lang-switch');
+                if (isDarkMode) {
+                    themeToggle.querySelector('i').className = 'fas fa-sun';
+                    nightModeText.setAttribute('data-lang-en', 'Day Mode');
+                    nightModeText.setAttribute('data-lang-zh', '日间模式');
+                } else {
+                    themeToggle.querySelector('i').className = 'fas fa-moon';
+                    nightModeText.setAttribute('data-lang-en', 'Night Mode');
+                    nightModeText.setAttribute('data-lang-zh', '夜间模式');
+                }
+                switchLanguage(currentLang);
+            }
+            
             if (isDarkMode) {
                 document.documentElement.classList.add('dark-mode');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
+                updateThemeToggleText();
             } else {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
+                updateThemeToggleText();
             }
             
             if (currentLang === 'zh') {
                 switchLanguage('zh');
-                langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
+                langToggle.querySelector('.lang-switch').textContent = 'English';
             }
             
             themeToggle.addEventListener('click', function() {
                 isDarkMode = !document.documentElement.classList.contains('dark-mode');
                 document.documentElement.classList.toggle('dark-mode');
                 
-                if (isDarkMode) {
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i> 日间模式';
-                } else {
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i> 夜间模式';
-                }
-                
                 localStorage.setItem('darkMode', isDarkMode);
+                updateThemeToggleText();
             });
             
             langToggle.addEventListener('click', function() {
                 currentLang = currentLang === 'en' ? 'zh' : 'en';
                 switchLanguage(currentLang);
                 
-                if (currentLang === 'zh') {
-                    langToggle.innerHTML = '<i class="fas fa-language"></i> Switch to English';
-                } else {
-                    langToggle.innerHTML = '<i class="fas fa-language"></i> 切换中文';
-                }
+                // 更新语言切换按钮文本
+                langToggle.querySelector('.lang-switch').textContent = 
+                    currentLang === 'en' ? '中文' : 'English';
                 
                 localStorage.setItem('currentLang', currentLang);
             });
             
             function switchLanguage(lang) {
                 document.querySelectorAll('.lang-switch').forEach(element => {
-                    element.innerHTML = element.getAttribute(`data-lang-${lang}`);
+                    const text = element.getAttribute(`data-lang-${lang}`);
+                    if (text) {
+                        element.innerHTML = text;
+                    }
                 });
             }
         });
