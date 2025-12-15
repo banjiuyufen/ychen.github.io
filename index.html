@@ -5,599 +5,1009 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yi Chen - Academic Homepage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Academic & Professional Palette */
-            --primary: #0f172a;       /* Deep Navy */
-            --primary-light: #334155; 
-            --accent: #0284c7;        /* Cerulean Blue */
-            --accent-hover: #0369a1;
-            --highlight: #f59e0b;     /* Amber for awards/highlights */
+            /* 学术深蓝配色体系 */
+            --primary: #003366; /* Oxford Blue */
+            --primary-light: #2c5282;
+            --primary-dark: #002244;
+            --secondary: #536471; /* Slate */
             
-            --text-main: #1e293b;
-            --text-muted: #475569;
-            --text-light: #94a3b8;
-            
-            --bg-body: #f0f9ff;
+            --bg-body: #fdfdfd;
             --bg-card: #ffffff;
-            --border: #e2e8f0;
+            --border-color: #e1e4e8;
             
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+            --text-main: #24292f;
+            --text-muted: #57606a;
             
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+            --accent: #d97706; /* Amber for highlights */
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+            --font-mono: 'JetBrains Mono', Consolas, monospace;
 
+            --border-radius: 6px; /* 更锐利的圆角，显专业 */
+            --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.02);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.08);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         :root.dark-mode {
-            --primary: #f8fafc;
-            --primary-light: #cbd5e1;
-            --accent: #38bdf8;        /* Sky Blue */
-            --accent-hover: #7dd3fc;
-            --highlight: #fbbf24;
+            --primary: #58a6ff;
+            --primary-light: #79c0ff;
+            --primary-dark: #1f6feb;
+            --secondary: #8b949e;
             
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --text-light: #64748b;
+            --bg-body: #0d1117;
+            --bg-card: #161b22;
+            --border-color: #30363d;
             
-            --bg-body: #0b1120;       /* Dark Navy */
-            --bg-card: #1e293b;
-            --border: #334155;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
             
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+            --accent: #d29922;
+            
+            --shadow-card: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.4);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
+            font-family: var(--font-sans);
             line-height: 1.7;
-            transition: var(--transition);
-            /* Aurora Background */
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.05) 0px, transparent 50%);
-            background-attachment: fixed;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px); /* 极简噪点背景 */
+            background-size: 20px 20px;
+            padding: 40px 20px;
             min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
-
-        h1, h2, h3, .pub-title, .section-title { font-family: 'Merriweather', serif; }
-        a { color: var(--accent); text-decoration: none; transition: var(--transition); }
-        a:hover { color: var(--accent-hover); }
+        
+        :root.dark-mode body {
+             background-image: radial-gradient(#21262d 1px, transparent 1px);
+        }
 
         .container {
-            max-width: 1100px;
+            max-width: 1080px; /* 稍微收窄以提升阅读体验 */
             margin: 0 auto;
-            padding: 80px 24px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Header 优化 */
+        .header {
+            text-align: left; /* 学术主页通常左对齐或居中，左对齐更现代 */
+            padding: 60px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+        
+        .header p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            max-width: 800px;
         }
 
-        /* --- Control Bar --- */
-        .control-bar {
-            position: fixed;
-            top: 24px;
-            right: 24px;
+        /* 布局优化 */
+        .grid {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 35px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        
+        .section-title {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
             display: flex;
+            align-items: center;
             gap: 12px;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 8px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(12px);
+            letter-spacing: -0.01em;
         }
-        .dark-mode .control-bar { background: rgba(30, 41, 59, 0.8); }
 
-        .control-btn {
-            background: transparent; border: none; color: var(--text-muted);
-            width: 36px; height: 36px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: var(--transition); font-weight: 600;
+        .section-title i {
+            font-size: 1.2rem;
+            color: var(--primary);
+            opacity: 0.8;
         }
-        .control-btn:hover { color: var(--accent); background: rgba(56, 189, 248, 0.1); }
 
-        /* --- Profile Section --- */
-        .profile-card {
-            display: flex; gap: 40px; margin-bottom: 50px;
-            background: var(--bg-card); padding: 40px;
-            border-radius: var(--radius); border: 1px solid var(--border);
-            box-shadow: var(--shadow); position: relative; overflow: hidden;
+        /* Profile 区域 */
+        .profile {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
         }
-        .profile-card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-            background: linear-gradient(180deg, var(--accent), #7dd3fc);
-        }
+        
         .profile-img {
-            width: 200px; height: 200px; object-fit: cover;
-            border-radius: var(--radius); box-shadow: var(--shadow);
-            flex-shrink: 0; filter: grayscale(10%); transition: var(--transition);
-        }
-        .profile-img:hover { filter: grayscale(0%); transform: scale(1.02); }
-        
-        .header-name { font-size: 2.2rem; font-weight: 900; color: var(--primary); margin-bottom: 5px; }
-        .header-role { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 400; }
-        
-        .bio-text { font-size: 1rem; color: var(--text-main); margin-bottom: 15px; text-align: justify; }
-        
-        .social-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
-        .social-btn {
-            font-size: 0.9rem; padding: 6px 14px; border-radius: 50px;
-            background: var(--bg-body); color: var(--text-muted); border: 1px solid var(--border);
-            display: flex; align-items: center; gap: 8px; font-weight: 500;
-        }
-        .social-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-        /* --- Info Grid (Research & News) --- */
-        .grid-2-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 50px; }
-        .info-card {
-            background: var(--bg-card); padding: 30px;
-            border-radius: var(--radius); border: 1px solid var(--border);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%; /* 圆形头像更符合现代学术主页 */
+            object-fit: cover;
+            border: 3px solid var(--bg-card);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
         
-        .section-header {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
-            border-bottom: 2px solid var(--border); padding-bottom: 10px;
-        }
-        .section-header i { color: var(--accent); font-size: 1.2rem; }
-        .section-header h3 { font-size: 1.3rem; color: var(--primary); margin: 0; }
-
-        .research-list { list-style: none; padding-left: 0; }
-        .research-list li {
-            position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--text-main);
-        }
-        .research-list li::before {
-            content: "•"; color: var(--accent); font-weight: bold; font-size: 1.2rem;
-            position: absolute; left: 0; top: -2px;
+        .profile-info p {
+            margin-bottom: 15px;
+            text-align: justify;
         }
         
-        /* Activity Items */
-        .activity-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 0.95rem;
+        /* 链接样式 */
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
         }
-        .activity-item:last-child { border-bottom: none; }
-        .activity-tag {
-            background: rgba(2, 132, 199, 0.1); color: var(--accent);
-            padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;
-        }
-
-        /* --- Publications --- */
-        .pub-section-title {
-            font-size: 1.6rem; color: var(--primary); margin: 60px 0 30px 0;
-            display: flex; align-items: center; gap: 12px;
-        }
-        .pub-section-title i { color: var(--accent); }
-
-        .pub-list { display: flex; flex-direction: column; gap: 20px; }
-        .pub-item {
-            background: var(--bg-card); padding: 24px;
-            border-radius: var(--radius); border: 1px solid var(--border);
-            transition: var(--transition); position: relative;
-        }
-        .pub-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
-
-        .pub-title {
-            font-size: 1.15rem; font-weight: 700; color: var(--primary); cursor: pointer;
-            line-height: 1.4; display: inline-block;
-        }
-        .pub-title:hover { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent); }
-
-        .pub-authors { font-size: 0.95rem; color: var(--text-muted); margin-top: 8px; }
-        .pub-authors .me { color: var(--primary); font-weight: 700; }
-        .pub-venue { font-size: 0.9rem; color: var(--text-light); font-style: italic; margin-top: 6px; }
         
-        .highlight-tag {
-            display: inline-block; background: rgba(245, 158, 11, 0.15); color: var(--highlight);
-            padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-left: 8px; border: 1px solid rgba(245, 158, 11, 0.3); font-style: normal;
+        a:hover {
+            text-decoration: underline;
+            color: var(--primary-light);
         }
 
-        .pub-links { margin-top: 12px; display: flex; gap: 10px; }
-        .pub-link {
-            font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
-            padding: 4px 12px; border: 1px solid var(--border); border-radius: 6px;
-            color: var(--text-muted); background: transparent;
+        /* 社交/学术链接 */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
         }
-        .pub-link:hover { background: var(--primary); color: var(--bg-card); border-color: var(--primary); }
+        
+        .social-link {
+            font-size: 0.9rem;
+            padding: 6px 14px;
+            border-radius: 4px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            text-decoration: none;
+        }
 
-        /* --- Community Contribution --- */
-        .contrib-card {
-            background: var(--bg-card); padding: 30px; margin-top: 60px;
-            border-radius: var(--radius); border: 1px solid var(--border);
-            border-left: 5px solid var(--highlight);
+        /* 联系方式 */
+        .contact-info {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
         }
-        .contrib-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .contrib-header h3 { font-size: 1.3rem; color: var(--primary); margin: 0; }
-        .tech-stack { display: flex; gap: 8px; margin-top: 15px; flex-wrap: wrap; }
+        
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-row i {
+            color: var(--primary);
+            width: 16px;
+        }
+
+        /* 研究网格 */
+        .research-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .research-interests li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .research-interests li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+            background: rgba(217, 119, 6, 0.1);
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 51, 102, 0.04);
+            border-left: 3px solid var(--primary);
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+        
+        :root.dark-mode .note {
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        /* 列表样式优化 */
+        .publication-list {
+            list-style: none;
+        }
+        
+        .publication-list li {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px; /* 为年份或序号留空间 */
+        }
+        
+        /* 论文标题 */
+        .publication-title {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            cursor: pointer;
+            line-height: 1.4;
+        }
+        
+        .publication-title:hover {
+            color: var(--primary);
+        }
+        
+        .publication-authors {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        
+        .publication-venue {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .publication-links a {
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            margin-right: 15px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        .publication-links a:hover {
+            color: var(--primary);
+        }
+        
+        .publication-links i {
+            margin-right: 4px;
+        }
+
+        /* 社区贡献 & 学术活动 */
+        .academic-activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .activity-item, .contribution-item {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        .activity-item:hover, .contribution-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+        
+        .activity-title, .contribution-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .activity-year {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            background: var(--border-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-main);
+        }
+
+        .tech-stack {
+            margin-top: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
         .tech-item {
-            font-size: 0.8rem; padding: 4px 10px; background: var(--bg-body);
-            border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted);
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            background: rgba(0,0,0,0.05);
+            padding: 2px 8px;
+            border-radius: 3px;
+            color: var(--text-muted);
+        }
+        
+        :root.dark-mode .tech-item {
+            background: rgba(255,255,255,0.1);
         }
 
-        /* --- Tooltip --- */
-        .tooltip-container {
-            position: fixed; z-index: 1000; background: var(--bg-card);
-            width: 600px; max-width: 90vw; max-height: 80vh; overflow-y: auto;
-            padding: 24px; border-radius: var(--radius);
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3); border: 1px solid var(--border);
-            opacity: 0; visibility: hidden; transition: all 0.2s ease; pointer-events: none;
+        /* 控制栏 */
+        .control-bar {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            display: flex;
+            gap: 10px;
         }
-        .tooltip-container.active { opacity: 1; visibility: visible; pointer-events: auto; }
-        .tooltip-header {
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--accent); margin-bottom: 10px; font-weight: 800;
-            position: sticky; top: 0; background: var(--bg-card); padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
+        
+        .control-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
-        .tooltip-text { font-size: 0.95rem; color: var(--text-main); text-align: justify; line-height: 1.6; }
+        
+        .control-btn:hover {
+            background: var(--bg-card);
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-card);
+        }
 
-        footer { text-align: center; margin-top: 80px; padding: 30px; border-top: 1px solid var(--border); color: var(--text-light); font-size: 0.9rem; }
+        /* Abstract Tooltip (Paper Style) */
+        .abstract-tooltip {
+            position: fixed;
+            width: 600px;
+            max-width: 90vw;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .abstract-title {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-        @media (max-width: 800px) {
-            .profile-card { flex-direction: column; text-align: center; align-items: center; }
-            .grid-2-col { grid-template-columns: 1fr; }
-            .container { padding: 40px 16px; }
-            .social-links { justify-content: center; }
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-info {
+                justify-content: center;
+            }
+            .control-bar {
+                position: relative;
+                top: 0;
+                justify-content: flex-end;
+                margin-bottom: 20px;
+            }
+            .header {
+                padding-top: 20px;
+            }
         }
     </style>
 </head>
 <body>
-
-    <div class="control-bar">
-        <button class="control-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
-        <button class="control-btn" id="langToggle"><span style="font-size:0.8rem; font-weight:800;">CN</span></button>
-    </div>
-
-    <div id="abstract-tooltip" class="tooltip-container">
-        <div class="tooltip-header">Abstract</div>
-        <div class="tooltip-text" id="tooltip-content"></div>
-    </div>
-
+    
     <div class="container">
-        
-        <div class="profile-card">
-            <img src="ychen.jpg" alt="Yi Chen" class="profile-img">
-            <div style="flex: 1;">
-                <h1 class="header-name">Yi Chen</h1>
-                <div class="header-role lang-text" 
-                     data-en="PhD Candidate in Pattern Recognition and Intelligent Systems"
-                     data-zh="模式识别与智能系统 博士在读">
-                     PhD Candidate in Pattern Recognition and Intelligent Systems
-                </div>
-                
-                <div class="bio-text lang-text" 
-                     data-en="I am currently a PhD student jointly affiliated with the <strong>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS)</strong> at the Institute of Automation, Chinese Academy of Sciences (CASIA) and Zhongguancun Academy, supervised by Prof. <a href='#'>Cheng-Lin Liu</a>. I received my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition (NLPR), CASIA in 2024, and my B.E. degree from the School of Space Science and Technology at Xidian University in 2021."
-                     data-zh="我目前就读于中国科学院自动化研究所<strong>多模态人工智能系统国家重点实验室 (MAIS)</strong> 和中关村学院，师从<a href='#'>刘成林</a>教授。我于2024年在中国科学院自动化研究所模式识别国家重点实验室 (NLPR) 获得电子信息硕士学位，并于2021年在西安电子科技大学空间科学与技术学院获得工学学士学位。">
-                     Jointly affiliated with MAIS, CASIA.
-                </div>
-                
-                <div class="contact-row" style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">
-                    <i class="fas fa-map-marker-alt" style="margin-right: 8px; color: var(--accent);"></i> Beijing 100190, China
-                </div>
-
-                <div class="social-links">
-                    <a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN" class="social-btn"><i class="fab fa-google"></i> Google Scholar</a>
-                    <a href="https://github.com/banjiuyufen" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://orcid.org/0009-0005-0720-6372" class="social-btn"><i class="fab fa-orcid"></i> ORCID</a>
-                    <a href="mailto:yi.chen@nlpr.ia.ac.cn" class="social-btn"><i class="fas fa-envelope"></i> yi.chen@nlpr.ia.ac.cn</a>
-                </div>
-            </div>
+        <div class="control-bar">
+            <button class="control-btn theme-toggle" id="themeToggle" title="Switch Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="control-btn lang-toggle" id="langToggle" title="Switch Language">
+                <span style="font-size: 0.8rem; font-weight: bold;">EN</span>
+            </button>
         </div>
 
-        <div class="grid-2-col">
-            <div class="info-card">
-                <div class="section-header">
-                    <i class="fas fa-microscope"></i>
-                    <h3 class="lang-text" data-en="Research Interests" data-zh="研究兴趣">Research Interests</h3>
+        <div class="header">
+            <h1>Yi Chen</h1>
+            <p class="lang-switch" data-lang-en="PhD Candidate in Pattern Recognition and Intelligent Systems" data-lang-zh="模式识别与智能系统专业 · 博士候选人">
+                PhD Candidate in Pattern Recognition and Intelligent Systems
+            </p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="profile">
+                    <img src="ychen.jpg" alt="Yi Chen" class="profile-img">
+                    <div class="profile-info">
+                        <h2 class="section-title">
+                            <i class="fas fa-user-circle"></i>
+                            <span class="lang-switch" data-lang-en="Personal Profile" data-lang-zh="个人简介">Personal Profile</span>
+                        </h2>
+                        <p class="lang-switch" data-lang-en="I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institute of Automation, Chinese Academy of Sciences (CASIA) and Zhongguancun Academy, under the supervision of Prof. <a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>Cheng-Lin Liu</a>." data-lang-zh="本人目前是中国科学院自动化研究所多模态人工智能系统国家重点实验室（MAIS）与中关村学院联合培养的博士研究生，师从<a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>刘成林</a>研究员。">
+                            I am currently a PhD student jointly affiliated with the State Key Laboratory of Multimodal Artificial Intelligence Systems at the Institute of Automation, Chinese Academy of Sciences (CASIA) and Zhongguancun Academy, under the supervision of Prof. <a href="https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN">Cheng-Lin Liu</a>.
+                        </p>
+                        <p class="lang-switch" data-lang-en="I received my B.E. degree from the School of Space Science and Technology at Xidian University in 2021. Subsequently, I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition (NLPR), CASIA in 2024, also advised by Prof. <a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>Cheng-Lin Liu</a>." data-lang-zh="本人于2021年在西安电子科技大学空间科学与技术学院获得工学学士学位；2024年在中国科学院自动化研究所模式识别国家重点实验室（NLPR）获得电子信息硕士学位，导师同样为<a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>刘成林</a>研究员。">
+                            I received my B.E. degree from the School of Space Science and Technology at Xidian University in 2021. Subsequently, I earned my Master's degree in Electronic Information from the National Laboratory of Pattern Recognition (NLPR), CASIA in 2024, also advised by Prof. <a href='https://scholar.google.com/citations?user=8r3y8IMAAAAJ&hl=zh-CN'>Cheng-Lin Liu</a>.
+                        </p>
+                        
+                        <div class="social-links">
+                            <a href="https://scholar.google.com/citations?user=XoiT9wMAAAAJ&hl=zh-CN" class="social-link"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+                            <a href="https://orcid.org/0009-0005-0720-6372" class="social-link"><i class="fab fa-orcid"></i> ORCID</a>
+                            <a href="https://www.researchgate.net/profile/Yi-Chen-287" class="social-link"><i class="fab fa-researchgate"></i> ResearchGate</a>
+                            <a href="https://github.com/banjiuyufen" class="social-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <div class="contact-row">
+                                <i class="fas fa-building"></i>
+                                <span><a href="https://mais.ia.ac.cn/about/ds.html">CASIA-MAIS / NLPR-PAL Group</a></span>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Beijing 100190, China</span>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fas fa-envelope"></i>
+                                <span>yi.chen@nlpr.ia.ac.cn</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="lang-text" data-en="My research lies at the intersection of <strong>AI for Science</strong> (Adjuvant Discovery) and <strong>Multimodal Large Language Models (MLLMs)</strong>." 
-                     data-zh="我的研究主要集中在 <strong>AI for Science</strong>（特别是佐剂发现）与<strong>多模态大语言模型 (MLLMs)</strong> 的交叉领域。"
-                     style="margin-bottom: 15px; font-weight: 500;">
+            </div>
+            
+            <div class="research-grid">
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-microscope"></i>
+                        <span class="lang-switch" data-lang-en="Research Focus" data-lang-zh="研究方向">Research Focus</span>
+                    </h2>
+                    <p class="lang-switch" data-lang-en="My Ph.D. research focuses on artificial intelligence and deep learning methodologies, specifically at the intersection of Large Language Models (LLMs) and Adjuvant Science (<span class='highlight'>AI for Adjuvant Discovery</span>). Additionally, I investigate the fundamental theories of Multimodal Large Language Models (MLLMs), including reliable reasoning and inference acceleration." data-lang-zh="本人的博士研究课题专注于人工智能与深度学习方法论，特别是大型语言模型与佐剂学的交叉领域研究（<span class='highlight'>AI佐剂发现</span>）。此外，本人亦致力于多模态大模型（MLLMs）的基础理论研究，涵盖可靠推理与推理加速等前沿方向。">
+                        My Ph.D. research focuses on artificial intelligence and deep learning methodologies, specifically at the intersection of Large Language Models (LLMs) and Adjuvant Science (<span class="highlight">AI for Adjuvant Discovery</span>). Additionally, I investigate the fundamental theories of Multimodal Large Language Models (MLLMs), including reliable reasoning and inference acceleration.
+                    </p>
+                    
+                    <div class="note">
+                        <span class="lang-switch" data-lang-en="Bridging AI theory with practical applications in scientific domains." data-lang-zh="致力于将人工智能理论与科学领域的实际应用相结合，推动AI for Science的发展。">
+                            Bridging AI theory with practical applications in scientific domains.
+                        </span>
+                    </div>
                 </div>
-                <ul class="research-list">
-                    <li class="lang-text" data-en="Multimodal Foundation Models: Reliable reasoning and inference acceleration." data-zh="多模态基础模型：可靠推理与推理加速。"></li>
-                    <li class="lang-text" data-en="AI for Adjuvant: Large models for adjuvant mechanism discovery." data-zh="AI佐剂：面向佐剂机制发现的大模型方法。"></li>
-                    <li class="lang-text" data-en="Chinese Online Text Recognition & Generation." data-zh="联机中文文本行的识别与生成。"></li>
+                
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        <span class="lang-switch" data-lang-en="Research Interests" data-lang-zh="研究兴趣">Research Interests</span>
+                    </h2>
+                    <ul class="research-interests">
+                        <li class="lang-switch" data-lang-en="Recognition and generation of Online Handwritten Chinese Text" data-lang-zh="联机中文手写文本行的识别与生成">
+                            Recognition and generation of Online Handwritten Chinese Text
+                        </li>
+                        <li class="lang-switch" data-lang-en="Foundations and applications of LLMs and MLLMs" data-lang-zh="大语言模型与多模态基座模型的基础理论与应用">
+                            Foundations and applications of LLMs and MLLMs
+                        </li>
+                        <li class="lang-switch" data-lang-en="AI for Science (Biology, Chemistry, Materials Science)" data-lang-zh="AI for Science（生物、化学及材料科学方向）">
+                            AI for Science (Biology, Chemistry, Materials Science)
+                        </li>
+                    </ul>
+                    <div style="margin-top: 20px; font-size: 0.9rem; color: var(--primary);">
+                         <span class="lang-switch" data-lang-en="Open to collaboration. Please feel free to contact via email." data-lang-zh="诚挚欢迎学术交流与合作，请通过邮件联系。">
+                            Open to collaboration. Please feel free to contact via email.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-code-branch"></i>
+                    <span class="lang-switch" data-lang-en="Community Contributions" data-lang-zh="开源与社区贡献">Community Contributions</span>
+                </h2>
+                
+                <div class="contribution-item">
+                    <h3 class="contribution-title">
+                        <span class="lang-switch" data-lang-en="PaddleScience Contributor" data-lang-zh="PaddleScience 核心贡献">PaddleScience Contributor</span>
+                        <a href="https://github.com/PaddlePaddle/PaddleScience/pull/977" style="font-size: 0.9rem;"><i class="fas fa-link"></i> PR #977</a>
+                    </h3>
+                    
+                    <p class="lang-switch" data-lang-en="Integrated the <strong><a href='https://doi.org/10.1103/PhysRevLett.120.145301'>Crystal Graph CNN (CGCNN)</a></strong> model into the <strong>PaddleScience</strong> toolkit for materials chemistry applications." data-lang-zh="成功将 <strong><a href='https://doi.org/10.1103/PhysRevLett.120.145301'>Crystal Graph CNN (CGCNN)</a></strong> 模型集成至百度飞桨科学计算工具包 <strong>PaddleScience</strong> 中，用于材料化学领域的应用。">
+                        Integrated the <strong><a href='https://doi.org/10.1103/PhysRevLett.120.145301'>Crystal Graph CNN (CGCNN)</a></strong> model into the <strong>PaddleScience</strong> toolkit for materials chemistry applications.
+                    </p>
+                    
+                    <ul class="research-interests" style="margin-top: 10px; font-size: 0.95rem;">
+                        <li class="lang-switch" data-lang-en="Implemented full pipeline: preprocessing, graph construction, training, and inference." data-lang-zh="完整实现了晶体结构数据预处理、图神经网络构建、训练及推理的全流程。">
+                            Implemented full pipeline: preprocessing, graph construction, training, and inference.
+                        </li>
+                        <li class="lang-switch" data-lang-en="Code merged into official repository and featured as an official case study." data-lang-zh="代码已合并至官方主仓库，并被收录为官方材料化学应用案例。">
+                            Code merged into official repository and featured as an official case study.
+                        </li>
+                    </ul>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">PaddlePaddle</span>
+                        <span class="tech-item">GNN</span>
+                        <span class="tech-item">Materials Informatics</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-user-tie"></i>
+                    <span class="lang-switch" data-lang-en="Academic Service" data-lang-zh="学术服务">Academic Service</span>
+                </h2>
+                
+                <div class="academic-activities">
+                    <div class="activity-item">
+                        <div class="activity-title">
+                            AAAI 2026
+                            <span class="activity-year">PC Member</span>
+                        </div>
+                        <div class="lang-switch" data-lang-en="Program Committee Member (Main Track)" data-lang-zh="主会程序委员会委员">
+                            Program Committee Member (Main Track)
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-title">
+                            ICLR 2026
+                            <span class="activity-year">Reviewer</span>
+                        </div>
+                        <div class="lang-switch" data-lang-en="Main Track Reviewer" data-lang-zh="主会审稿人">
+                            Main Track Reviewer
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-title">
+                            CVPR 2026
+                            <span class="activity-year">Reviewer</span>
+                        </div>
+                        <div class="lang-switch" data-lang-en="Main Track Reviewer" data-lang-zh="主会审稿人">
+                            Main Track Reviewer
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-file-contract"></i>
+                    <span class="lang-switch" data-lang-en="Preprints" data-lang-zh="预印本论文">Preprints</span>
+                </h2>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+                    <i class="lang-switch" data-lang-en="(*: equal contribution)" data-lang-zh="(*: 同等贡献)">(*: equal contribution)</i>
+                </p>
+                
+                <ul class="publication-list">
+                    <li>
+                        <div class="publication-title lang-switch" 
+                             data-lang-en="An Open-Ended Benchmark and Formal Framework for Adjuvant Research with MLLM" 
+                             data-lang-zh="面向大模型佐剂研究的开放式基准测试与形式化框架"
+                             data-abstract="Adjuvants play a critical role in modulating immune responses and are central to the development of vaccines and immunotherapies. Yet progress in this field is constrained by data scarcity and incomplete understanding of mechanisms of action, which limit the transition from experience-based design to AI-driven approaches. To address these challenges, we present the first benchmark dedicated to adjuvants, constructed in an open-ended Q&A format and annotated by domain experts. The benchmark comprises 1,294 Q&A pairs and 1,364 formal descriptions, providing a resource for evaluating general-purpose multimodal large language models (MLLMs) and for developing domain-specific systems.">
+                            An Open-Ended Benchmark and Formal Framework for Adjuvant Research with MLLM
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu</div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> arXiv (Coming Soon)</a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models"
+                             data-lang-zh="稀疏性遇见相似性：利用长尾分布优化多模态大模型的动态Token表示"
+                             data-abstract="Recently, multimodal large language models (MM-LLMs) have achieved significant success in various tasks, but their high computational costs limit widespread application. The main computational burden arises from processing concatenated text and visual tokens in the LLM layer. We propose a dynamic pruning algorithm that identifies the inflection point in the visual CLS token similarity curve, enabling effective trimming of visual markers to accelerate model performance.">
+                            Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Gao-Tong Yu*, Jian Xu</div>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2409.01162"><i class="fas fa-file-pdf"></i> arXiv</a>
+                        </div>
+                    </li>
+
+                    <li>
+                         <div class="publication-title lang-switch"
+                              data-lang-en="An Efficient Strategy for Data-constrained Machine Learning in Materials Science"
+                              data-lang-zh="材料科学中数据受限场景下的高效机器学习策略"
+                              data-abstract="Materials science research increasingly benefits from the application of machine learning method, yet encounters fundamental challenges from data scarcity. We develop a multi-task and auxiliary machine learning framework to address these limitations. Using the 2D materials dataset as a case study, our approach demonstrates significantly enhanced prediction accuracy over the baseline crystal graph convolutional neural networks method.">
+                            An Efficient Strategy for Data-constrained Machine Learning in Materials Science
+                        </div>
+                        <div class="publication-authors">ChunTing Shao*, <span class="highlight">Yi Chen*</span>, ShanMan Song, PeiPei Yang, QingBo Yan, Jian Xu, Gang Su</div>
+                        <div class="publication-links">
+                             <a href="#"><i class="fas fa-file-pdf"></i> arXiv (Coming Soon)</a>
+                        </div>
+                    </li>
+
+                     <li>
+                         <div class="publication-title lang-switch"
+                              data-lang-en="ContextRGBNav: A Monocular Zero-Shot Semantic Navigation Framework through Contextual Adaptation"
+                              data-lang-zh="ContextRGBNav：基于上下文自适应的单目零样本语义导航框架"
+                              data-abstract="Efficiently finding objects in complex environments is fundamental to real-world embodied applications. We propose ContextRGBNav, a novel zero-shot, open-vocabulary semantic navigation framework that operates using only a monocular camera. Leveraging powerful 3D foundation models, ContextRGBNav eliminates the dependency on depth and pose while exhibiting strong ICL capability.">
+                            ContextRGBNav: A Monocular Zero-Shot Semantic Navigation Framework through Contextual Adaptation
+                        </div>
+                        <div class="publication-authors">Ming-Ming Yu, <span class="highlight">Yi Chen</span>, Börje F. Karlsson, Wenjun Wu</div>
+                        <div class="publication-links">
+                             <a href="#"><i class="fas fa-file-pdf"></i> arXiv (Coming Soon)</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="ChartAgent: A Chart Understanding Framework with Tool Integrated Reasoning"
+                             data-lang-zh="ChartAgent：一种基于工具集成推理的图表理解框架"
+                             data-abstract="Although recent multimodal large language models (MLLMs) have achieved notable advances in automated chart understanding, they still exhibit a pronounced dependence on explicit textual annotations. To overcome this limitation, we propose ChartAgent, a chart understanding framework built upon Tool Integrated Reasoning (TIR). Inspired by human cognitive processes, ChartAgent decomposes complex chart-analysis tasks into a sequence of observable and replayable steps.">
+                           ChartAgent: A Chart Understanding Framework with Tool Integrated Reasoning
+                       </div>
+                       <div class="publication-authors">Boran Wang, Xinming Wang, <span class="highlight">Yi Chen</span>, Xiang Li, Jian Xu, Jing Yuan, Cheng-Lin Liu</div>
+                       <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> arXiv (Coming Soon)</a>
+                       </div>
+                   </li>
+
+                   <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="MR-ALIGN: Meta-Reasoning Informed Factuality Alignment for Large Reasoning Models"
+                             data-lang-zh="MR-ALIGN：基于元推理信息的推理大模型事实性对齐"
+                             data-abstract="Large reasoning models (LRMs) show strong capabilities in complex reasoning, yet their marginal gains on evidence-dependent factual questions are limited. We propose MR-ALIGN, a Meta-Reasoning informed alignment framework that enhances factuality without relying on external verifiers. MR-ALIGN quantifies state-transition probabilities along the model’s thinking process and constructs a transition-aware implicit reward.">
+                           MR-ALIGN: Meta-Reasoning Informed Factuality Alignment for Large Reasoning Models
+                       </div>
+                       <div class="publication-authors">Xinming Wang, Jian Xu, Bin Yu, Sheng Lian, Hongzhu Yi, <span class="highlight">Yi Chen</span>, Boran Wang, Haoran Du, Han Hu, Xuyao Zhang, Chenglin Liu</div>
+                       <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> arXiv (Coming Soon)</a>
+                       </div>
+                   </li>
+
+                   <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="One Patch Doesn’t Fit All: Adaptive Patching for Native-Resolution Multimodal Large Language Models"
+                             data-lang-zh="One Patch Doesn’t Fit All：面向原生分辨率多模态大模型的自适应Patching策略"
+                             data-abstract="Real-world visual signals are inherently variable in resolution. We argue that the rigid use of a single patch size is the primary cause of performance degradation. To address this issue, we introduce Adaptive Patching (AdaPatch), a simple yet effective strategy that adjusts patch size according to image resolution and information density and could be seamlessly plugged into pre-trained fixed-patch MLLMs.">
+                           One Patch Doesn’t Fit All: Adaptive Patching for Native-Resolution Multimodal Large Language Models
+                       </div>
+                       <div class="publication-authors">Wenzhuo Liu, Weijie Yin, Fei Zhu, Shijie Ma, Haiyang Guo, <span class="highlight">Yi Chen</span>, Xiao-Hui Li, LiangXiao, ChaoFeng, Cheng-Lin Liu</div>
+                       <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> arXiv (Coming Soon)</a>
+                       </div>
+                   </li>
+
+                   <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="The Evolution of Video Anomaly Detection: A Unified Framework from DNN to MLLM"
+                             data-lang-zh="视频异常检测的演进：从DNN到MLLM的统一框架"
+                             data-abstract="Video anomaly detection (VAD) aims to identify and ground anomalous behaviors or events in videos. This paper presents the first comprehensive survey analyzing VAD methods based on MLLMs and LLMs, providing an in-depth discussion of the changes occurring in the VAD field in the era of large models and their underlying causes.">
+                           The Evolution of Video Anomaly Detection: A Unified Framework from DNN to MLLM
+                       </div>
+                       <div class="publication-authors">Shibo Gao, Peipei Yang, Haiyang Guo, Yangyang Liu, <span class="highlight">Yi Chen</span>, Shuai Li, Han Zhu, Jian Xu, Xu-Yao Zhang, Linlin Huang</div>
+                       <div class="publication-links">
+                           <a href="https://arxiv.org/abs/2507.21649"><i class="fas fa-file-pdf"></i> arXiv</a>
+                       </div>
+                   </li>
+
+                   <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="MeteorPred: A Meteorological Multimodal Large Model and Dataset for Severe Weather Event Prediction"
+                             data-lang-zh="MeteorPred：面向极端天气预测的气象多模态大模型与数据集"
+                             data-abstract="Timely and accurate severe weather alerts are critical for disaster mitigation. We introduce MP-Bench, the first large-scale temporal multimodal dataset for severe weather events prediction. On top of this dataset, we develop a meteorology multimodal large model (MMLM) that directly ingests 4D meteorological inputs.">
+                           MeteorPred: A Meteorological Multimodal Large Model and Dataset for Severe Weather Event Prediction
+                       </div>
+                       <div class="publication-authors">Shuo Tang, Jian Xu, Jiadong Zhang, <span class="highlight">Yi Chen</span>, Qizhao Jin, Lingdong Shen, Cheng-Lin Liu, Shiming Xiang </div>
+                       <div class="publication-links">
+                           <a href="https://arxiv.org/abs/2508.06859"><i class="fas fa-file-pdf"></i> arXiv</a>
+                       </div>
+                   </li>
+
+                   <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation"
+                             data-lang-zh="科学智能体银河指南：探索科研自动化之旅"
+                             data-abstract="The advancement of LLM-based agents heralds a new perspective for AI for Science (AI4S). This survey is grounded in the standardized scientific research process and elucidates the construction and evaluation of scientific agents. We delineate the substantial distinctions between scientific agents and general-purpose agents and present a systematic taxonomy.">
+                           The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation
+                       </div>
+                       <div class="publication-authors">Xinming Wang, Aslan Feng, Jian Xu, <span class="highlight">Yi Chen</span>, Haiyang Guo, Fei Zhu, Minsi Ren, Yuanqi Shao, Hongzhu Yi, Hongming Yang, Winston Hu, Tailin Wu, Xuyao Zhang, Cheng-Lin Liu</div>
+                       <div class="publication-links">
+                           <a href="https://www.techrxiv.org/users/951553/articles/1320864-the-hitchhiker-s-guide-to-autonomous-research-a-survey-of-scientific-agents"><i class="fas fa-file-pdf"></i> TechRxiv</a>
+                           <a href="https://github.com/gudehhh666/Awesome_Scientific_Agent"><i class="fab fa-github"></i> GitHub</a>
+                       </div>
+                   </li>
+                   
+                   <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="Fine-Grained Post-Training Quantization for Large Vision Language Models with Integrated Gradients"
+                             data-lang-zh="基于积分梯度的多模态大模型细粒度后训练量化方法"
+                             data-abstract="Large Vision Language Models (LVLMs) come with a surge in computational overhead. Drawn from the concept of axiomatic attribution from mechanistic interpretability, we exploit integrated gradients to effectively evaluate the sensitivity, and push the granularity from modality to token to reflect both inter-modality and intra-modality dynamics.">
+                           Fine-Grained Post-Training Quantization for Large Vision Language Models with Integrated Gradients
+                       </div>
+                       <div class="publication-authors">Ziwen Xiang, Fanhu Zeng, Hongjian Fang, Rui-Qi Wang, Renxing Chen, <span class="highlight">Yi Chen</span>, Yanan Zhu, Peipei Yang, Xu-Yao Zhang</div>
+                       <div class="publication-links">
+                           <a href="https://arxiv.org/abs/2507.21649"><i class="fas fa-file-pdf"></i> arXiv</a>
+                       </div>
+                   </li>
                 </ul>
             </div>
-
-            <div class="info-card">
-                <div class="section-header">
-                    <i class="fas fa-user-check"></i>
-                    <h3 class="lang-text" data-en="Academic Services" data-zh="学术服务">Academic Services</h3>
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <div class="activity-item">
-                        <span class="lang-text" data-en="AAAI 2026" data-zh="AAAI 2026">AAAI 2026</span>
-                        <span class="activity-tag lang-text" data-en="PC Member" data-zh="程序委员会成员">PC Member</span>
-                    </div>
-                    <div class="activity-item">
-                        <span class="lang-text" data-en="ICLR 2026" data-zh="ICLR 2026">ICLR 2026</span>
-                        <span class="activity-tag lang-text" data-en="Reviewer" data-zh="审稿人">Reviewer</span>
-                    </div>
-                    <div class="activity-item">
-                        <span class="lang-text" data-en="CVPR 2026" data-zh="CVPR 2026">CVPR 2026</span>
-                        <span class="activity-tag lang-text" data-en="Reviewer" data-zh="审稿人">Reviewer</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="pub-section-title">
-            <i class="fas fa-file-invoice"></i>
-            <span class="lang-text" data-en="Preprints & Under Review" data-zh="预印本与在投论文">Preprints & Under Review</span>
-        </h2>
-        
-        <div class="pub-list">
-            <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="An Open-Ended Benchmark and Formal Framework for Adjuvant Research with MLLM"
-                     data-title-zh="基于多模态大模型的佐剂研究开放式基准与形式化框架"
-                     data-abs-en="Adjuvants play a critical role in modulating immune responses and are central to the development of vaccines and immunotherapies. Yet progress in this field is constrained by data scarcity and incomplete understanding of mechanisms of action, which limit the transition from experience-based design to AI-driven approaches. To address these challenges, we present the first benchmark dedicated to adjuvants, constructed in an open-ended Q&A format and annotated by domain experts. The benchmark comprises 1,294 Q&A pairs and 1,364 formal descriptions, providing a resource for evaluating general-purpose multimodal large language models (MLLMs) and for developing domain-specific systems. We systematically assess 11 closed-source and 18 open-source MLLMs across dimensions including domain-specific Q&A, hallucination rejection, data generation, and instruction following. Results indicate that OpenAI-o1 and DeepSeek-R1 achieved the strongest performance. In addition, we introduce a formal description framework for representing adjuvant design principles and immune mechanisms as structured abstractions."
-                     data-abs-zh="佐剂在调节免疫反应中起着关键作用，是疫苗和免疫疗法开发的核心。然而，该领域的进展受到数据稀缺和作用机制理解不完全的限制。为解决这些挑战，我们提出了首个专门针对佐剂的基准测试，该基准以开放式问答格式构建，并由领域专家标注。该基准包含1,294个问答对和1,364个形式化描述。我们系统评估了11个闭源和18个开源MLLM。结果表明，OpenAI-o1和DeepSeek-R1分别在闭源和开源模型中取得了最强性能。此外，我们引入了一个形式化描述框架，将佐剂设计原则和免疫机制表示为结构化抽象。">
-                    An Open-Ended Benchmark and Formal Framework for Adjuvant Research with MLLM
-                </div>
-                <div class="pub-authors"><span class="me">Yi Chen*</span>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu</div>
-                <div class="pub-venue">arXiv Preprint</div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation"
-                     data-title-zh="科学智能体银河漫游指南：研究自动化宇宙之旅"
-                     data-abs-en="The advancement of LLM-based agents heralds a new perspective for AI for Science (AI4S). Prominent large language models, such as DeepSeek-R1 and OpenAI-o1, have exhibited expertise across multiple domains. This survey is grounded in the standardized scientific research process and elucidates the construction and evaluation of scientific agents. Initially, we delineate the substantial distinctions between scientific agents and general-purpose agents. Subsequently, we examine the fundamental procedure for constructing scientific agents and the strategy for targeted capability enhancement. Additionally, we outline the benchmarking and evaluation approaches for scientific agents. Ultimately, we investigate prospective research directions for scientific agents."
-                     data-abs-zh="基于大语言模型的智能体的进步预示着AI for Science (AI4S) 的新视角。DeepSeek-R1和OpenAI-o1等大模型已展示了专业知识。本综述立足于标准化科学研究过程，阐明了科学智能体的构建和评估。首先，我们划分了科学智能体与通用智能体的实质性区别。随后，我们考察了构建科学智能体的基本程序和能力增强策略。此外，我们概述了对科学智能体进行基准测试的方法。最后，我们探讨了科学智能体的未来研究方向。">
-                    The Hitchhiker's Guide to Scientific Agents: A Journey Through the Cosmos of Research Automation
-                </div>
-                <div class="pub-authors">Xinming Wang, Aslan Feng, Jian Xu, <span class="me">Yi Chen</span>, et al.</div>
-                <div class="pub-venue">TechRxiv</div>
-                 <div class="pub-links">
-                    <a href="https://github.com/gudehhh666/Awesome_Scientific_Agent" class="pub-link"><i class="fab fa-github"></i> GitHub</a>
-                </div>
-            </div>
             
-             <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="An Efficient Strategy for Data-constrained Machine Learning in Materials Science"
-                     data-title-zh="材料科学中数据受限机器学习的高效策略"
-                     data-abs-en="Materials science research increasingly benefits from the application of machine learning method, yet encounters fundamental challenges from data scarcity. In this paper, we develop a multi-task and auxiliary machine learning framework to address these limitations. Using the 2D materials dataset as a case study, our approach demonstrates significantly enhanced prediction accuracy over the baseline crystal graph convolutional neural networks method. The performance gain stems from the framework’s ability to effectively exploit underlying physical correlations between material properties through synergistic multi-task and auxiliary learning."
-                     data-abs-zh="材料科学研究日益受益于机器学习方法，但仍面临数据稀缺的挑战。在本文中，我们开发了一个多任务辅助机器学习框架来解决这些局限性。以二维材料数据集为例，我们的方法显示出的预测精度显著优于基准晶体图卷积神经网络方法。性能的提升源于该框架通过协同多任务和辅助学习有效利用材料属性之间潜在物理相关性的能力。">
-                     An Efficient Strategy for Data-constrained Machine Learning in Materials Science
-                </div>
-                <div class="pub-authors">ChunTing Shao*, <span class="me">Yi Chen*</span>, et al.</div>
-                <div class="pub-venue">Under Review</div>
-            </div>
-            
-            <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="MeteorPred: A Meteorological Multimodal Large Model and Dataset for Severe Weather Event Prediction"
-                     data-title-zh="MeteorPred：用于极端天气事件预测的气象多模态大模型与数据集"
-                     data-abs-en="Timely and accurate severe weather alerts are critical for disaster mitigation. We introduce MP-Bench, the first large-scale temporal multimodal dataset for severe weather events prediction, comprising 421,363 pairs of raw multi-year meteorological data and corresponding text caption. On top of this dataset, we develop a meteorology multimodal large model (MMLM) that directly ingests 4D meteorological inputs. It incorporates three plug-and-play adaptive fusion modules that enable dynamic feature extraction across modalities and dimensions."
-                     data-abs-zh="及时准确的极端天气预警对减灾至关重要。我们推出了MP-Bench，这是首个用于极端天气事件预测的大规模时间多模态数据集。在该数据集的基础上，我们开发了一种气象多模态大模型（MMLM），直接摄取4D气象输入。它集成了三个自适应融合模块，能够进行动态特征提取。">
-                     MeteorPred: A Meteorological Multimodal Large Model and Dataset for Severe Weather Event Prediction
-                </div>
-                <div class="pub-authors">Shuo Tang, Jian Xu, Jiadong Zhang, <span class="me">Yi Chen</span>, et al.</div>
-                <div class="pub-venue">arXiv Preprint</div>
-            </div>
-        </div>
+            <div class="card">
+                <h2 class="section-title">
+                    <i class="fas fa-book-journal-whills"></i>
+                    <span class="lang-switch" data-lang-en="Peer-Reviewed Publications" data-lang-zh="同行评审论文">Peer-Reviewed Publications</span>
+                </h2>
+                <ul class="publication-list">
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="ManiNet: Manifold Network for Few-Shot Learning"
+                             data-lang-zh="ManiNet：面向小样本学习的流形网络"
+                             data-abstract="Few-shot Learning (FSL) aims to learn a model that can be seamlessly adapted to unknown classes with only a few labeled data. We develop a novel yet concise approach named Manifold Network (ManiNet) to perform few-shot classification based on manifolds. Technically, in the ManiNet, each class is represented as a tree rather than isolated centroids to reserve structural information.">
+                            ManiNet: Manifold Network for Few-Shot Learning
+                        </div>
+                        <div class="publication-authors">Ruiqi Wang, Hengcan Shi, <span class="highlight">Yi Chen</span>, YaoNan Wang</div>
+                        <div class="publication-venue">AIHCIR 2025 (Best Paper Award)</div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </div>
+                    </li>
 
-        <h2 class="pub-section-title">
-            <i class="fas fa-book-journal-whills"></i>
-            <span class="lang-text" data-en="Peer-Reviewed Publications" data-zh="正式发表论文">Peer-Reviewed Publications</span>
-        </h2>
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding"
+                             data-lang-zh="VAGU & GtS：基于大语言模型的视频异常定位与理解联合基准与框架"
+                             data-abstract="Video Anomaly Detection (VAD) aims to identify anomalous events within videos. We propose VAGU (Video Anomaly Grounding and Understanding), the first benchmark integrating both anomaly grounding and anomaly understanding. Building upon this benchmark, we present Glance then Scrutinize (GtS) - a training-free framework guided by static textual and dynamic textual prompts.">
+                            VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding
+                        </div>
+                        <div class="publication-authors">Shibo Gao, Peipei Yang, <span class="highlight">Yi Chen</span>, Han Zhu, Yangyang Liu, Wenxin Zhang, Linlin Huang</div>
+                        <div class="publication-venue">AAAI 2026</div>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2507.21507"><i class="fas fa-file-pdf"></i> arXiv</a>
+                        </div>
+                    </li>
 
-        <div class="pub-list">
-            <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="ManiNet: Manifold Network for Few-Shot Learning"
-                     data-title-zh="ManiNet：基于流形的少样本学习网络"
-                     data-abs-en="Few-shot Learning (FSL) aims to learn a model that can be seamlessly adapted to unknown classes with only a few labeled data. We develop a novel yet concise approach named Manifold Network (ManiNet) to perform few-shot classification based on manifolds. Technically, in the ManiNet, each class is represented as a tree rather than isolated centroids to reserve structural information. Experimental results on popular benchmarks strongly demonstrate that our ManiNet suffices to achieve competitive performance with simpler modeling and higher robustness."
-                     data-abs-zh="少样本学习（FSL）旨在学习一个仅需少量标记数据即可无缝适应未知类别的模型。我们开发了一种名为流形网络（ManiNet）的新颖方法，基于流形进行少样本分类。在ManiNet中，每个类被表示为一棵树而不是孤立的质心，以保留结构信息。实验结果有力地证明，ManiNet能够以更简单的建模和更高的鲁棒性实现具有竞争力的性能。">
-                    ManiNet: Manifold Network for Few-Shot Learning
-                </div>
-                <div class="pub-authors">Ruiqi Wang, Hengcan Shi, <span class="me">Yi Chen</span>, YaoNan Wang</div>
-                <div class="pub-venue">AIHCIR 2025 <span class="highlight-tag">Best Paper Award</span></div>
-            </div>
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information"
+                             data-lang-zh="可恢复压缩：文本信息引导的多模态视觉Token恢复机制"
+                             data-abstract="The advancement of LLM-based agents heralds a new perspective for AI for Science (AI4S). We propose a recoverable compression mechanism for multimodal vision tokens, significantly reducing computational cost while maintaining performance.">
+                            Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen</span>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu</div>
+                        <div class="publication-venue">AAAI 2025</div>
+                        <div class="publication-links">
+                            <a href="https://ojs.aaai.org/index.php/AAAI/article/view/32229"><i class="fas fa-globe"></i> Link</a>
+                            <a href="https://arxiv.org/abs/2409.01179"><i class="fas fa-file-pdf"></i> arXiv</a>
+                            <a href="https://github.com/banjiuyufen/Recoverable-Compression"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
 
-            <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding"
-                     data-title-zh="VAGU & GtS：基于大语言模型的视频异常定位与理解联合基准及框架"
-                     data-abs-en="Video Anomaly Detection (VAD) aims to identify anomalous events within videos and precisely ground their temporal occurrences. We propose VAGU, the first benchmark integrating both anomaly grounding and anomaly understanding. Building upon this benchmark, we present Glance then Scrutinize (GtS) - a training-free framework guided by static textual and dynamic textual prompts. Furthermore, we innovatively propose the Joint evaluation of Anomaly Understanding and Grounding (JeAUG) metric."
-                     data-abs-zh="视频异常检测（VAD）旨在识别视频中的异常事件并定位其发生时间。我们提出了VAGU，这是首个集成了异常定位和理解的基准测试。基于此，我们提出了Glance then Scrutinize (GtS)——一个由提示引导的免训练框架。此外，我们创新性地提出了异常理解与定位联合评估（JeAUG）指标。">
-                    VAGU & GtS: LLM-Based Benchmark and Framework for Joint Video Anomaly Grounding and Understanding
-                </div>
-                <div class="pub-authors">Shibo Gao, Peipei Yang, <span class="me">Yi Chen</span>, et al.</div>
-                <div class="pub-venue">AAAI 2026</div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2507.21507" class="pub-link">arXiv</a></div>
-            </div>
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="Decoupling Layout from Glyph in Online Chinese Handwriting Generation"
+                             data-lang-zh="联机中文手写生成中的字形与布局解耦"
+                             data-abstract="Teaching machines to generate online handwritten text in various styles presents an interesting challenge. We identify that text lines can naturally be divided into two components: layout and glyphs. Based on this division, we designed a text line layout generator coupled with a diffusion-based stylized font synthesizer to address this challenge hierarchically.">
+                            Decoupling Layout from Glyph in Online Chinese Handwriting Generation
+                        </div>
+                        <div class="publication-authors">Min-Si Ren, Yan-Ming Zhang, <span class="highlight">Yi Chen</span></div>
+                        <div class="publication-venue">ICLR 2025</div>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2410.02309"><i class="fas fa-file-pdf"></i> arXiv</a>
+                            <a href="https://github.com/singularityrms/OLHWG"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
 
-            <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information"
-                     data-title-zh="可恢复压缩：文本信息引导的多模态视觉Token恢复机制"
-                     data-abs-en="We propose a text information-guided dynamic visual token recovery mechanism that does not require training. This mechanism leverages the similarity between the question text and visual tokens to recover visually meaningful tokens with important text information while merging other less important tokens. Experimental results demonstrate that our proposed method achieves comparable performance to the original approach while compressing the visual tokens to an average of 10% of the original quantity."
-                     data-abs-zh="我们提出了一种无需训练的文本信息引导动态视觉Token恢复机制。该机制利用问题文本与视觉Token之间的相似性，恢复具有重要文本信息的视觉上有意义的Token，同时合并其他不太重要的Token。实验结果表明，我们提出的方法在将视觉Token压缩至原始数量平均10%的同时，实现了与原始方法相当的性能。">
-                    Recoverable Compression: A Multimodal Vision Token Recovery Mechanism Guided by Text Information
-                </div>
-                <div class="pub-authors"><span class="me">Yi Chen</span>, Jian Xu, Xu-Yao Zhang, Wen-Zhuo Liu, Yang-Yang Liu, Cheng-Lin Liu</div>
-                <div class="pub-venue">AAAI 2025</div>
-                <div class="pub-links">
-                    <a href="https://github.com/banjiuyufen/Recoverable-Compression" class="pub-link"><i class="fab fa-github"></i> Code</a>
-                    <a href="https://arxiv.org/abs/2409.01179" class="pub-link">arXiv</a>
-                </div>
-            </div>
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation"
+                             data-lang-zh="基于笔画分类过切分的任意书写方向联机中文手写文本识别"
+                             data-abstract="Current mainstream methods are difficult to handle texts in any writing direction. This paper proposes a recognition framework based on over-segmentation which is applicable to text recognition of any writing direction. An improved over-segmentation algorithm is designed based on stroke classification using bidirectional long short-term memory networks (BiLSTM).">
+                            Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Min-Si Ren, Cheng-Lin Liu</div>
+                        <div class="publication-venue">ICPR 2024</div>
+                        <div class="publication-links">
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-031-78183-4_24"><i class="fas fa-globe"></i> Link</a>
+                        </div>
+                    </li>
 
-             <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="Decoupling Layout from Glyph in Online Chinese Handwriting Generation"
-                     data-title-zh="在线中文手写生成中的字形与布局解耦"
-                     data-abs-en="We identify that text lines can naturally be divided into two components: layout and glyphs. Based on this division, we designed a text line layout generator coupled with a diffusion-based stylized font synthesizer to address this challenge hierarchically. Qualitative and quantitative experiments on the CASIA-OLHWDB demonstrate that our method is capable of generating structurally correct and indistinguishable imitation samples."
-                     data-abs-zh="我们发现文本行可以分为布局和字形。基于这种划分，我们设计了一个与基于扩散的风格化字体合成器相耦合的文本行布局生成器，以分层解决这一挑战。实验结果表明，我们的方法能够生成结构正确且难以区分的模仿样本。">
-                    Decoupling Layout from Glyph in Online Chinese Handwriting Generation
-                </div>
-                <div class="pub-authors">Min-Si Ren, Yan-Ming Zhang, <span class="me">Yi Chen</span></div>
-                <div class="pub-venue">ICLR 2025</div>
-                <div class="pub-links">
-                    <a href="https://github.com/singularityrms/OLHWG" class="pub-link"><i class="fab fa-github"></i> Code</a>
-                    <a href="https://arxiv.org/abs/2410.02309" class="pub-link">arXiv</a>
-                </div>
-            </div>
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition"
+                             data-lang-zh="手写中文文本识别中用于拒识的上下文感知置信度估计"
+                             data-abstract="We propose a character confidence estimation method incorporating contexts for character rejection in HCTR. Based on a text line recognizer outputting character segmentation and classification results, the confidence of each segmented character is estimated by combining the scores of a re-trained character classifier, the linguistic and geometric contexts.">
+                            Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition
+                        </div>
+                        <div class="publication-authors">Yang-Yang Liu, <span class="highlight">Yi Chen</span>, Fei Yin, Cheng-Lin Liu</div>
+                        <div class="publication-venue">ICDAR 2024</div>
+                        <div class="publication-links">
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-031-70533-5_9"><i class="fas fa-globe"></i> Link</a>
+                        </div>
+                    </li>
 
-            <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="Recognition of Online Handwritten Chinese Texts in Any Writing Direction via Stroke Classification Based Over-Segmentation"
-                     data-title-zh="基于笔画分类过切分的任意方向在线手写中文文本识别"
-                     data-abs-en="This paper proposes a recognition framework based on over-segmentation which is applicable to text recognition of any writing direction. It divides text line inclination styles into two cases. An improved over-segmentation algorithm is designed based on stroke classification using BiLSTM to achieve text recognition in any writing direction."
-                     data-abs-zh="本文提出了一种基于过切分的识别框架，适用于任意书写方向的文本识别。它设计了一种基于BiLSTM笔画分类的改进过切分算法，以实现任意书写方向的文本识别。">
-                     Recognition of Online Handwritten Chinese Texts in Any Writing Direction
-                </div>
-                <div class="pub-authors"><span class="me">Yi Chen</span>, Heng Zhang, Min-Si Ren, Cheng-Lin Liu</div>
-                <div class="pub-venue">ICPR 2024</div>
-                 <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-031-78183-4_24" class="pub-link">Link</a></div>
-            </div>
-
-             <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition"
-                     data-title-zh="手写中文文本识别中用于拒识的上下文感知置信度估计"
-                     data-abs-en="We propose a character confidence estimation method incorporating contexts for character rejection in HCTR. The confidence of each segmented character is estimated by combining the scores of a re-trained character classifier, the linguistic and geometric contexts. Experimental evaluations demonstrate that our method can significantly improve the rejection performance."
-                     data-abs-zh="我们提出了一种结合上下文的字符置信度估计方法，用于HCTR中的字符拒识。通过结合重训练的字符分类器分数、语言上下文和几何上下文来估计每个切分字符的置信度。实验评估表明，我们的方法可以显著提高拒识性能。">
-                     Context-Aware Confidence Estimation for Rejection in Handwritten Chinese Text Recognition
-                </div>
-                <div class="pub-authors">Yang-Yang Liu, <span class="me">Yi Chen</span>, Fei Yin, Cheng-Lin Liu</div>
-                <div class="pub-venue">ICDAR 2024</div>
-            </div>
-            
-             <div class="pub-item">
-                <div class="pub-title lang-pub"
-                     data-title-en="Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network"
-                     data-title-zh="基于卷积原型网络的在线手写中文文本识别改进学习方法"
-                     data-abs-en="We proposed a learning method for segmentation-based online handwritten Chinese text recognition with a convolutional prototype network as the underlying classifier. The prototype classifier is inherently resistant to non-characters, and so, can be trained with character and string samples without the need of data augmentation."
-                     data-abs-zh="我们提出了一种以卷积原型网络为底层分类器的学习方法。原型分类器天生具有抗非字符能力，无需数据增强即可使用字符和字符串样本进行训练。">
-                     Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network
-                </div>
-                <div class="pub-authors"><span class="me">Yi Chen</span>, Heng Zhang, Cheng-Lin Liu</div>
-                <div class="pub-venue">ICDAR 2023</div>
+                    <li>
+                        <div class="publication-title lang-switch"
+                             data-lang-en="Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network"
+                             data-lang-zh="基于卷积原型网络的联机中文手写文本识别改进学习方法"
+                             data-abstract="We proposed a learning method for segmentation-based online handwritten Chinese text recognition with a convolutional prototype network as the underlying classifier. The prototype classifier is inherently resistant to non-characters, and so, can be trained with character and string samples without the need of data augmentation.">
+                            Improved Learning for Online Handwritten Chinese Text Recognition with Convolutional Prototype Network
+                        </div>
+                        <div class="publication-authors"><span class="highlight">Yi Chen</span>, Heng Zhang, Cheng-Lin Liu</div>
+                        <div class="publication-venue">ICDAR 2023</div>
+                        <div class="publication-links">
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-031-41685-9_3"><i class="fas fa-globe"></i> Link</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         
-        <div class="contrib-card">
-            <div class="contrib-header">
-                <i class="fas fa-code-branch" style="color: var(--accent); font-size: 1.4rem;"></i>
-                <h3 class="lang-text" data-en="Open Source Contributions" data-zh="开源社区贡献">Open Source Contributions</h3>
-            </div>
-            
-            <h4 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 8px;" class="lang-text"
-                data-en="PaddleScience: Materials Chemistry Case Integration"
-                data-zh="PaddleScience：材料化学案例集成">
-                PaddleScience: Materials Chemistry Case Integration
-            </h4>
-            
-            <p class="lang-text" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 10px;"
-               data-en="Successfully deployed and integrated the Crystal Graph CNN (CGCNN) model into the official PaddleScience toolkit. This case is now part of the official documentation."
-               data-zh="成功将 Crystal Graph CNN (CGCNN) 模型部署并集成到飞桨科学计算工具包 PaddleScience 中。该案例现已成为官方文档的一部分。">
-               Successfully deployed and integrated the CGCNN model.
-            </p>
-            
-            <div class="tech-stack">
-                <span class="tech-item">PaddlePaddle</span>
-                <span class="tech-item">GNN</span>
-                <span class="tech-item">Materials Science</span>
-            </div>
-            
-            <div class="pub-links">
-                <a href="https://github.com/PaddlePaddle/PaddleScience/pull/977" class="pub-link"><i class="fas fa-code-merge"></i> PR #977 Merged</a>
-                <a href="https://paddlescience-docs.readthedocs.io/zh-cn/latest/zh/examples/cgcnn/" class="pub-link"><i class="fas fa-book"></i> Documentation</a>
-            </div>
+        <div class="footer">
+            <p>© 2025 Yi Chen</p>
+            <p>State Key Laboratory of Multimodal Artificial Intelligence Systems (MAIS)</p>
         </div>
+    </div>
 
-        <footer>
-            &copy; 2025 Yi Chen. <br>
-            <span style="font-size: 0.8rem; opacity: 0.6;">Last updated: Dec 2025</span>
-        </footer>
-
+    <div id="abstract-tooltip" class="abstract-tooltip">
+        <div class="abstract-title" id="tooltip-title"></div>
+        <div id="tooltip-content"></div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeBtn = document.getElementById('themeToggle');
-            const langBtn = document.getElementById('langToggle');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tooltip Logic
             const tooltip = document.getElementById('abstract-tooltip');
+            const tooltipTitle = document.getElementById('tooltip-title');
             const tooltipContent = document.getElementById('tooltip-content');
-            
-            let lang = 'en';
+            let hoverTimer;
+
+            document.querySelectorAll('.publication-title').forEach(title => {
+                title.addEventListener('mouseenter', function(e) {
+                    const abstract = this.getAttribute('data-abstract');
+                    if (!abstract) return;
+
+                    hoverTimer = setTimeout(() => {
+                        tooltipTitle.textContent = this.textContent;
+                        tooltipContent.textContent = abstract;
+                        
+                        tooltip.style.display = 'block';
+                        
+                        // Positioning
+                        const rect = this.getBoundingClientRect();
+                        let top = rect.bottom + window.scrollY + 10;
+                        let left = Math.min(e.pageX - 300, window.innerWidth - 650);
+                        if(left < 20) left = 20;
+
+                        tooltip.style.top = `${top}px`;
+                        tooltip.style.left = `${left}px`;
+                        
+                        requestAnimationFrame(() => {
+                            tooltip.style.opacity = '1';
+                        });
+                    }, 600);
+                });
+
+                title.addEventListener('mouseleave', function() {
+                    clearTimeout(hoverTimer);
+                    tooltip.style.opacity = '0';
+                    setTimeout(() => {
+                         if(tooltip.style.opacity === '0') tooltip.style.display = 'none';
+                    }, 300);
+                });
+            });
 
             // Theme Toggle
-            themeBtn.addEventListener('click', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+            
+            // Check saved theme
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+                icon.className = 'fas fa-sun';
+            }
+
+            themeToggle.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark-mode');
                 const isDark = document.documentElement.classList.contains('dark-mode');
-                themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
             });
 
             // Language Toggle
-            langBtn.addEventListener('click', () => {
-                lang = lang === 'en' ? 'zh' : 'en';
-                langBtn.querySelector('span').textContent = lang === 'en' ? 'CN' : 'EN';
-                updateLanguage();
-            });
+            const langToggle = document.getElementById('langToggle');
+            const langText = langToggle.querySelector('span');
+            let currentLang = 'en';
 
             function updateLanguage() {
-                // Update text elements
-                document.querySelectorAll('.lang-text').forEach(el => {
-                    const newText = el.getAttribute(`data-${lang}`);
-                    if(newText) el.innerHTML = newText;
+                document.querySelectorAll('.lang-switch').forEach(el => {
+                    const text = el.getAttribute(`data-lang-${currentLang}`);
+                    if (text) el.innerHTML = text; // use innerHTML to preserve bold tags
                 });
-                
-                // Update Publication titles and abstracts
-                document.querySelectorAll('.lang-pub').forEach(el => {
-                    const newTitle = el.getAttribute(`data-title-${lang}`);
-                    if(newTitle) el.textContent = newTitle;
-                });
+                langText.textContent = currentLang === 'en' ? 'EN' : '中';
             }
 
-            // Tooltip Logic
-            const pubTitles = document.querySelectorAll('.pub-title');
-
-            pubTitles.forEach(item => {
-                item.addEventListener('mouseenter', (e) => {
-                    const abs = item.getAttribute(`data-abs-${lang}`);
-                    if(!abs) return;
-                    
-                    tooltipContent.textContent = abs;
-                    tooltip.classList.add('active');
-                    moveTooltip(e);
-                });
-
-                item.addEventListener('mouseleave', () => {
-                    tooltip.classList.remove('active');
-                });
-
-                item.addEventListener('mousemove', (e) => {
-                    moveTooltip(e);
-                });
+            langToggle.addEventListener('click', () => {
+                currentLang = currentLang === 'en' ? 'zh' : 'en';
+                updateLanguage();
             });
-
-            function moveTooltip(e) {
-                const x = e.clientX;
-                const y = e.clientY;
-                const box = tooltip.getBoundingClientRect();
-                
-                let left = x + 25;
-                let top = y + 25;
-
-                // Adjust overflow
-                if (left + box.width > window.innerWidth) left = x - box.width - 25;
-                if (top + box.height > window.innerHeight) top = y - box.height - 25;
-                if (top < 10) top = 10;
-
-                tooltip.style.left = `${left}px`;
-                tooltip.style.top = `${top}px`;
-            }
         });
     </script>
 </body>
