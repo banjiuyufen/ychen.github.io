@@ -21,7 +21,7 @@
             --text-main: #24292f;
             --text-muted: #57606a;
             
-            --accent: #d97706; /* Amber for highlights */
+            --accent: #d97706; /* Amber */
             
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
@@ -106,8 +106,33 @@
         .publication-list { list-style: none; }
         .publication-list li { margin-bottom: 30px; position: relative; padding-left: 20px; }
         
-        .publication-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; cursor: pointer; line-height: 1.4; position: relative; display: inline-block;}
-        .publication-title:hover { color: var(--primary); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; }
+        .publication-title { 
+            font-family: var(--font-serif); 
+            font-size: 1.15rem; 
+            font-weight: 700; 
+            color: var(--text-main); 
+            margin-bottom: 6px; 
+            cursor: pointer; 
+            line-height: 1.4; 
+            position: relative; 
+            display: inline-block;
+            transition: color 0.2s;
+        }
+        .publication-title:hover { color: var(--primary); }
+        /* Add a dotted underline to indicate interactivity */
+        .publication-title::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-image: linear-gradient(to right, var(--text-muted) 33%, rgba(255,255,255,0) 0%);
+            background-position: bottom;
+            background-size: 5px 1px;
+            background-repeat: repeat-x;
+            opacity: 0.5;
+        }
         
         .publication-authors { font-size: 1rem; color: var(--text-muted); margin-bottom: 6px; }
         .publication-venue { font-size: 0.95rem; font-style: italic; color: var(--primary); margin-bottom: 10px; }
@@ -130,36 +155,38 @@
 
         .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-muted); }
 
-        /* Tooltip Styles */
+        /* --- RE-IMPLEMENTED TOOLTIP STYLES --- */
         .tooltip-container {
-            position: fixed;
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed relative to viewport */
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             padding: 20px 25px;
-            width: 650px;
+            width: 600px;
             max-width: 90vw;
             border-radius: var(--border-radius);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            z-index: 9999;
-            pointer-events: none; /* Allows mouse to pass through to underlying elements */
-            opacity: 0;
-            transition: opacity 0.2s, transform 0.2s;
-            transform: translateY(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 10000; /* Extremely high Z-Index */
             font-size: 0.95rem;
             line-height: 1.6;
             text-align: justify;
             color: var(--text-main);
-            backdrop-filter: blur(5px);
+            pointer-events: none; /* Prevent tooltip from blocking mouse events */
         }
         
         .tooltip-container.visible {
-            opacity: 1;
-            transform: translateY(0);
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         :root.dark-mode .tooltip-container {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            background: rgba(22, 27, 34, 0.95);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            border: 1px solid var(--border-color);
         }
 
         .tooltip-label {
@@ -170,6 +197,9 @@
             margin-bottom: 8px;
             display: block;
             font-weight: 600;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
         }
 
         @media (max-width: 768px) {
@@ -179,11 +209,12 @@
             .contact-info { justify-content: center; }
             .control-bar { position: relative; top: 0; justify-content: flex-end; margin-bottom: 20px; }
             .header { padding-top: 20px; }
-            .tooltip-container { display: none !important; } /* Disable tooltip on mobile */
+            .tooltip-container { display: none !important; } /* Disable on mobile */
         }
     </style>
 </head>
 <body>
+    
     <div id="abstract-tooltip" class="tooltip-container">
         <span class="tooltip-label">Abstract</span>
         <div id="tooltip-content"></div>
@@ -375,7 +406,7 @@
                              data-lang-en="An Open-Ended Benchmark and Formal Framework for Adjuvant Research with MLLM" 
                              data-lang-zh="面向大模型佐剂研究的开放式基准测试与形式化框架"
                              data-abstract-en="Adjuvants play a critical role in modulating immune responses and are central to the development of vaccines and immunotherapies. Yet progress in this field is constrained by data scarcity and incomplete understanding of mechanisms of action, which limit the transition from experience-based design to AI-driven approaches. To address these challenges, we present the first benchmark dedicated to adjuvants, constructed in an open-ended Q&A format and annotated by domain experts. The benchmark comprises 1,294 Q&A pairs and 1,364 formal descriptions, providing a resource for evaluating general-purpose multimodal large language models (MLLMs) and for developing domain-specific systems."
-                             data-abstract-zh="佐剂在调节免疫反应中起着至关重要的作用，是疫苗和免疫疗法开发的核心。然而，由于数据匮乏以及对作用机制理解的不完整，该领域的进展受到限制，阻碍了从基于经验的设计向AI驱动方法的转变。为解决这些挑战，我们提出了首个专门针对佐剂的基准测试，采用开放式问答格式构建，并由领域专家进行标注。该基准包含1,294对问答和1,364条形式化描述，为评估通用多模态大语言模型（MLLMs）和开发领域特定系统提供了重要资源。">
+                             data-abstract-zh="佐剂在调节免疫反应中起着至关重要的作用，是疫苗和免疫疗法开发的核心。然而，由于数据匮乏以及对作用机制理解的不完整，该领域的进展受到限制，阻碍了从基于经验的设计向AI驱动方法的转变。鉴于此，我们提出了首个专门针对佐剂的开放式基准测试，该数据集由领域专家进行标注，包含1,294对问答和1,364条形式化描述，为评估通用多模态大语言模型（MLLMs）和开发领域特定系统提供了重要资源。">
                             An Open-Ended Benchmark and Formal Framework for Adjuvant Research with MLLM
                         </div>
                         <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Yu Zhang*, Jian Xu, Xu-Yao Zhang, Hua Yue, Xinming Wang, Zequan Lyu, Wei Wei, Cheng-Lin Liu</div>
@@ -389,7 +420,7 @@
                              data-lang-en="Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models"
                              data-lang-zh="稀疏性遇见相似性：利用长尾分布优化多模态大模型的动态Token表示"
                              data-abstract-en="Recently, multimodal large language models (MM-LLMs) have achieved significant success in various tasks, but their high computational costs limit widespread application. The main computational burden arises from processing concatenated text and visual tokens in the LLM layer. We propose a dynamic pruning algorithm that identifies the inflection point in the visual CLS token similarity curve, enabling effective trimming of visual markers to accelerate model performance."
-                             data-abstract-zh="近年来，多模态大语言模型（MM-LLMs）在各项任务中取得了显著成功，但高昂的计算成本限制了其广泛应用。主要的计算负担源于LLM层对拼接文本和视觉Token的处理。鉴于此，我们提出了一种动态剪枝算法，通过识别视觉CLS Token相似度曲线中的拐点，有效修剪视觉标记以加速模型性能。">
+                             data-abstract-zh="近年来，多模态大语言模型（MM-LLMs）在各项任务中取得了显著成功，但高昂的计算成本限制了其广泛应用。主要的计算负担源于LLM层对拼接文本和视觉Token的处理。为此，我们提出了一种动态剪枝算法，通过识别视觉CLS Token相似度曲线中的拐点，有效修剪冗余视觉标记以提升模型推理效率。">
                             Sparsity Meets Similarity: Leveraging Long-Tail Distribution for Dynamic Optimized Token Representation in Multimodal Large Language Models
                         </div>
                         <div class="publication-authors"><span class="highlight">Yi Chen*</span>, Gao-Tong Yu*, Jian Xu</div>
@@ -653,7 +684,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- Global State ---
-            let currentLang = 'en';
+            // Try to load saved language, default to 'en'
+            let currentLang = localStorage.getItem('lang') || 'en';
             
             // --- Tooltip Logic ---
             const tooltip = document.getElementById('abstract-tooltip');
@@ -674,19 +706,31 @@
 
             // Function to position tooltip
             function positionTooltip(e) {
-                const tooltipWidth = 650; // Max width defined in CSS
-                const margin = 20;
+                const tooltipWidth = 600; // Match CSS width
+                const tooltipMargin = 15;
                 
-                let left = e.pageX + margin; 
-                let top = e.pageY + margin;
-
+                let left = e.clientX + tooltipMargin;
+                let top = e.clientY + tooltipMargin;
+                
+                // Get viewport dimensions
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
                 // Check right boundary
-                if (left + tooltipWidth > window.innerWidth) {
-                    left = e.pageX - tooltipWidth - margin;
+                if (left + tooltipWidth > viewportWidth) {
+                    left = e.clientX - tooltipWidth - tooltipMargin;
                 }
                 
-                // Keep strictly within window
+                // Check bottom boundary (approximate tooltip height)
+                // Use a safe estimate or calculate dynamically if already displayed
+                const estimatedHeight = 200; 
+                if (top + estimatedHeight > viewportHeight) {
+                    top = e.clientY - estimatedHeight;
+                }
+                
+                // Safety clamp
                 if (left < 10) left = 10;
+                if (top < 10) top = 10;
 
                 tooltip.style.left = `${left}px`;
                 tooltip.style.top = `${top}px`;
@@ -694,34 +738,25 @@
 
             document.querySelectorAll('.publication-title').forEach(title => {
                 title.addEventListener('mouseenter', function(e) {
-                    // Pre-fetch text to avoid lag
+                    // Update text immediately
                     updateTooltipText(this);
                     
-                    // Clear any pending hide actions
-                    clearTimeout(hoverTimer);
-                    
-                    // Position immediately
+                    // Position immediately using clientX/Y (Viewport coordinates)
                     positionTooltip(e);
                     
-                    // Show tooltip
-                    tooltip.style.display = 'block';
-                    // Small delay to allow display:block to render before opacity transition
-                    requestAnimationFrame(() => {
-                        tooltip.classList.add('visible');
-                    });
+                    // Show
+                    clearTimeout(hoverTimer);
+                    tooltip.classList.add('visible');
                 });
 
                 title.addEventListener('mousemove', function(e) {
-                    // Update position as mouse moves
+                    // Follow mouse
                     positionTooltip(e);
                 });
 
                 title.addEventListener('mouseleave', function() {
+                    // Hide
                     tooltip.classList.remove('visible');
-                    // Wait for transition to finish before hiding
-                    hoverTimer = setTimeout(() => {
-                        tooltip.style.display = 'none';
-                    }, 200); 
                 });
             });
 
@@ -745,29 +780,24 @@
             const langToggle = document.getElementById('langToggle');
             const langText = langToggle.querySelector('span');
 
-            function updateLanguage() {
-                // Update all static text
+            // Initialize Language on Load
+            updateLanguageUI();
+
+            function updateLanguageUI() {
+                // Update button text
+                langText.textContent = currentLang === 'en' ? 'EN' : '中';
+                
+                // Update all page text
                 document.querySelectorAll('.lang-switch').forEach(el => {
                     const text = el.getAttribute(`data-lang-${currentLang}`);
                     if (text) el.innerHTML = text;
                 });
-                
-                // Update Button Text
-                langText.textContent = currentLang === 'en' ? 'EN' : '中';
-
-                // Update Tooltip if it's currently visible
-                if (tooltip.classList.contains('visible')) {
-                    // Find which element is currently being hovered (if any)
-                    // This is tricky, simplified: we just re-trigger for the last known element or hide it
-                    // Better UX: Just let the user re-hover or update if we stored the active element.
-                    // For simplicity, we won't force-update the *active* tooltip dynamically 
-                    // unless we track the 'activeTitleElement'.
-                }
             }
 
             langToggle.addEventListener('click', () => {
                 currentLang = currentLang === 'en' ? 'zh' : 'en';
-                updateLanguage();
+                localStorage.setItem('lang', currentLang);
+                updateLanguageUI();
             });
         });
     </script>
